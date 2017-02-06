@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 6aa7714c9946c934b994fc15b48d75d5
+timeCreated: 1485030541
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Courier Final Draft
+  fontNames:
+  - Courier Final Draft
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3db7ab92937a39f4e8573ce54a930a9b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

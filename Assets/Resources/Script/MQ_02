@@ -1,0 +1,350 @@
+=== MQ_02
+
+[New Data]
+
+INT. AIRSHIP
+
+ANANTH: …Rita, I’m on the ship you told me to board…
+
+RITA: Great. What’s the issue?
+
+ANANTH: It’s… a prison ship?
+
+RITA: Yeah, we only ever go to the Core to dump garbage. It fries anything that falls towards it at a certain velocity, and it’s supposedly very quick.
+
+ANANTH: I reiterate, it’s a prison ship.
+
+RITA: I heard you the first time. What else are we going to do, cut their heads off? This way is quick and painless. 
+RITA: Just don’t make any eye contact with the prisoners. One of them gets a little too friendly with people's eye sockets.
+
+ANANTH: Which one?
+
+RITA: Iunno. One with hair.
+
+# switchTo: prisonShip
+
+-> Core_Outer
+
+= Core_Outer
+
+CUT TO:
+
+EXT. CORE
+
+Wide shot of the Core in the center of Haven. It's a miniature sun, but its light becomes somehow comforting as they get close. Tendrils of fire swirl around it in intricate patterns, and a hiss emerges from its depths. It grows dark inside, like a black hole, bending space around it slightly.
+
+ANANTH: Cool.
+
+CAPTAIN: Never seen it up close, have you?
+CAPTAIN: We’ll take you down to the Shell. Once we’re done with our business, we’ll return you to Haven.
+
+-> Core_Inner
+
+= Core_Inner
+
+CUT TO:
+
+INT. CORE
+
+The sound of the Core is like a heartbeat.
+
+ANANTH: …
+
+RITA (COM): All right, let's get started.
+
+-> Rita_01
+
+= Rita_01
+
+*[“What is this place?]
+RITA (COM): I admit, not even I’m completely sure.
+RITA (COM): The Core is the energy source for all of Haven, but where it gets its energy, I don’t know.
+-> Rita_01
+
+*[“What's next?]
+RITA (COM): See the table-y thing? That’s the Altar. Stick the doohickey I gave you into one of the sockets on its sides.
+
+ANANTH does this. The surface of the Altar lights up.
+
+RITA (COM): Do you see a root network made of light? Those are what carry energy through Haven.
+
+ANANTH: I see it. What are these roots, though? You don’t see them anywhere in Haven.
+
+RITA (COM): They’re extraphysical. Don’t worry about it.
+
+ANANTH: You mean ‘metaphysical’?
+
+RITA (COM): Shut up.
+RITA (COM): Put your finger on the central node. That’s the Core. Then, trace a line to Fol’deve. That will open a two-way connection that’ll let me talk to the Core.
+
+The player may have control at this point. Rita will guide Ananth to where Fol’deve is.
+
+RITA (COM): It’s a little complicated, but basically, Fol’deve should be northwest of the Core, and have the least connections to every other Fragment.
+
+RITA (COM): All right, I’m getting the readings now and— _whoa_.
+
+ANANTH: What?
+
+RITA (COM): Well… Agatha may have left us a parting gift.
+
+ANANTH: That sounds bad.
+
+RITA (COM): Get back here. Now.
+
+[Activate CONCLAVE AE SCOLIA]
+
+# switchTo: core
+
+-> Airship
+
+= Airship
+
+INT. AIRSHIP
+
+Alarms blare through the ship. Angry and bitter shouting can be heard even from outside.
+
+CAPTAIN (COM): Ananth? Is that you?
+CAPTAIN (COM): The prisoners got loose before I could get back to you. We've made an emergency landing, but we're trapped in the cockpit -- I can't get to you until this riot is resolved.
+
+RITA (COM): Ah, beans.
+
+-> captain_01
+
+= captain_01
+
+*["What happened?]
+
+CAPTAIN (COM): Some Delgoren spy among the crew, no doubt.
+
+RITA (COM): What, again?
+
+-> captain_01
+
+
+*["What do you want me to do?]
+
+CAPTAIN (COM): If we can't retake the ship peacefully, we'll have to execute them.
+
+RITA (COM): There's flame vents built into the interior for just that purpose. Why haven't you turned them on?
+
+CAPTAIN (COM): You know, Administrator, burning to death isn't the _best_ way to go.
+
+RITA (COM): And the prisoners should have thought of that before started rioting. Turn 'em on.
+
+CAPTAIN (COM): They've cut the power. Hence the emergency landing.
+
+RITA (COM): There should be a manual switch. Ananth, get to the control room.
+
+    **["On it.]
+    
+    **["You're going to make _me_ kill all these people?]
+    
+    -- CAPTAIN (COM): Wait! Rita, there's still a chance we can talk them down.
+    
+    RITA (COM): Have you _met_ these guys?
+    
+    CAPTAIN (COM): The bulk of the group belongs to the Armitage Clan. They're organized. If you can reason with their leader, the whole pack will fall in line.
+    
+    RITA (COM): ...It's a long shot, but then, I don't _love_ the thought of explaining the fire damage to our engineers. Give peace a whirl, Ananth.
+    
+
+- 
+# switchTo: prisonShip
+-> Engine_Room
+
+
+= Engine_Room
+
+INT. ENGINE ROOM
+
+HARMON: Don't shoot! I recognize this one. The Delgorens call 'im somethin'.
+
+ANANTH: "Arv'mahdant"?
+
+HARMON: Yeah, that. Listen, if you--
+
+PRISONER WITH HAIR: _Let me lick his eyes!_
+
+Beat.
+
+HARMON: ...If you want us to stop fightin', we have some demands.
+
+RITA (COM): Adorable. Ships and booze, for starts?
+
+HARMON: We want safe passage to Delgoren territory.
+
+RITA (COM): _What the what?!_
+
+-> Harmon_01
+
+= Harmon_01
+
+*["Why would you want that?]
+
+    HARMON: We've got nowhere else to go, kid. The Delgorens are taking over, and Fol'deve a'int takin' us back.
+    HARMON: You think we wanna be outlaws? In Fol'deve, if you don't got the skills to work, they don't do nothin' for ya. They won't even put us in jail, 'cause they don't think it's worth feedin' a load of good-for-nothin' prisoners. They just throw us to the Core so we burn up. 
+    HARMON: Why do you think this clan is so organized? 'Cause we take care of each other.
+    HARMON: One of the Del made a deal with us, said that if we went and joined them, we'd get taken care of. So I made a choice.
+    
+    -> Harmon_01
+
+*["Rita will pardon your crimes. I've seen her do it.]
+    
+    RITA (COM): Well, I mean... not for free. Not in this case.
+    
+    ANANTH: What? Why?
+    
+    RITA (COM): I'm not just going to pardon any criminal that threatens to leave! There has to be _some_ penalty for... y'know... committing indecencies with another's oculars.
+    
+    PRISONER WITH HAIR: I'd do it anyway.
+    
+    HARMON: Hush.
+    
+    RITA (COM): In this case, I'd want them to join our military.
+    
+    HARMON: They wouldn't take us!
+    
+    RITA (COM): If you're unfit for service, then I don't know--
+    
+    HARMON: And even if ya did pardon our crimes! We're only here because Fol'deve don't have any work for us! What would you do, let us starve? 'Cause I ain't letting my boys go back to that.
+    
+    -> Harmon_01
+
+*["What if we sent you someplace else instead?]
+    
+    RITA (COM): Yeah, call it exile.
+    
+    HARMON: Same shit, different fragment. The Delgorens are offerin' us food and shelter. We're not going to go die on some rock 'cause of _your_ politics.
+
+    -> Harmon_01
+
+*["How could we trust you?]
+
+    HARMON: You give me a hostage, and I'll let you lock up the rest of my boys. Neither of us could do a thing to each other, until you hand us all off to the Delgorens.
+    
+    RITA (COM): You're nuts if you think I'd hand somebody over-- wait, never mind, I know exactly who I'd hand over.
+    
+    ANANTH: The captain was just doing his job.
+    
+    RITA (COM): So'm I.
+
+    -> Harmon_01
+
+*["I'll have to talk to the captain.]
+    
+    HARMON: You think we a'int already tried that? / The cap'n was waitin' for you to come 'round. Said he didn't wanna take the heat for this.
+    
+    RITA (COM): Of course not.
+
+    -> Harmon_01
+    
+
+*["Sounds fine to me.]
+
+*["I'm not just going to let you get away, criminal.]
+    HARMON: Ah, shoulda guessed. Light 'im up, boys!
+    
+    -> Burn
+
+- 
+RITA (COM): Ananth, we can't just let these guys go to the Delgorens. The only reason the Old Del are able to expand so fast is because they keep converting people like this.
+
+ANANTH: But the only alternative is to burn them up?
+
+RITA (COM): ...Pretty much.
+RITA (COM): That's why the captain saddled us with this without saying anything. If _he_ made the decision to let them go, it'd be treason. It's a shit deal.
+RITA (COM): Look, you're the one on the ground, so you've got the decision. If you let these guys go, you'll be bolstering the Delgoren's ranks. The better choice is to let them burn.
+
+-> decision_01
+
+= decision_01
+
+*["What would you pick?]
+    RITA (COM): Burn them. Otherwise they'll bolster the Delgoren war machine.
+    
+    -> decision_01
+
+
+*[Send them to the Delgorens.]
+    ANANTH: I'll let you go.
+    
+    HARMON: ...For real?
+    
+    RITA (COM): Dammit... All right. I won't hold it against you, Ananth.
+    
+    -> Release
+
+*["I can't let you go.]
+    HARMON: Ah, shoulda guessed. Light 'im up, boys!
+    
+    -> Burn
+
+*["You're gonna burn.]
+    HARMON: Ah, shoulda guessed. Light 'im up, boys!
+    
+    -> Burn
+
+
+= Release
+
+FADE TO:
+
+HARMON is holding the CAPTAIN by behind.
+
+CAPTAIN: Rita, what's the meaning of this?!
+
+RITA (COM): Mutual exchange of hostages. Just to assure that everyone sticks to the deal.
+
+CAPTAIN: But why me?!
+
+RITA (COM): Because, screw you for having us make that decision for you.
+RITA (COM): Relax! He's not going to kill you unless we betray him, and I would never do that. Because we're a team.
+RITA (COM): Engineers, take the ship to Delgoren territory. And, be a dear and drop Ananth off on Fol'deve on the way.
+
+
+FADE TO:
+
+EXT. FOLDEVE
+
+Ananth is dropped off at Fol'deve.
+
+[Complete NEW DATA]
+
+-> Hub
+
+
+== Burn
+
+Ananth has to make his way to the control room, while the prison riot is going.
+
+INT. WAR ROOM
+
+RITA (COM): All right. Pull the switch to activate the flame vents throughout the ship.
+
+-> Switch
+
+= Switch
+*[Pull the switch]
+    The switch goes down, and screams fill the ship.
+    
+    ANANTH: ...
+    
+    RITA: It was the only thing you could do. I'm sorry, Ananth.
+    
+    FADE TO:
+    
+    EXT. FOLDEVE
+    
+    Ananth is dropped off at Fol'deve.
+    
+    [Complete NEW DATA]
+
+    -> Hub
+
+
++[Do not]
+    RITA: Ananth... There's no other way. You're not leaving the Core until you pull that switch.
+    -> Switch
+
+
+- -> Hub

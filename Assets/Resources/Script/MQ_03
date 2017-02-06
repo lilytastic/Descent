@@ -1,0 +1,230 @@
+=== MQ_03
+
+[Conclave ae Scolia]
+
+INT. RITA’S LAB
+
+ANANTH
+What’s up?
+
+RITA
+Thank God you’re back. It’s about the Core. / I’m having a hard time making sense of this data, so I need you to go to the Conclave ae Scolia and see an old friend of mine.
+
+-> rita_01
+
+= rita_01
+
+*[“What’s the Conclave ae Scolia?]
+    RITA
+    A gathering of scholars in an underground facility closed off to the public. Invitation-only. I’ll send word in advance so they let you in.
+    
+    -> rita_01
+
+*[“Is something wrong?]
+    RITA
+    I have no idea. The Core is using way more energy than I thought it would. I need more information about how it works before I jump to any conclusions on my own.
+
+    -> rita_01
+
+*[“On it.]
+    RITA
+    Good. Take this envelope and for God’s sake, don’t lose it.
+
+
+- EXT. CONCLAVE AE SCOLIA
+
+ANANTH
+Excuse me, I'm looking for the Conclave ae Scolia?
+
+CLERK
+The Conclave does not allow women.
+
+ANANTH
+I'm a boy.
+
+CLERK
+...Ah. / An invitation from Master Corlane? I thought he died.
+
+ANANTH
+Who?
+
+CLERK
+Please excuse me.
+
+ANANTH
+Rita, they say they don't take women.
+
+RITA (COM)
+Yeah, I forgot to mention, don't tell them you're a girl.
+
+ANANTH
+I -- Okay. I'm asking how *you* got in.
+
+RITA (COM)
+Hon, half these guys have never even seen a woman. Just cut your hair and manspread aggressively; they won't notice a thing.
+
+CLERK
+Everything checks out. Please come with me.
+
+
+INT. CONCLAVE AE SCOLIA
+
+CLERK
+Every door in the Conclave is fitted with a numerical lock. As a matter of policy, we're strict on which areas newcomers can access.
+The one you're looking for is Master Anci. He's in the liminologist's office.
+
+CLERK exits.
+
+# gameplay
+
+
+INT. CONCLAVE AE SCOLIA - LIMINOLOGIST'S OFFICE
+
+MASTER ANCI
+I Master Anci, liminologist, yes. Can do help?
+
+>FADE TO BLACK
+
+FADE IN:
+
+MASTER ANCI
+...This. Where did you get it?
+
+ANANTH
+Master Corlane.
+
+MASTER ANCI
+Master Corlane? He was to have abandoned us, yes? / I would never, should never, work with someone from the outside. But, these findings are very much bad. Handwriting is Master Corlane's, yes...
+
+ANANTH
+Master Corlane said he needed more information on the Core before he could figure out what this meant.
+
+MASTER ANCI
+You may study library, yes.
+
+Ananth looks up at the imposing bookshelves.
+
+ANANTH
+Can you give me the short version?
+
+MASTER ANCI
+Yes. Most vigorously.
+
+Master Anci clears his throat.
+The lights go out with a loud mechanical sound. Classical music swells.
+
+ANANTH
+Oh no.
+
+A hologram of the Night Sky fills the room with another loud sound.
+
+MASTER ANCI
+(In a completely different voice)
+Haven, as you surely know, is a perfect synthesis of machine and organic parts. Fragments tell us that even in the time of the Progenitors, Haven was something of a marvel -- a nexus of practically infinite amounts of energy that could be tapped and controlled. / Some believe it's as old as the Night Sky itself -- that it was the seat of its creator. Every Lantern in the Night Sky is linked to its Core through metaphysical Pathways, windows through the third dimension. The Progenitors could open these Pathways far wider, even walk through them, but such methods are lost to time. / Even in the endless Night Sky, where space has no meaning, Haven is the center. It was connected to everything out there, and so inevitably became the orbit for the Progenitor's empire. / The Core is the heart that pumps energy throughout Haven. Everything the Progenitors built here harnessed its power.
+
+ANANTH
+...Uh huh.
+
+MASTER ANCI
+...
+
+ANANTH
+...
+
+MASTER ANCI
+So? How was?
+
+ANANTH
+What?
+
+MASTER ANCI
+I've been researching thing for past 40 years, documenting all, and nobody ever comes to talk. To me. I've been preparing speech for years. / How was it? Did it make your eyes water? _Does life have meaning for Anci?_
+
+ANANTH
+I-I don't know?
+
+MASTER ANCI
+Oh. You need time to process it. I understand. Yes. 100%.
+
+ANANTH
+Was that all true, or is it just theory?
+
+MASTER ANCI
+You want broad-strokes version, or nitty-gritty technical version that take us all fucking day? / Here are facts. The Night Sky. Big. Lots of little Lanterns. The Core is linked to all of them. It shares their power. / _Some_ speculate that Haven was the origin point for all of them, but that's speculation, and you know what speculation gets you, yes? A big headache. / You. You look like an adventurous sort. Do you like secrets?
+
+*[“Yes.]
+    MASTER ANCI
+    You do now, yes. Secrets will betray you, like woman who promise life of mystery. Then, you just sleep in same bed not making eye contact every night for the rest of your life. No mystery there. Maybe here? Maybe. Some woman must possess what is promised, yes, for the mystery must come from somewhere. But never lose your spark. Don't become like me, yes?
+    
+    ANANTH
+    I'm trying *really hard* not to...
+
+*["No.]
+    MASTER ANCI
+    Good. Secrets only lead to sleepless nights. Sucks out joy. Go outside and talk to girls, yes? Silly boxes and old Machine-Gods are for others to worry about. Yes.
+    
+-
+MASTER ANCI
+Readings from Master Corlane. Much strange. Follows same pattern from last 25 years. Seems linked to mysterious Thing. Will examine most vigorously. Most. Vigorously.
+
+ANANTH
+...
+
+MASTER ANCI
+May I touch your fingers?
+
+*["Yes.]
+    Beat.
+    MASTER ANCI
+    Thank you for this gift, flesh-boy.
+
+*["No.]
+
+-
+Master Anci returns to his reading.
+
+RITA (COM)
+Okay, now go steal some books.
+
+ANANTH
+You lived here for how long?
+
+RITA (COM)
+I hung around a few years. Maybe five. Why?
+
+# gameplay
+
+Ananth collects the books
+
+-> end
+
+= end
+
+RITA (COM)
+Cool. Come back now. Yes.
+
+[Activate CASCADE FAILURE]
+
+
+INT. CONCLAVE AE SCOLIA
+
+Outside Anci's room...
+
+SCHOLAR
+What do women feel like?
+
+*["Warm butter.]
+*["Skin.]
+*["Regret.]
+
+-
+SCHOLAR
+...
+
+ANANTH
+...
+
+SCHOLAR
+I knew it.
+
+-> Hub

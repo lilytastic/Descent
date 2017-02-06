@@ -1,0 +1,931 @@
+=== MQ_04
+
+[Cascade Failure]
+
+INT. RITA'S LAB
+
+RITA
+…But this is pretty much the worst case scenario.
+
+WREN
+Yes. Luckily Ananth’s woken up, so we’ll have—
+
+RITA
+I doubt luck had anything to do with it.
+
+ANANTH
+Hey, what’s up?
+
+RITA and WREN jump.
+
+RITA
+Ananth! We, uh…
+
+RITA falters in her tone, searching for words. Something in her changes.
+
+RITA
+Come here.
+
+{
+    -DM_01:
+    WREN
+    I’ll go talk to Dominic.
+    -else:
+    WREN
+    I'll give you two some room.
+}
+{
+    -MV_01:
+    WREN
+    Mav.
+    
+    MAV
+    …
+}
+
+RITA
+I’ve been pouring over this data over and over again since you connected me with the Core, and every time I reach the same conclusion. / The Core doesn’t create any power of its own. It siphons all its energy from the Night Sky and the Sea of Lanterns. That’s how I understand it, at least. / …But the energy usage is off the charts. I mean, absurdly off the charts. Do you have any idea how much energy just one of those Lanterns can burn, on average?
+
+ANANTH
+A lot?
+
+RITA
+Okay, so, one of the lights in this room will typically use 60 watts in an hour.
+
+ANANTH
+Yuh-uh?
+
+RITA
+The Progenitors believed the Lanterns each had enough fuel to burn through octillions of watts per second for billions of years.
+
+ANANTH
+Cool. What’s an octillion?
+
+RITA
+So, take the number 10.
+
+ANANTH
+Right.
+
+RITA
+Now add 27 zeroes to the end of it. / That’s an octillion.
+
+ANANTH
+So… a lot.
+
+RITA
+Right. / Well, Haven is using all of it.
+
+Beat.
+
+ANANTH
+…What do you mean, it’s using all of it?
+
+RITA
+I’ll put it bluntly. / We have 25 days before all Lanterns in the Night Sky begin to die.
+
+Beat. Countdown appears.
+
+ANANTH
+_What_—
+
+RITA
+—the _fuck_, right?
+
+ANANTH
+Is that normal?!
+
+RITA
+No! Nothing on Haven should need that much power.
+
+ANANTH
+So what could possibly be doing something like that?!
+
+RITA
+Some stupid thing with the energy intake of a quintillion lights!
+
+ANANTH
+So what do we do?!
+
+RITA
+Simple. We find _the Thing_.
+
+[Activate FIND THE THING]
+
+-> rita_01
+
+= rita_01
+*[“What do you mean, they ‘begin’ to die?]
+    RITA
+    If the current energy usage stops right this second, the Lanterns will eventually reach equilibrium and revert to their normal lifespan. Theoretically. / After 25 days, the Lanterns will become unstable, and the damage will be irreversible.
+    
+    -> rita_01
+
+*[“What could this T/thing be?]
+    RITA
+    No idea. If it was an accident of the Progenitors, it’s been around for eons. The idea that we’re only discovering it 25 days before the damage becomes irreversible is… unlikely. / More likely is that someone created it very recently. As for the function, I honestly have no idea what could need that much energy.
+    
+    -> rita_01
+
+*[“What happens if all the Lanterns disappear?]
+    RITA
+    I don’t know. The Progenitors seemed to believe the Lanterns would burn out eventually, but they thought it would be the end of time.
+    
+    {
+        -DM_01:
+        DOMINIC
+        The end times.
+        
+        RITA
+        No, 'end of _time_'. I know my grammar, Dom.
+        
+        DOMINIC
+        No, it -- This is what the ancient Scriptures meant. The job of the Arv’mahdant is to tear down the Veil and restore the faithful, so that all can meet Judgment on the appointed day. The end times.
+        
+        RITA
+        Does Scripture contain any _solutions_ for the 'end of the times'?
+        
+        DOMINIC
+        It's... Rita, it's not a problem to be solved.
+        
+        RITA
+        So, no, then?
+        
+        DOMINIC
+        You can't _solve_ the end times.
+        
+        RITA
+        Not with that attitude.
+    }
+
+    -> rita_01
+
+*[“Where do we start?]
+
+-
+RITA
+We need to know more if we’re going to find the Thing. / …I think it’s time I got back into the game.
+
+WREN
+Rita, no.
+
+RITA
+You got any better ideas?
+
+A siren blares out.
+
+RITA
+…That’s the city alarm.
+
+The SKIRMISH HUD slides onto the screen, showing the War Assets of both sides and the balance of morale. The Delgorens have more assets, and the morale is firmly in their favour.
+
+CUT TO:
+
+EXT. FOL’DEVE
+
+In the sky, a fleet of ships in formation can be seen, far in the distance.
+
+ANANTH
+Is that the—?
+
+{
+    -DM_01:
+    DOMINIC
+    It’s the Delgorens.
+    -else:
+    RITA
+    It's the Delgorens.
+}
+
+WREN
+…Good God, I have to get back to the Citadel.
+
+She runs out.
+
+RITA
+(deadpan)
+One day, one day I just want to sit in my underwear with a bottle of rosé and read a smutty book. Is that too much to ask?
+
+*[“We have to fight.]
+*[“What do we do?]
+*[“Maybe they can help us?]
+    RITA
+    Sure, Ananth, once they’ve got their boot on our necks, I’m sure we can come to an arrangement to benefit all parties.
+
+-
+{
+    -DM_01:
+    DOMINIC
+    Wren will rally the guard. The scouts would have seen them approach -- the soldiers are probably already at their posts.
+    
+    RITA
+    That’s not good enough! They have airships, and our pilots won’t have enough time to get into a defensive position. If they drop the bombs— / Come on, think. Every time Fol’deve has held off an attack, it’s always been because of a really good plan.
+    
+    DOMINIC
+    I imagine that's why the Old Del are attacking us without warning this time.
+    
+    RITA
+    (shouting)
+    _I know that. Don’t patronize me, and think._
+    
+    -else:
+    RITA
+    Okay, okay. The scouts would have seen them approach, so, the soldiers will be at their posts... / Argh! The Delgorens have airships. Our pilots won’t have enough time to get into a defensive position. If they drop the bombs— / Come on, think. Every time Fol’deve has held off an attack, it’s always been because of a really good plan.
+}
+
+{
+    -MV_01:
+    MAV
+    I could go on a suicide run again. That always works.
+    
+    RITA
+    If only I had time to prepare, I could have grabbed another artifact...
+}
+
+RITA
+Ananth. Darling. What powers do you have, exactly?
+
+-> rita_02
+
+= rita_02
+
++[“I can open Pathways.]
+
+    RITA
+    Could you redirect their airships? Crash them together?
+    
+    ANANTH
+    I don’t know if I could do something that—
+    
+    RITA
+    Right, too complex, too complex…  Need to make do with something smaller. / Firebombs! We throw firebombs with counterweights down from the top of the citadel so they build momentum. You open Pathways at ground level and redirect them back into the air.
+    
+    **[“Sounds good.]
+        -> opt_firebomb
+    
+    **["Sounds a little too... messy.]
+        -> rita_02
+
++[“My emotions can manifest. Physically.]
+    RITA
+    Physically? How? How physically?
+    
+    ANANTH
+    I don’t know – Fire, lightning, wind…
+    
+    RITA
+    Lightning. Airships will burst into flame if lightning strikes.
+    
+    ANANTH
+    I need to be close, I can’t just—!
+    
+    RITA
+    Great! I was looking for a way to test out my jetpack.
+    
+    **[“Sounds good.]
+        -> opt_jetpack
+        
+    **["Let's not.]
+        -> rita_02
+
++[“I know things I can’t explain.]
+    RITA
+    Things? What kind of things?
+    
+    ANANTH
+    Things other people know. It’s like I’m reading minds, except, not as direct.
+    
+    RITA
+    …The codes! If you can get the Delgoren codes, we can send a false message and get them to retreat!
+    
+    ANANTH
+    I… Maybe?
+    
+    RITA
+    No time for second guesses!
+    
+    **[“Sounds good.]
+        -> opt_cryptography
+    
+    **[“Sounds like a minigame. No thanks.]
+        -> rita_02
+
+
+== opt_firebomb
+
+EXT. CITADEL
+
+FADE IN:
+
+ANANTH
+So let me get this straight. You’re going to throw firebombs at me, and I have to catch them.
+
+RITA (COM)
+With one of your Pathways, yes.
+
+ANANTH
+And if I don’t catch it in time and it blows up?
+
+RITA (COM)
+Then… that’s what happens, I guess.
+
+ANANTH
+Rita, I don’t know if—
+
+RITA (COM)
+Airships are right ahead. Catch!
+-> skirmish_02
+
+
+== opt_jetpack
+
+EXT. SKY OVER FOL’DEVE
+
+Sound of a jetpack taking off.
+
+ANANTH
+Rita, this is stupid.
+
+RITA (COM)
+No it’s not, shut up!
+-> skirmish_02
+
+
+== opt_cryptography
+
+INT. RADIO ROOM
+
+SMASH IN
+
+WREN
+We don’t have much time before the airships get here.
+
+RITA
+All right, Ananth, here’s all the messages we’ve intercepted over the past month. We need you to translate them -- then we can write a message of our own.
+
+ADVISOR
+Not even our best cryptographers have been able to—!
+
+WREN
+Tia, if all you’re going to do is make worthless comments, you can go hide with the rest of the peasants. / You’ve got five minutes before the Delgorens start to do some serious damage, Ananth.
+
+[Ananth has five minutes before Fol’deve’s War Assets begin to fall, affecting morale. He must solve a series of logic puzzles to translate the codes.]
+-> skirmish_02
+
+
+== skirmish_02
+
+[On 50% damage being done to either side, morale going to 80%, or when Ananth cracks the code…]
+
+SMASH TO:
+
+INT. CITADEL
+
+CONSTANCE (COM)
+People of Fol’deve…
+
+RITA
+…Oh, you’ve gotta be kidding me.
+
+CONSTANCE (O.S.)
+As we speak, your armed forces are being turned to ash. I imagine you would all like to know why. / The past two decades, after the Cataclysm, we have only targeted the criminals and destitute among you. They now serve in Arv’vurdeve, safe and content. Now it is your turn – you, apostates of Fol’deve. / You’ve been told that Delgoren rule is cruel, and primitive. Yet you slave away in poverty, and for what? How many of you have wasted away from starvation? How many of you have watched your children die from disease? How many of you turned to crime just to survive, and where-oh-where was your Goddess of Ember then? / That heathen Goddess is the one who made this city for you. She took you from your home and gave you… what? A life without meaning. Would you rather work your fingers to the bone so that you can eat come winter? Or would you rather live by the generosity of the kindest of Masters, and build temples in the glory of God? / Your Goddess is dead. The Arv’mahdant has risen. The time has come to rise and take this city back from the oppressors. The time has come to rejoin Arv’vurdeve, and reclaim your rightful place at God’s feet!
+
+The sounds of yelling rise from the streets below.
+
+RITA
+This probably wasn't the best week to cut rations.
+
+CONSTANCE (O.S.)
+Is this what you want, Arv’mahdant? This war? When the Day of Judgment comes, who do you trust to lead the faithful to their rightful place? Your sister?
+
+RITA
+Ananth, the lower classes are getting riled up. If we don’t end this quick, we might have a civil war on our hands.
+
+{
+    -DM_01:
+    DOMINIC
+    If I may interject? / The Delgorens may be right. If we’re truly headed for the end times, then this war is unnecessary.
+    
+    RITA
+    No.
+    
+    DOMINIC
+    Rita, this thing you just discovered -- doesn't it sound a little bit like the end of the world? I know you put little stock in Scripture, but even you--
+    
+    RITA
+    So what are we going to do, stand down? You want to let the Delgorens win?! / Kill them, Ananth. We don’t need some fucking priests telling us what to do.
+}
+
+[If ANANTH picked the cryptography option, but did not crack the code, skip directly to when CONSTANCE steps off of his ship and calls ANANTH’s name.]
+
+SYSTEM
+This battle is one that you can win or lose. Should you lose, the Delgorens will take Fol'deve, and the war will end. / Your choices will determine the outcome of the Day of Judgment at the end of these 25 days. Not all outcomes will be good.
+
+-> ship_decision
+
+= ship_decision
+
+*[Destroy Constance’s ship.]
+    -> destroy_ship
+    
+*[Stand down.]
+    ANANTH
+    This is wrong.
+    
+    RITA
+    What?!
+    
+    {
+        -DM_01:
+        DOMINIC
+        Ananth, our mission right now is to prepare for the end times. Talk to Constance.
+        -else:
+        ANANTH
+        I want to talk to Constance.
+    }
+    
+    -> constance_meeting
+
+*[Do nothing.]
+    RITA
+    Ananth?
+    
+    ANANTH
+    I… I can’t.
+    
+    RITA
+    Ananth, you can’t just— Neutrality isn’t an option, here! If you don’t do something, Constance will capture the city. Everything we've done here will be destroyed. The last hope of the Draiven race will be destroyed.
+    
+    -> ship_decision
+
+== destroy_ship
+{
+    -opt_firebomb:
+    Ananth propels a bomb straight up towards Constance’s ship, and it explodes.
+    
+    RITA (O.S.)
+    …That’ll do it.
+
+    -opt_jetpack:
+    ANANTH makes direct eye contact with Constance from the sky, and blows up the ship.
+    
+    RITA (O.S.)
+    …That’ll do it.
+
+    -opt_cryptography:
+    ANANTH sends a message using the telegram.
+    
+    RITA
+    …Ananth?
+    
+    ANANTH
+    Give me one moment.
+    
+    RITA
+    What are you sending?
+    
+    The room shakes. RITA looks up the window.
+    
+    ANANTH
+    ‘This is Morgan of the Arv’ae, stop. We’ve reason to believe that Constance has gone rogue and is starting a war with Fol’deve, stop. This cannot be allowed, stop. Take him out immediately, stop.’
+    CONSTANCE’s ship falls by the Citadel and explodes in the streets.
+    
+    RITA
+    …That’ll do it.
+}
+
+The wreckage burns in the streets. A hand bursts out, holding a spear. Constance climbs out, bleeding, but manages to stand on the end of his spear.
+
+CONSTANCE
+(looking up)
+Ananth!
+
+Fol’deve’s army stands and aim their guns down on him. The other airships land, and CONSTANCE’s soldiers pour out.
+
+SOLDIER
+Protect the Arv’ae!
+
+{
+    -opt_cryptography && destroy_ship:
+    Morse code comes from the radio.
+    
+    ANANTH
+    They know the message was fake. They’re confirming it now.
+}
+
+WREN
+They’re landing.
+
+RITA
+How many?
+
+WREN
+Can’t be more than 50.
+
+{
+    -DM_01:
+    DOMINIC
+    Wren, listen to me--
+    
+    RITA
+    Shut it. Ananth, get down there.
+    
+    -else:
+    RITA
+    Ananth, get down there.
+}
+
+-> rita_03
+
+
+= rita_03
+
+*[“On it.]
+    -> constance_meeting
+
+*[“You want me to fight Constance?]
+    RITA
+    Yes, Ananth, that's exactly what I want. You have yourself a sick battle at the wreckage of Constance’s ship and give our fighting men a _throbbing_ erection. Can you do that?
+    -> rita_03
+    
+*[“Haven’t I done enough?]
+    RITA
+    Gee, I don’t know, ask Constance!
+    
+    {
+        -DM_01:
+        DOMINIC
+        Ananth, Constance will forgive us for most of our indiscretions. But if we make it a policy to kill any Old Delgoren that enters our city—
+        
+        RITA
+        Dominic, the people are counting on us! All of Fol’deve is counting on us to save them – why are you being such a defeatist?
+        
+        DOMINIC
+        I’m not being a defeatist, girl – consider, for one moment, that maybe defending Fol'deve isn't all that matters right now!
+    }
+    -> rita_03
+
+*[“Absolutely not.]
+    RITA
+    Are you mental? / Constance wants to enslave us. He wants to enslave all of us. Stop pretending to be righteous and kill these bastards.
+    
+    **[“Fine.]
+        RITA
+        _Thank you!_
+        -> constance_meeting
+    
+    **[“No, Rita.]
+        RITA
+        You're going to get us all enslaved, idiot!
+        -> constance_meeting
+
+
+== constance_meeting
+
+EXT. FOL’DEVE
+
+FADE IN
+
+CONSTANCE walks over the rubble with his honour guard. He holds his spear in two hands, looking over the horizon.
+
+CONSTANCE
+…Ananth!
+
+CONSTANCE’s army stands on the rubble, holding their spears and swords.
+ANANTH steps out from behind a broken building. He stands before them, like a scene from the Old West.
+
+ANANTH
+I’m here.
+
+Beat.
+
+{
+    -destroy_ship:
+    CONSTANCE
+    I’ll pretend you didn’t just try to kill me. Wouldn’t be good to hold a grudge against the Arv’mahdant, would it?
+}
+
+CONSTANCE steps down from the rubble.
+
+CONSTANCE
+The lower classes are already rising against the Matriarch. Have you any idea why?
+
+*[Shoot him.]
+    CONSTANCE reels back from the shot to his shoulder. The soldiers rush forward.
+    -> skirmish
+
+*[“They think you’ll give them a better life.]
+    CONSTANCE
+    In a perfect world, we’d prefer not to appeal to people’s selfishness. Never had much taste for these promises of Paradise, myself. Sex? Comfort? I tell people religion is about far more than that, but…
+
+*(afraid)[“They’re afraid.]
+    CONSTANCE
+    Perhaps. People are often unpredictable. Perhaps they think joining the chaos will give them some control over their lives.
+    
+*(stupid)[“They’re stupid.]
+    CONSTANCE
+    Your mother and her government have told them the Delgorens are savages clinging to an ancient religion. A stupid person would have accepted that without question.
+
+*[“I don’t know why.]
+    CONSTANCE
+    Well, you wouldn’t be the first that failed to heed the lower class. Nor would you be the first to pay the price.
+
+- 
+CONSTANCE pauses and looks out over the city.
+
+CONSTANCE
+I didn’t want this to happen, Ananth, believe me.
+
+ANANTH
+Then why is it happening?
+
+CONSTANCE
+Precisely, my dear Arv’mahdant. / Our religion, above all, emphasizes peace and harmony… even if it means accepting authority that you loathe. Your demon mother, and her tribe of apostates, was no exception. No matter how hard she tried to stamp us out. / For decades, my Arv’ae have prevented this war. Right up until you killed her, and gave everyone a taste for revolution. Your heart was in the right place, but when it comes to war… no side is ever without fault. Some of my brethren, they believe the way to Paradise is paved in blood. / So, here we stand. The Arv’ae want to end this war quickly. The unconditional surrender of Fol’deve will show the world that peace is an option. We can take this world bloodlessly, just as we did at the dawn of Arv’ngoktism, and you can undo the damage you caused. / Are you here to surrender?
+
+-> constance_opts
+
+= constance_opts
+
+*[Shoot him.]
+    {
+        -stupid:
+        ANANTH
+        They're stupid. I'm not.
+
+        -afraid:
+        ANANTH
+        They're afraid. I'm not.
+    }
+    Ananth smoothly pulls out his pistol and shoots Constance.
+    Constance reels back from the shot to his shoulder. The soldiers rush forward.
+    -> skirmish
+
+*[“No.] 
+    CONSTANCE
+    ...I'm sorry to hear that. Truly. / Men!
+    -> skirmish
+
+* [“Not without conditions.]
+    CONSTANCE
+    And what would those be?
+    -- (conditions) 
+    
+    **[“We need your help to find something.]
+        CONSTANCE
+        Our resources would be at your disposal. Whatever you need.
+        
+        ANANTH
+        A Progenitor artifact.
+        
+        CONSTANCE
+        We’ve dug up a number in our excavation of Arv’vurdeve. Even if we haven’t found the one you need, I understand the artifacts are… linked, in some fashion.
+        -> conditions
+    
+    **[“I need full autonomy.]
+        CONSTANCE
+        You’re the Arv’mahdant. You think I’m so arrogant that I would tell God’s chosen how best to serve? Of course, you may do as you please.
+        -> conditions
+    
+    **[“Don’t enslave these people.”]
+        CONSTANCE
+        …And, what would the alternative be? / We never ask our people to fight for a place in our society. What you call slavery, we call fairness. / Each of us has a purpose, and each of us has a need to fulfill that purpose. A man has strong arms with which to build shelters – to erect temples. A woman has a kind face and an ear for music with which to soothe the hearts and minds of others. You? You were given power. / Should we not honour that? Should we not give each person their rightful place? To each man, a job they can fulfill. Those who cannot work need not fear poverty, nor stigma. / That is why we impose slavery -- but anything less would be unjust. Look around. What you call freedom, is nothing but an excuse for the Matriarch's neglect.
+        -> conditions
+
+    **[“I’ve heard enough.]
+        CONSTANCE
+        And? Will you surrender?
+        -> constance_opts
+
+*[“Whatever it takes.]
+    -> stand_down
+
+*[“Yes, Sir.]
+    -> stand_down
+
+
+== skirmish
+
+RITA (O.S.)
+All right, Ananth, let me lay down the basics of warfare. / We’ve got a militia. Constance’s got his honour guard. The two are more or less evenly matched right now. / While they duke it out, they’re going to keep one eye on you two. Your battle is going to help drive morale, one way or the other. / Pop quiz: when does the fight end?
+
+ANANTH
+When… one side is destroyed?
+
+RITA (O.S.)
+Not quite. No general is going to fight to the last man unless they absolutely have to, you dig? / This is a big game of tug o’ war. You keep the upper hand against Constance, morale will go up, and that’ll give our crew the edge they need. Push the balance completely in our favour, and the honour guard will piss right off. That, in a nutshell, is your job.
+
+* [Win Skirmish] -> saving_foldeve
+* [Lose Skirmish] -> failure
+
+= failure
+
+SOLDIER
+Lord Constance! The enemy is falling back!
+
+Constance withdraws his spear and gives Ananth a hard look.
+
+CONSTANCE
+I won't hold this against you.
+
+He walks towards his men.
+
+-> losing_foldeve
+
+
+== stand_down
+
+CONSTANCE
+You've done the right thing.
+
+He walks towards his men.
+
+-> losing_foldeve
+
+
+== losing_foldeve
+~mq04_lostfoldeve = true
+
+CONSTANCE
+Men! This day will be remembered for generations. It remains to be seen just how they'll remember it. Are we savages, or bringers of peace? Are we just one more in a long line of tyrants, or are we truly the right hand of God? / So go, kill anyone with a sword in their hands. But on this sacred day, let there be no raping, and no unnecessary killing. Go as God's chosen, and bring me this city whole and its spirit intact!
+
+The soldiers raise their weapons above their heads.
+
+SMASH TO BLACK
+
+FADE TO:
+
+INT. RITA'S LAB
+
+RITA
+Pack up everything and let's move.
+
+ANANTH
+Where are we going?
+
+RITA
+I have room and board at the Conclave ae Scolia. They'll demand most of my artefacts and I'll probably have some research assignments to take care of, but they'll take me in.
+
+She stops, bent over a table, mid-packing.
+
+*[“I'm sorry.]
+    RITA
+    Don't.
+
+*[“This is for the best.]
+    RITA
+    Is something wrong with your head? How can the colonization and enslavement of our entire race be 'for the best'?
+
+*{not stand_down} [“We'll take this city back.]
+    RITA
+    One thing at a time.
+
+-
+RITA
+We have a world to save. We'll have all the time in the world to take down the Delgorens once the Thing is shut down.
+
+[Activate "CONTROL PHREAK"]
+
+-> all_endings
+
+
+== saving_foldeve
+
+WREN
+Enough!
+
+The Delgoren army falls to its knees. Constance stands and meets eyes with the Matriarch.
+
+WREN
+You've lost, Constance. Drop your spear.
+
+He doesn't.
+
+CONSTANCE
+What happens now?
+
+Rita walks up behind Wren.
+
+RITA
+What else? Execution.
+
+*[Say nothing]
+* (protest_execution) ["No, don't!]
+    RITA
+    We'll talk about this later.
+* (approve_execution) ["Works for me.]
+
+-
+Wren gives Rita a sideways glance, and Rita raises her eyebrows.
+After some hesitation, Constance drops his weapon. All his men follow suit.
+
+CONSTANCE
+...Very well.
+
+RITA
+Take him away.
+
+Fol'devean soldiers come and arrest Constance. Rita and Wren wait for them to leave.
+
+RITA
+Kidding, of course. He's no good to us dead. But he knows that. If we said we were going to lock him up, he might've fought us to his last breath.
+
+WREN
+You nearly gave me a heart attack, girl.
+
+{
+    -protest_execution:
+    RITA
+    Good of you to protest. Having Constance on our side will end this war a whole lot quicker.
+}
+
+*["I thought you were all for killing Delgorens.]
+    RITA
+    Only to end the war! What do you think I am, a tyrant?
+
+*["Very... shrewd.]
+    RITA
+    Yep, I'm a real shrew.
+
+*["Thank God.]
+    RITA
+    God had nothing to do with it! What do you think I am, a tyrant?
+
+*["Aw, I thought you were serious.]
+
+
+-
+FADE TO:
+
+
+INT. RITA'S LAB
+
+Rita pops open a bottle.
+
+RITA
+Here's to a successful skirmish.
+
+*["...]
+    RITA
+    What?
+    You're not seriously conflicted about this, are you? Ananth, we just averted the colonization and enslavement of our entire race. Try smiling.
+
+*["Is this really the time?]
+    RITA
+    Never stopped me before.
+    
+*["I'll drink to that.]
+    RITA
+    When the Delgorens catch us with our pants down, what do we do? We take our cock out and thump 'em with it.
+
+-
+She drinks.
+
+RITA
+It's almost enough to make you forget about the end of the world.
+
+-> all_endings
+
+
+== all_endings
+
+{
+    -losing_foldeve:
+    
+    *["What will the Delgorens do with Fol'deve?]
+        RITA
+        It'll be just another colony. / A good chunk of the men will be shipped off to Arv'vurdeve to help rebuild it. The rest will be kept here, as slaves. Those in the lower levels will have the same level of accomodation, but the upper classes will likely be moved out of their home, so the Delgorens can move in. / ...It won't be so bad. With careful administration, they could even be comfortable. If the Delgorens have good administration, that is.
+        -> all_endings
+    
+    *["What about Wren?]
+        RITA
+        Wren is the Delgoren Matriarch. She's an apostate, in the eyes of the Old Del at least, but she's still a Matriarch. Not to mention she still has... special knowledge. / The Delgorens will keep her around as a trophy. A warning to any Delgorens that might question their legitimacy.
+        -> all_endings
+        
+    -saving_foldeve:
+    
+    *["Will the Delgorens back off now?]
+        RITA
+        Unlikely. That was a small army, more than I thought Constance would have with him, but it wasn't their entire force. / More likely is that Constance wanted to take Fol'deve bloodlessly. Now that that's failed, things are gonna get... difficult.
+        -> all_endings
+}
+
+*["Is the poverty in Fol'deve really that bad?]
+    RITA
+    Fol'deve is a young colony. We have very little infrastructure, and the Delgorens sure as shit weren't helping these past few decades. / When we started, my job was to ensure food, shelter, clean water... everything we needed to survive. Ideally, everyone would get enough to live on, but the resources were scarce. With the Bank of Cor'deve blueballing us, I had to start selling supplies to the citizens rather than giving them away as I'd wanted. Those that didn't have the money... well, they'd have to wait. And then the prices just kept going up. / This problem would have been resolved right away if it weren't for the Delgorens breathing down our necks. What money I made kept getting earmarked for the next big siege, or to replace whatever airships we lost. I thought the people would understand why they were having to hold out for so long. Apparently not.
+
+    -> all_endings
+
+*["What's the plan?]
+    RITA
+    I'm going to get back into the game. If we're going to find the Thing, I need to reconnect with old contacts. If something was built recently that's big enough to use this kind of energy, someone out there has to know about it.
+    
+    ANANTH
+    Wren didn't sound happy about it.
+    
+    RITA
+    My old contacts are... not the best sort of people. Wren was the one who turned me legit. But unless someone has a better idea, we don't have much choice. / I'll get in touch with you when I find something. For now, try to get things under control. End of the world or no, this city's in shambles, and it could really use a goddamn hero.
+    
+    [Activate ACT 2]
+    [Activate COCKTAILS AND RUBY SLIPPERS]
+    
+    -> Hub

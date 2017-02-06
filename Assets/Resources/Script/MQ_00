@@ -1,0 +1,176 @@
+=== MQ_00
+
+[Prologue]
+
+EXT. NOX, HIGH BRIDGE # atmosphere: Steam at Night
+
+It is pitch black. An engine can be faintly heard in the background. 
+
+FADE IN:
+
+The darkness splits in half as a steel hatch begins to open, revealing a cobalt sky and a thick cloud of steam. Agatha stands, silhouetted against the sky.
+A guard stands outside with a flamethrower, and waits as Agatha steps out.
+
+AGATHA: Easy on the old woman. I’ll move when I’m damned ready.
+
+We pan up to see Agatha’s face, as she looks out over the city of Nox. Over her shoulder, we see the skyline.
+Melonia steps out behind her.
+
+GUARD: Move.
+
+AGATHA: I’d move faster with my cane. #beat: 1
+
+MELONIA: I coul’ jus’ kill ‘em, if ya asked me nicely.
+
+AGATHA: Now, Mel, if we killed everyone who chained us up, we’d never meet anyone nice.
+
+MELONIA: Ah think we’re abou’ ta be execu’ed.
+
+AGATHA: I suppose they’d better have a damn good reason, then. Let’s find out.
+
+GUARD: Quiet!
+
+The guard jabs Agatha with the butt of his rifle, doing damage and staggering her. #beat: 0.3
+
+MELONIA: She needs ‘er cane.
+
+GUARD: I said, quiet!
+
+Melonia trembles and looks to Agatha for reassurance.
+
+AGATHA: Just keep your eyes straight, girl. I don’t want to die, either. #beat: 1
+
+MELONIA: Killin’ ‘em is still on tha table, righ’?
+
+AGATHA: I don’t see why not. 
+
+# gameplay
+
+SMASH TO:
+
+
+INT. COURTHOUSE 
+
+The twin doors open with a heavy, metallic clang, operated by a lone officer. AGATHA and MELONIA are escorted in, still chained. The guard stands nearby with his rifle, but the women are allowed relative free reign of the room.
+
+ROMULUS and REMUS stand by the courtroom doors.
+
+-> romulus_and_remus
+
+= romulus_and_remus
+
+AGATHA: Remus! It’s been a while.
+
+REMUS: Been busy. I don’t know how you could stand leading the Bohemn, love. The Magistratum has me running ragged.
+
+AGATHA: That’s why I retired.
+AGATHA: What are you two time travellers doing here?
+
+ROMULUS: Prosecuting.
+
+AGATHA: Ah…
+AGATHA: …Ah! Two time travellers, and an uncharacteristically hush-hush trial. A crime I’ve yet to commit then, is it?
+
+ROMULUS: We’ve come to escort you.
+
+REMUS: (offering his arm) Your audience awaits.
+
+ROMULUS: Remus, none of that.
+
+CUT TO:
+
+INT. COURTROOM
+
+ROMULUS: The pre-trial has already been concluded. You two are here to give testimony, and fill in the facts we’ve not been able to find.
+
+AGATHA: And just what is the point, if our guilt has already been determined?
+
+ROMULUS: If you cooperate, perhaps we can work together to avert this crisis you’ve created.
+
+AGATHA: It’s that bad, is it?
+
+ROMULUS: Greater than you, me, and the entire Magistratum.
+
+They are shown to the defendant’s podium, and sit.
+
+MELONIA: (sitting) Hell, ya’d think it were the end o’ tha world.
+
+AGATHA: (sitting) You know, darlin’, it just might be. #beat: 1
+
+JUDGE: All rise.
+
+Everyone but Agatha stands. The Judge glares at her.
+
+AGATHA: I’m old. What part of ‘old’ do you people not understand?
+
+>SMASH TO BLACK
+
+The JUDGE bangs his gavel. #sfx:187705__odditonic__gavel-3-strikes-with-room-reverb
+
+FADE IN:
+
+Agatha is sitting at the podium.
+
+JUDGE: Attach the lie detectors. #beat: 1
+
+A guard attaches two devices to Agatha’s temples.
+
+JUDGE: Would the prosecution care to begin? #beat: 1
+
+Romulus approaches and holds up Agatha’s silver locket, which is open to reveal a small, black marble.
+
+ROMULUS:    This is yours, correct?
+
+AGATHA:     …Correct.
+
+ROMULUS:    What is it?
+
+AGATHA:     Well, I’m not too sure myself. When I received it, it was called ‘the Seed’.
+
+ROMULUS:    By who? Where did you get it?
+
+AGATHA:     That’s a long story.
+
+ROMULUS:    We want to hear it.
+
+AGATHA:     I certainly hope it’s relevant to your case, then.
+
+ROMULUS:    Tell us everything, Agatha.
+
+Agatha slumps for a moment...#beat: 0.4
+...and then her face lights up. # bgm: Covert Affair
+
+AGATHA: (deviously) Everything? #beat: 1
+
+The court pauses for a moment. Melonia bursts out in laughter.
+
+ROMULUS: You seem far too excited about this.
+
+AGATHA: Do I?
+AGATHA: Well, I’m happy to tell you. But I’ll need your assurance that I won’t be interrupted.
+
+ROMULUS: I can’t give you that.
+
+AGATHA: You’ll need to. I told you, it’s a long story.
+
+ROMULUS: And how do I know you’re not playing games with us?
+
+AGATHA: Oh, I am absolutely playing games with you.
+
+REMUS: Your Grace, the Seed is central to these events, yet there’s no record of it anywhere. We don’t know anything about this artifact, and the only one who does, is Agatha.
+REMUS: I say, let her play her games. #beat: 1
+
+ROMULUS: (reluctant) Am I going to regret this?
+
+AGATHA: Oh yes. But your brother is right. You’ll need to hear this.
+
+JUDGE: Fine. Begin your testimony.
+
+AGATHA: Excellent. 
+AGATHA: We begin sixty years ago. There was this boy named Ananth, who I suppose you could call my son…
+
+MELONIA: Oh God, it’s alrea’y funny.
+
+>FADE TO BLACK
+# bgm: none
+-> Old_MQ00

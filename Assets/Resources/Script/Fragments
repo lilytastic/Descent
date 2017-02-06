@@ -1,0 +1,244 @@
+=== Fragments
+/* Scenes that haven't been put anywhere yet */
+
+
+
+= jezebel_offer
+
+JEZEBEL
+{people_killed > 0: We're not so different. How many people have to die for your purposes? What makes you so special? / ...You don't have to agree with me. Either way, you're going to keep doing it, aren't you? | Perhaps you're not like me. And it's a pity. People are depending on you. What happens when they need your protection?} / {mq04_lostfoldeve: The people of Fol'deve needed you. People were _enslaved_ because of your weakness. You need a strong leader. Someone to even the playing field. | The people of Fol'deve need your protection. They're lucky to have you. They need someone strong to even the playing field.}
+
+JEZEBEL
+...Which is why I'm offering you an alliance. The same as we had with your mother. {mq04_lostfoldeve: Well, not the same terms... Obviously, the terms will be far worse, in your case.}
+
+ANANTH
+What alliance?
+
+JEZEBEL
+Your mother gave us protection from the Old Del, in exchange for funding for Fol'deve. We helped her build it from nothing. Everything you had was because of us.
+
+She extends her hand.
+
+JEZEBEL
+We have the same enemy. With our resources combined, the Draive will have nothing to fear, ever again.
+
+-> jezebel_offer_q
+
+== jezebel_offer_q
+* ["What do you want from us?]
+    JEZEBEL
+    You and Rita are two very gifted individuals. I would be remiss not to have you in my corner.
+    -> jezebel_offer_q
+* ["I don't trust you.]
+    JEZEBEL
+    You'd be an idiot if you did. We'll work it out.
+    -> jezebel_offer_q
+* ["Why would my mother work with you?]
+    JEZEBEL
+    Because she needed the money, and protection was easy for her to offer.
+    -> jezebel_offer_q
+* ["We do need the help...]
+* ["I don't know...]
+* ["I'm not working with you.]
+
+-
+A gunshot rings out, and one of the bodyguards falls forward, dead.
+Jezebel turns towards Rita, who's holding a gun.
+
+JEZEBEL
+...
+
+BODYGUARDS
+...
+
+Rita ejects four bullets, and spins the chamber of the gun.
+
+RITA
+Are you quite done?
+
+JEZEBEL
+Are you trying to impress--
+
+Rita aims at her and pulls the trigger. The gun clicks.
+
+JEZEBEL
+Good heavens. / See, Murdoc, _this_ is what I look for in a man. Wanton murder with a sense of _style_.
+
+GUARD
+I'm trying! You said I got the timing down!
+
+JEZEBEL
+(caressing his cheek)
+Shh, shh. It's okay, honey. You can never be as good as a woman's first. / Go on, take the rest of these men out of here. Rita and I have some catching up to do.
+
+GUARD
+Can I have my gun back?
+
+Rita pulls the trigger again with a click.
+
+GUARD
+Understood.
+
+JEZEBEL
+I've missed you so much, girl! Come here, let me take a look at you.
+ 
+RITA
+Wine.
+
+JEZEBEL
+Chef, a bottle of our finest!
+
+RITA
+(whispering)
+You wouldn't dare throw in with her.
+
+ANANTH
+(whispering)
+I didn't know what to say. And I thought you said not to drink anything.
+
+RITA
+(whispering)
+I'm going to throw up right after this, don't you worry.
+
+JEZEBEL
+Now, Rita--
+
+RITA
+What do you want with us? Tell me straight -- every time you lie, I pull the trigger.
+
+JEZEBEL
+...
+(menacing)
+I want you, of course. / Your mother is dead. The balance of power is shifting. The future of the world is an alliance of the Draive.
+
+RITA
+And with us as your prisoners, on top of your history with Agatha, you would legitimize yourself as the rightful successor to everything she created. / Why, though? Fol'deve  {mq04_lostfoldeve: has already fallen | is on its last legs}. We don't have any resources to give you.
+
+SERVANT
+Wine?
+
+Rita takes the bottle and starts chugging it.
+
+JEZEBEL
+True. But Agatha outdid herself in one department. She invested heavily in her people. The next generation of Fol'deveans will have the greatest minds in all of recent history. Artisans, scholars, engineers, warriors... Agatha wasn't building a colony; she was building a _future_. / ... / Dear, that's really not...
+
+Rita continues chugging the bottle.
+She drops it.
+
+JEZEBEL
+Are you--
+
+Rita throws up.
+
+JEZEBEL
+... / Are you done?
+
+RITA
+Ananth, she wants us under her thumb. This is how she works. She gets in your head, finds your greatest weakness, and milks it for all its worth.
+
+JEZEBEL
+What of it? You still need something from me, do you not?
+
+-> Hub
+
+
+JEZEBEL
+Ah, yes, the 'Thing'... I have some ideas. / I know, for one, that it was Agatha who built it.
+
+* ["How do you know?]
+    JEZEBEL
+    Because she told me.
+    
+    ANANTH
+    Why did she build it?
+
+* ["Why did she build it?]
+
+-
+JEZEBEL
+If I had to guess? It was to protect you. / Agatha knew there would be a reckoning. That's why she invested so little in the infrastructure of Fol'deve -- because she knew it would all be blown away in the coming war. / Instead, she devoted her time and money to raising the next generation of scholars, artists, and warriors... and raising you to lead them. / The Delgorens believe the Arv'mahdant will tear down the Veil and bring about the End Times. I can't help but think they knew something.
+
+/*
+/ The Day of Judgment is nigh. A Judge will appear, and it will be up to you to shepherd your people through the End Times. / Do you have any idea where these silly prophecies come from?
+
+
+JEZEBEL
+The first prophet of Arv'nogktism was a member of the Conclave ae Scolia... one who went rogue, and shared information to the outside world. / That's right. The entire religion is based in fact. Misremembered, exaggerated, but ultimately true.*/
+
+-> DONE
+
+
+
+
+
+
+
+
+= constance_talk
+
+Constance lurches onto the roof as Ananth looks out over the battlefield. Blood pours down his side. He clutches a spear for support, but never loses his martial stance.
+Ananth gives him a long, hard look, waiting for the old Delgoren to spring into battle.
+Constance falls against the battlements.
+
+* [Rush to his aid.]
+    Constance puts up a hand.
+    
+    CONSTANCE
+    No... 
+    
+    He pulls back.
+    
+    CONSTANCE 
+    Permit me my last words?
+    
+* [Watch him.]
+* [Finish him off.]
+    Ananth draws his pistol.
+    
+    CONSTANCE
+    Wait! / ...Wait. / Permit me my last words?
+
+-
+Constance wheezes and coughs up a mouthful of blood.
+
+ANANTH
+God, you're not going to wax philosophical now, are you?
+
+CONSTANCE
+(chuckling)
+It's the end of the world. I can't wax a little philsophical? 
+(normally)
+No... Just one last bit of Scripture, I promise. / Our religion is about harmony. In the words of the great prophet... it is pointless to worry about a future that's beyond your control. / As the last surviving member of the Arv'ae, and in the witness of Arv himself...
+(sarcastically)
+I declare this well and truly outside of my control.
+
+He gestures lamely towards the battlefield with a wry grin.
+
+ANANTH
+What should I do?
+
+Constance stares blankly into the distance, like he's already slipping into the grave.
+
+CONSTANCE
+Before I met you, I considered myself a reasonable man. A skeptic, in fact. I never thought I could be so wrong about so much. / You want my guidance? Here it is. Stop listening to men like me.
+
+Fires rage in the distance. There's an explosion, though it's too far to see.
+
+CONSTANCE
+I just wanted to tell you how proud I was. Once you were a child. But in light of all this, so are we all. So. As one child to another? You've done well.
+
+He stares ahead.
+
+* ["I'm sorry.]
+    CONSTANCE
+    Don't be.
+
+-
+He shifts, rising up a little bit.
+
+CONSTANCE
+Huh. Well... I was right about one thing. / There really is a light.
+
+His head falls forward.
+
+-> DONE

@@ -1,0 +1,584 @@
+// Consider three main paths: reclusive (in the shelter), independent (out of the shelter), and religious (stays in the temple)
+
+VAR prologue = false
+
+VAR study = ""
+VAR prologue_lostear = true
+VAR prologue_assailantskilled = 0
+VAR prologue_jez_met = false
+VAR prologue_jez_beaten = false
+VAR prologue_jez_acceptedhelp = false
+VAR prologue_toldrita = true
+VAR prologue_wenttoarvvurdeve = true
+
+=== Old_MQ00
+
+AGATHA (O.S.)
+Let's see... where to begin?
+-> skip_option
+
+= skip_option
++ [Give them a little prologue.]
++ [Skip it.]
+    There are several choices in this prologue that will come up later. These will be set to default values. Are you sure?
+    ++ [Yes.]
+        AGATHA (O.S.)
+        There was this local religion that happened to be a big pain in the ass. They had this bit of Scripture about a holy prophet that would one day kill a false Goddess, and shepherd their people through the end of the world. / Long story short, the priests had a few issues with my rule, and decided to turn my own son against me. They didn't really believe in this prophecy -- who could? -- they just felt I was an enemy of their religion, and wanted me gone.
+        Choose an archetype for your character.
+        *** [Independent]
+            AGATHA (O.S.)
+            Ananth wanted nothing more than freedom and adventure. He was curious about religion, but, he turned against me for his own reasons.
+            ~study = "sword"
+            ~prologue_assailantskilled = 2
+            ~prologue_lostear = false
+            ~prologue_toldrita = true
+            ~prologue_jez_met = true
+            ~prologue_jez_acceptedhelp = false
+            ~prologue_jez_beaten = true
+            ~prologue_wenttoarvvurdeve = false
+        *** [Sheltered]
+            AGATHA (O.S.)
+            Ananth never left my side, so, I taught him everything I knew. He never had much interaction with priests. They captured him and tried to turn him against me, but to no avail.
+            ~study = "dance"
+            ~prologue_assailantskilled = 1
+            ~prologue_lostear = false
+            ~prologue_toldrita = false
+            ~prologue_jez_met = false
+            ~prologue_jez_beaten = false
+            ~prologue_wenttoarvvurdeve = false
+        *** [Religious]
+            AGATHA (O.S.)
+            Ananth was a quiet soul who just wanted a place to belong. So, he was agreeable to religious teachings, and agreed to work against me.
+            ~study = "art"
+            ~prologue_assailantskilled = 0
+            ~prologue_lostear = true
+            ~prologue_toldrita = true
+            ~prologue_jez_met = false
+            ~prologue_jez_beaten = false
+            ~prologue_wenttoarvvurdeve = true
+        ---
+        AGATHA (O.S.)
+        Let's just say... things popped off fairly quickly.
+        -> MQ_01
+    ++ [No.]
+        -> skip_option
+
+-
+~prologue = true
+AGATHA (O.S.)
+Ananth grew up in a shelter, overlooking the ocean.
+I built it for him before he was born. People hated me -- no surprise there. Even he always seemed to feel nervous around me, though I'd never hurt him. Not really.
+Like me, he was an albino. He never left the shelter.
+On his fifteen birthday, his only sibling, Rita, told him about a festival in a nearby town, and asked him to join her. She wouldn't take 'no' for an answer.
+
+* [You go happily.]He went happily.
+* [You tell Agatha.]He told on her. I admonished him for trying to deny his sister her basic freedoms. He shrank away.
+* [You refuse, weakly.]He refused, weakly.
+
+-
+A day later, Rita was dragging him through the city. Unlike the shelter, Fol'deve was dirty and crowded. The streets and walkways were a wicked snarl in the middle of the forest, ascending through the trees like spiderwebs.
+Everyone he saw gave him dirty looks.
+A priestess of Arv approached him while Rita stole candy from a local vendor. She smiled, and offered that he and Rita come eat at her chapel instead.
+
+* [You go with her.]He went with her. Rita refused to join, but said to meet her under the statue of the Goddess.
+    He realized the statue had been defaced.
+    The priestess told him he had nothing to fear, and offered him a cloak to hide his albinism. She took him to the prayer room and offered him bread.
+    ** [You listen.]He listened.
+    -- She told him about what I'd done -- that I was an enemy of their religion. See, around his birth, I destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens struggled to rebuild to that day.
+    Then she took his hand and comforted him. "Arv forgives all," she said.
+    As he left, another priest recognized and threatened him.
+    Rita lunged out of hiding and beat the man to a pulp.
+    ** [She drags you out.]She dragged Ananth out.
+    
+* [You ignore her.]He ignored her.
+    Rita came back with a bag of assorted treats, and asked about the priestess. When he told her, her eyes hardened.
+    She told him about what I'd done -- that I was an enemy of their religion. See, around his birth, I destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens struggled to rebuild to that day.
+
+-
+The news troubled him greatly. Rita told him what I'd told her -- that the Delgoren Empire ruled the world with an iron fist, and put harmony above all else. I'd wanted to break their hold and give people freedom again. Even if it meant slaughter.
+
+Over the next few years, he let his hair grow long. He occasionally ventured out into town, but preferred to spend time reading in the courtyard, overlooking the sea. 
+* [You sneak a bit of scripture into the shelter to read.]He snuck a bit of scripture into the shelter to read.
+- The idea of religion seemed beautiful to him. Old Delgoren culture had no concept of freedom; the closest to it, was being lost. If everyone was safe and content in God's embrace, what use was freedom? Wasn't it better to trust in God and know that everything would be okay?
+During the reign of the Old Delgorens, there was no war. Everyone was comfortable and protected by law. Nobody died of poverty. Everyone who could work had their own task. Anyone who couldn't, was cared for.
+It was a far cry from the state of Fol'deve.
+Despite his fascination with scripture, I did convince him to cultivate his own interests.
+
+* [You study art.]He studied art.
+    ~study="art"
+* [You study song and dance.]He studied song and dance.
+    ~study="dance"
+* [You study the sword.]He studied the sword.
+    ~study="sword"
+* [You study machines.]He studied machines.
+    ~study="machinery"
+
+-
+While outside the shelter, two men recognized him as the son of Agatha.
+They drew knives and cornered him in an alley.
+* [You do nothing.]He did nothing.
+    ~prologue_lostear = true
+    By the time the city guard heard his cries, they'd cut off his ear and fled. I suppose they wanted him to match his mother.
+* {!(study=="sword")} [You kill one of them.]He killed one of them. The other fled before the city guard could arrive.
+    ~prologue_assailantskilled = 1
+    When the adrenaline was gone, he looked down at the mangled body at his feet. He threw up.
+* {study=="sword"} [You kill them.]He killed them.
+    ~prologue_assailantskilled = 2
+    When the adrenaline was gone, he looked down at their mangled bodies. He threw up.
+
+-
+Rita found him crying in the courtyard.
+* [You tell her to leave.]He told her to leave.
+* [You embrace her and tell her everything.]He embraced her and told her everything.
+    She held him and didn't let go for hours.
+
+-
+Around then, Rita began to sneak out for longer and longer periods. She came back with exotic equipment and tools, but hid them in her chambers.
+One day, she came back bruised and beaten. He confronted her, but she told him nothing.
+/*
+A week later, she left again.
+* [You sneak into her chambers.]He snuck into her chambers.
+    Whatever he had expected, it wasn't that. A few derelict robots sat in a corner, one of them muttering in a foreign language. Ancient artifacts littered the desk, some of them active and blinking. A pair of headphones connected to a terminal, blaring static.
+
+* [You ignore it.]He ignored it.
+*/
+/*
+You pick up an artifact, and it comes to life. You stare at it, mesmerized, when Agatha bursts into the room.
+She pulls it away and tells you to be careful with any artifacts you find. The derelict robots, she explains, are an ancient race called the Avo, and they are driven to find and retrieve any artifact they can. Each artifact makes a signal. If it's not correctly disabled, the remnants of the Avo will come for them.
+* You try to keep that in mind.
+*/
+- 
+A year later, Rita disappeared.
+I wasn't concerned. He was.
+He asked about her in town, and was told that she boarded a ship bound for Cor'deve last month. 
+The next ship left tomorrow, but he had no money.
+
+* [You steal some, and follow her.]He stole some, and followed her.
+    Cor'deve was a violent city, ruled by crime lords. Unlike Fol'deve, however, the streets were tall and gleaming with gold. To somehow who'd never travelled, it must have been marvelous.
+    He asked around at a local tavern, and learned that Rita had a run-in with Madame Jezebel, the leader of one of the largest gangs in the city. She was being kept as a trophy to humiliate me. Adorable, really.
+    Someone offered to help him infiltrate Jezebel's manor through a secret passage.
+    ** [You go with him.]He went with him.
+        He learned as soon as he was inside that it was a trap. Jezebel's bodyguards apprehended him, and hauled him into Rita's prison. The last thing he saw was his so-called accomplice accepting a bag of gold.
+        -> jezebel_capture
+    ** [You ignore him and take Jezebel head-on.]He ignored him and took Jezebel head-on. Just like his dear old mother.
+        He had the element of surprise. He entered Jezebel's parlour and demanded his sister back. She laughed.
+        {
+            -study=="sword": Her men came to apprehend him. They didn't take him seriously until it was too late, and their bodies lay open and bleeding. Ananth levelled his sword at Jezebel and made the same request again. This time, she was much more agreeable.
+                -> jezebel_success
+            -study=="machinery": He offered a trinket in exchange, explaining that he'd stolen it from Rita. Jezebel's tone changed.
+                He threw it, and it exploded, tearing a hole through Jezebel's guards.
+                He then held up a second and make the same request again. This time, Jezebel was much more agreeable.
+                -> jezebel_success 
+            -else: Her men apprehended him and hauled him off to Rita's prison.
+                -> jezebel_capture
+        }
+* [You wait for her to come back.]He waited for her to come back.
+    She came back months later, scarred and weathered. A brand in the shape of a J was burned into her breast. She hid herself in her room, and we didn't see her again for some time.
+    -> priests_01
+
+
+= jezebel_capture
+    They took him to see Rita in her cell.
+    She'd already disappeared.
+    The lights went out, and gunfire started to ring through the prison halls. Jezebel's men were dropping. Ananth realized what was happening, and wrestled the few remaining to the ground before they could return fire.
+    Rita helped him up when it was done, and they escaped from the manor.
+    "Perfect diversion," she said, grinning. "Thanks to you, I got a bonus out of all this." She flashed him a stolen artifact.
+    -> priests_01
+
+= jezebel_success
+    They took him to see Rita in her cell.
+    She'd already disappeared.
+    The lights went out, and gunfire started to ring through the prison halls. Jezebel's men were dropping. Ananth realized what was happening, and wrestled the few remaining to the ground before they could return fire.
+    Rita helped him up when it was done, and they escaped from the manor.
+    "Perfect diversion," she said, grinning. "Thanks to you, I got a bonus out of all this." She flashed him a stolen artifact.
+    -> priests_01
+
+= priests_01
+
+-
+The next year was much more uneventful. Rita's excursions continued, but were mostly confined to the local area. She started going back and forth to a place called the Conclave ae Scolia, but Ananth learned it was just a retreat for scholars.
+* [You start to relax again.]He started to relax again.
+-
+He continued to spend his days inside the shelter, but more and more he went out to see the city priests, learning about scripture and recieving piles of books to take home. The head priestess was overjoyed to help him escape my influence. I didn't stop him.
+He was immersed in the beauty of religion, and wanted nothing more than to pray at the chapel for the rest of his days.
+And yet, he felt helplessly alone. 
+The other priests refused to talk to him. Part of him understood. They looked at him and saw me, the demon who rained fire on Arv'vurdeve and buried it beneath the sand.
+* [You hate your mother more and more every day.]He hated me more and more every day.
+
+-
+All was well, until the Old Delgorens announced a campaign to convert the other cities. Three accepted the terms of conversion, and were occupied within the month. The Delgoren Empire quietly began to spread again.
+A crowd of Arv's faithful took to the streets, demanding the Goddess surrender Fol'deve to the Old Delgorens and leave them in peace.
+I agreed to meet with the movement's leader. I even listened to him for a while, but of course I rebuked him. He wanted to choose for everyone. I couldn't abide that. So, while initially peaceful, the demonstrations quickly start to grow desperate.
+While outside the shelter, they found Ananth in the chapel and knocked him unconscious.
+The head priestess came to him in his cell. She insisted that the faithful wouldn't calm down, and that the city guard would be forced to retaliate. That is, unless he made a symbolic gesture.
+She begged him to repent, and go to Arv'vurdeve to follow the Old Ways.
+* (enslavement_agree) [You agree.]He agreed.
+    /*
+    A local pirate named Mav comes to collect you. You depart on a cramped airship with three other converts, confined to a single room.
+    Arv'vurdeve is a city in ruins, though it remains somehow beautiful. The tops of pyramids rise from the desert sands like jewels. The excavation has made streets against the old city walls.
+    Your first overseer decides to make a man of you. He puts you work excavating, but it's not long before heat stroke sets in. He catches you sleeping on the job and throws you in a 'sun cell', a pyramidal cage in open air.
+    You are discovered by Constance, a member of the high council. He admonishes your overseer for his unreasonable treatment, and takes you into his custody as a scribe. He lets you stay in a temple, so you don't go blind from the sun. The trickle of fountains and the dark chambers are soothing as you spend the days writing reports on old found documents.
+    ** You work happily.[]
+        Not two months after you arrived, a masked figure comes to rescue you. Constance bursts into the temple behind her. You know that apostates are punished with death.
+        *** You go quietly.[]
+        *** You resist.[]
+            They grapple with you for a while, but push you off just in time to avoid as Constance swings a blade at their head. They strike you with a long, silver wand, and a shock runs up your spine as all your limbs lock up.
+        --- They fight Constance off and gets their arm around you. With a wave of their hand, their glove lights up in a strange pattern. Gravity changes. Your feet are pointed towards a door out into the desert, and the two of you fall sideways through the city streets.
+            They manage to revert gravity just slightly, so the ground slopes beneath you. You hit the sand and crash, rolling to a stop.
+            An airship rises overhead. They bring you to it, and the two of you escape as Delgoren scouts rush towards you.
+            **** You are silent.[]
+            **** You lash out at them.[]
+                You push the figure up against the wall and shout at them. Anger and hatred you didn't know you had comes pouring out of you.
+            ---- They take off their mask, and Rita looks back at you tearfully.
+                She asks if you're okay.
+                ***** You have no words.
+                ----- You learn she has the same pirate, Mav, under her thumb. Something about a favour. He is sheepish as you cross paths in the hallway.
+    */
+    
+* [You shake your head sadly.]He shook his head.
+    She said nothing, but smiled. She held his hand and told him everything would be okay. Her hands were shaking.
+    Rita rescued him before the church was razed. He never saw the priestess again.
+
+-
+
+INT. COURTROOM
+
+Agatha finishes a glass of water and picks her teeth.
+
+ROMULUS
+...And?
+
+AGATHA
+...And, I suppose that's enough foreplay. Long story short, {enslavement_agree: Rita 'rescued' him from the holy city,} the Old Delgorens became furious, and suddenly everyone wanted me dead. Now, one year later, when the real story takes place...
+
+ROMULUS
+_Why_ was all that necessary?
+
+AGATHA
+I told you, no interruptions. More scotch?
+
+ROMULUS
+That was water. All you get is water.
+
+AGATHA
+Pity.
+
+SUPER: "One year later..."
+-> MQ_01
+
+
+== Old_MQ00_2
+
+You grew up in a shelter, overlooking the ocean.
+Your mother, Agatha, built it before you were born. She is a Goddess, hated by all. She spends her days reading, and waiting. She's tall and imposing, and you've always felt nervous around her, though she's never hurt you. Not really.
+Like her, you're an albino. You have never left the shelter.
+On your fifteen birthday, your only sibling, Rita, tells you about a festival in a nearby town, and asks you to join her. She will not take 'no' for an answer.
+
+* You refuse, weakly.[]
+* You tell Agatha.[] She admonishes you for trying to deny your sister her basic freedoms. Something about her eyes terrifies you.
+
+-
+A day later, Rita's dragging you through the city. Unlike the shelter, Fol'deve is dirty and crowded. The streets and walkways are a wicked snarl in the middle of the forest, ascending through the trees like spiderwebs.
+Everyone you see gives you dirty looks.
+A priestess of Arv approaches you while Rita steals candy from a local vendor. She smiles, and offers that you and Rita come eat at her chapel instead.
+
+* You go with her.[] Rita refuses to join you, but says to meet her under the statue of the Goddess.
+    You realize the statue has been defaced.
+    The priestess tells you you have nothing to fear, and offers you a cloak to hide your albinism. She takes you to the prayer room and offers you bread.
+    ** You listen.[]
+    --She tells you that Agatha is an enemy of their religion. Around your birth, she destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens struggle to rebuild to this day.
+    She takes your hand and comforts you. "Arv forgives all," she says.
+    As you leave, another priest recognizes and threatens you.
+    Rita lunges out of hiding and beats him to a pulp.
+    ** She drags you out.[]
+    
+* You ignore her.[]
+    Rita comes back with a bag of assorted treats, and asks about the priestess. When you tell her, her eyes harden.
+    She tells you that Agatha is an enemy of their religion. Around your birth, she destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens struggle to rebuild to this day.
+
+-
+The news troubles you greatly. Rita tells you that the Delgoren Empire ruled the world with an iron fist, and put order above all else. Agatha wanted to break their hold and give people freedom again. Even if it meant slaughter.
+
+Over the next few years, you let your hair grow long. You occasionally venture out into town, but prefer to spend time reading in the courtyard, overlooking the sea. 
+* You sneak a bit of scripture into the shelter to read.[]
+- The idea of religion seems beautiful to you. Old Delgoren culture had no concept of freedom; the closest was being lost. If everyone was safe and content in God's embrace, what use was freedom? Wasn't it better to trust in God and know that everything would be okay?
+During the reign of the Old Delgorens, there was no war. Everyone was comfortable and protected by law. Nobody died of poverty. Everyone who could work had their own task. Anyone who couldn't, was cared for.
+It was a far cry from the state of Fol'deve.
+Despite your fascination with scripture, you find the time to cultivate your own interests.
+
+* You study art.[]
+    ~study="art"
+* You study song and dance.[]
+    ~study="dance"
+* You study the sword.[] 
+    ~study="sword"
+* You study machines.[]
+    ~study="machinery"
+
+-
+While outside the shelter, two men recognize you as the rumoured son of Agatha.
+They draw knives and corner you in an alley.
+* You do nothing.[]
+    By the time the city guard hears your cries, they cut off all your hair and flee.
+* {!(study=="sword")} You kill one of them.[]
+    The other takes your ear. They flee before the city guard can arrive.
+    When the adrenaline is gone, you look down at the mangled body at your feet. You throw up.
+* {study=="sword"} You kill them.[]
+    When the adrenaline is gone, you look down at their mangled bodies. You throw up.
+
+-
+Rita finds you crying in the courtyard.
+* You tell her to leave.[]
+* You embrace her and tell her everything.[]
+    She holds you and doesn't let you go for hours.
+
+-
+Around this time, Rita begins to sneak out for longer and longer periods. She comes back with exotic equipment and tools, but hides them in her chambers.
+One day, she comes back bruised and beaten. You confront her, but she tells you nothing.
+A week later, she leaves again.
+
+* You ignore it.[]
+* You sneak into her chambers.[]
+    Whatever you had expected, it wasn't this. A few derelict robots sit in a corner, one of them muttering in a foreign language. Ancient artifacts litter the desk, some of them active and blinking. A pair of headphones connects to a terminal, and you can hear static through them.
+/*
+You pick up an artifact, and it comes to life. You stare at it, mesmerized, when Agatha bursts into the room.
+She pulls it away and tells you to be careful with any artifacts you find. The derelict robots, she explains, are an ancient race called the Avo, and they are driven to find and retrieve any artifact they can. Each artifact makes a signal. If it's not correctly disabled, the remnants of the Avo will come for them.
+* You try to keep that in mind.
+*/
+- 
+A year later, Rita disappears. 
+Agatha doesn't seem to feel concerned. You do.
+You ask about her in town, and are told that she boarded a ship bound for Cor'deve last month. 
+The next ship leaves tomorrow, but you have no money.
+
+* You steal some, and follow her.[]
+    ~prologue_jez_met = true
+    Cor'deve is a violent city, ruled by crime lords. Unlike Fol'deve, however, the streets are tall and gleaming with gold.
+    You ask around at a local tavern, and learn that Rita had a run-in with Madame Jezebel, the leader of one of the largest gangs in the city. She's currently being kept as a trophy to humiliate Agatha.
+    Someone offers to help you infiltrate Jezebel's manor through a secret passage.
+    ** You go with him.[]
+        ~prologue_jez_acceptedhelp = true
+        You learn as soon as you're inside that it was a trap. Jezebel's bodyguards apprehend you, and you are hauled into Rita's prison. The last thing you see is your so-called accomplice accepting a bag of gold.
+        -> jezebel_capture
+    ** You ignore him and take Jezebel head-on.[]
+        You have the element of surprise. You enter Jezebel's parlour and demand your sister back. She laughs.
+        {
+            -study=="sword": Her men come to apprehend you. They don't take you seriously until it's too late, and their bodies lay open and bleeding. You level your sword at Jezebel and make the same request again. This time, she seems much more agreeable.
+                -> jezebel_success
+            -study=="machinery": You offer a trinket in exchange, explaining that you stole it from Rita. Jezebel's tone changes.
+                You throw it, and it explodes, tearing a hole through Jezebel's guards.
+                You hold up a second and make the same request again. This time, she seems much more agreeable.
+                -> jezebel_success 
+            -else: Her men apprehend you and you are hauled into Rita's prison.
+                -> jezebel_capture
+        }
+* You wait for her to come back.[]
+    She comes back months later, scarred and weathered. A brand in the shape of a J is burned into her breast. She hides herself in her room, and you don't see her again for some time.
+    -> priests_01
+
+
+= jezebel_capture
+    They take you to see Rita in her cell.
+    She's already disappeared.
+    The lights go out, and gunfire starts to ring through the prison halls. Jezebel's men are dropping. You realize what's happening, and wrestle the few remaining to the ground before they can return fire.
+    Rita helps you up when it's done, and you escape from the manor.
+    "Perfect diversion," she says, grinning. "Thanks to you, I got a bonus out of all this." She flashes you a stolen artifact.
+    -> priests_01
+
+= jezebel_success
+    ~prologue_jez_beaten = true
+    They take you to see Rita in her cell.
+    She's already disappeared.
+    The lights go out, and gunfire starts to ring through the prison halls. Jezebel's men are dropping. You realize what's happening, and wrestle the few remaining to the ground before they can return fire.
+    Rita helps you up when it's done, and you escape from the manor.
+    "Perfect diversion," she says, grinning. "Thanks to you, I got a bonus out of all this." She flashes you a stolen artifact.
+    -> priests_01
+
+= priests_01
+
+-
+The next year is much more uneventful. Rita's excursions continue, but are mostly confined to the local area. She starts going back and forth to a place called the Conclave ae Scolia, but you learn it's just a retreat for scholars.
+* You start to relax again.[]
+-
+You continue to spend your days inside the shelter, and more and more you go out and see the city priests, learning about scripture and recieving piles of books to take home. The head priestess is overjoyed to help you escape your mother's influence. 
+You're immersed in the beauty of religion, and want nothing more than to pray at the chapel for the rest of your days.
+And yet, you feel helplessly alone. 
+The other priests refuse to talk to you. Part of you understands. They look at you and see your mother, the demon who rained fire on Arv'vurdeve and buried it beneath the sand.
+* You hate your mother more and more every day.[]
+
+-
+All is well, until the Old Delgorens announce a campaign to convert the other cities. Three accept the terms of conversion, and are occupied within the month. The Delgoren Empire quietly begins to spread again.
+A crowd of Arv's faithful take to the streets, demanding the Goddess surrender Fol'deve to the Old Delgorens and leave them in peace.
+Agatha agrees to meet with the movement's leader. She listens to him with a quiet smile, but ultimately rebukes him. While initially peaceful, the demonstrations quickly start to grow desperate.
+While outside the shelter, they find you in the chapel and knock you unconscious.
+The head priestess comes to you in your cell.
+She insists that the faithful won't calm down, and the city guard will be forced to retaliate. That is, unless you make a symbolic gesture.
+She begs you to repent, and go to Arv'vurdeve to follow the Old Ways.
+* You agree.[]
+    ~prologue_wenttoarvvurdeve = true
+    /*
+    A local pirate named Mav comes to collect you. You depart on a cramped airship with three other converts, confined to a single room.
+    Arv'vurdeve is a city in ruins, though it remains somehow beautiful. The tops of pyramids rise from the desert sands like jewels. The excavation has made streets against the old city walls.
+    Your first overseer decides to make a man of you. He puts you work excavating, but it's not long before heat stroke sets in. He catches you sleeping on the job and throws you in a 'sun cell', a pyramidal cage in open air.
+    You are discovered by Constance, a member of the high council. He admonishes your overseer for his unreasonable treatment, and takes you into his custody as a scribe. He lets you stay in a temple, so you don't go blind from the sun. The trickle of fountains and the dark chambers are soothing as you spend the days writing reports on old found documents.
+    ** You work happily.[]
+        Not two months after you arrived, a masked figure comes to rescue you. Constance bursts into the temple behind her. You know that apostates are punished with death.
+        *** You go quietly.[]
+        *** You resist.[]
+            They grapple with you for a while, but push you off just in time to avoid as Constance swings a blade at their head. They strike you with a long, silver wand, and a shock runs up your spine as all your limbs lock up.
+        --- They fight Constance off and gets their arm around you. With a wave of their hand, their glove lights up in a strange pattern. Gravity changes. Your feet are pointed towards a door out into the desert, and the two of you fall sideways through the city streets.
+            They manage to revert gravity just slightly, so the ground slopes beneath you. You hit the sand and crash, rolling to a stop.
+            An airship rises overhead. They bring you to it, and the two of you escape as Delgoren scouts rush towards you.
+            **** You are silent.[]
+            **** You lash out at them.[]
+                You push the figure up against the wall and shout at them. Anger and hatred you didn't know you had comes pouring out of you.
+            ---- They take off their mask, and Rita looks back at you tearfully.
+                She asks if you're okay.
+                ***** You have no words.
+                ----- You learn she has the same pirate, Mav, under her thumb. Something about a favour. He is sheepish as you cross paths in the hallway.
+    */
+    
+* You shake your head sadly.[]
+    ~prologue_wenttoarvvurdeve = false
+    She says nothing, but smiles. She holds your hand and tells you everything will be okay. Her hands are shaking.
+    Rita rescues you before the church is razed. You never see the priestess again.
+
+-
+~prologue = false
+-> DONE
+
+The Old Delgorens are outraged. They make plans to attack Fol'deve within the month. 
+Rita brings you into the Citadel, where you meet Wren, the Delgoren Matriarch, who Agatha has allowed to rule in exchange for her secularism. Rita has been working with her for years, helping to administrate the city in secret.
+* You observe quietly.[]
+-
+Neither wants to seek Agatha's help, in case she responds with a second Cataclysm. The two of them have a plan to push the attackers back, but it's risky.
+They decide to hide the citizens in the ancient burial mounds. It is a cardinal sin to disturb them, and the remaining city priests are vehemently against it. Wren is insistent, as they're the only place the Old Delgorens won't enter.
+{prologue_wenttoarvvurdeve: It turns out Mav has a history with Wren, which is why he's the only pirate allowed to operate around Fol'deve. | You meet Mav, the only pirate allowed to operate around Fol'deve.} He's also an immortal who happens to owe her a favour. It all starts to go over your head.
+Rita gives him an artifact, which seems to be of critical importance to the plan.
+* You do nothing.[]
+* (sabotage_artifact) [You sabotage it.] While Mav is occupied, you open a compartment on the artifact and clip one of the wires.
+- The Old Delgorens arrive. Their airships blot out the sun.
+Mav takes position far away. Rita communicates with him using a strange radio, capable of transmitting her voice, and tells him to turn on the artifact.
+{
+    -sabotage_artifact: He responds, telling her nothing is happening.
+    Her face falls.
+    -else: He responds, telling her he sees a light.
+    She tells him to run like hell.
+}
+* You watch with her.[]
+-
+{
+    -sabotage_artifact: The Delgorens attempt to rise up the wooden walkways, to the higher levels of the city, but some carefully-laid traps and riflemen manage to keep them at bay. It's not enough.
+    Rita keeps looking to the sky, and telling Mav to turn on the artifact with a growing panic. You begin to understand. She'd wanted to lure the Avo. Maybe they would have fought the Delgorens off, somehow. The blood rushes from your face.
+    The Delgorens have nearly taken the city, when it happens.
+    -> agatha
+    -else: The Delgorens attempt to rise up the wooden walkways, to the higher levels of the city, but some carefully-laid traps and riflemen manage to keep them at bay. As they begin to creep closer, a shadow falls over the city.
+    The Avo arrive. Their ship is completely alien to you, lacking anything like a balloon or propeller. The whole thing is sleek and weightless. Robots pour out the sides and descend on the city.
+    The Delgorens attack immediately, but it's a mistake. The Avo fire lightning from their hands, carving swaths through the invading army. Fol'deve's forces lower their weapons and wait, and go completely forgotten.
+    The army is brought to its knees when Rita finally tells Mav to relinquish the artifact. So the plan was to let the immortal run with it until the Avo had finished the job.
+    Once Mav gives the thing up, the Avo freeze. They look around, and then fly back to their ship. They're gone within minutes.
+    The Delgorens are scattered around the city, their formations broken.
+    * "Did we win?"[] you ask.
+    "...I think so," says Rita. 
+    As the ash starts to fall, she throws up.
+    -> aftermath
+}
+
+= agatha
+At first, you think it's a trick of the mind. The clouds seem to swirl and coalesce into a figure. A massive hole opens in the world above the city, and everything stops.
+Agatha was looking down on the invading army. Her smile was wicked.
+* You hide.[]
+-
+The remaining Delgorens holler at her image. She casually brings a palm to her lips, a single flame hovering over it. With a single breath, she sends a torrent of fire down into the heart of the Delgoren army.
+She orders the survivors be brought into the city square and bound. The city guard gets to work, and any last resistance is easily cowed.
+When it's done, Agatha announces a lottery. Five lucky souls would get to return to Arv'vurdeve to tell the high council what had happened here.
+The rest would be burned alive.
+You watch in horror as the city guard dutifully hands out small pieces of paper, each folded in half.
+/*
+* You protest.[]
+    You rush out onto the walkway, and stare up at Agatha's image.
+    "And the prodigal son returns!" she exclaims. "G'afternoon, Ananth. Made yourself a mess, have you?"
+*/
+/*
+* You look to Rita.[]
+    Rita's hand is over her mouth, as if to stop herself from screaming. When the lottery is finished, she bolts out of the citadel and marches onto the walkway. She stares up at Agatha's image.
+    "Well, if it isn't my second daughter!" Agatha says. "G'afternoon, Rita. Made yourself a mess, have you?"
+    "Stop this."
+    "Why? An old enemy has just tried to invade _my_ city. Now's a good time to stretch my legs, no?"
+    "You don't have to burn them alive."
+    "And how would you do it? Bring the Avo down on their heads? You get points for creativity, I suppose..."
+    "If you're insistent, we can load them onto ships and toss them into the Core."
+    "Rita, I don't know if you noticed, but this means war. You know what wins wars?"
+    "No, but I'm sure you'll tell me."
+    "Fear. Fear wins wars. Fear saves lives. Burn them alive, and let their comrades tell their superior officers. They'll think twice about invading this city again."
+    "Like how you destroyed their holy city? That sure worked well, didn't it?"
+    "Touche. That was 20 years ago, mind you. Perhaps a reminder every 20 years will do the trick?"
+    "Let me deal with this in my own way."
+    "No."
+    "Excuse me?!"
+    "I've taken a backseat for far too long, and now my people are paying the price. Let's stop that, shall we?" Agatha claps her hands together and looks down at the city square. "Continue."
+    "No!" Rita cries out, looking down over the walkway. The city guards pointed their guns on the Delgoren survivors, and resumed the lottery.
+    "My dear girl, you've danced with the worst of them. You know how this goes." Agatha's image begins to dissipate. "Oh, and give your brother my love."
+    Rita stands there, powerless, watching as the city guard corrals the survivors into groups.
+
+- 
+*/
+
+* You can't bring yourself to watch what happens next.[]
+- -> aftermath
+    
+= aftermath
+You spend the next month in the Citadel reading scripture, while Rita and Wren struggle to repair the damage. You can't bear to go back to the shelter now.
+You stumble across the prophecy of the Arv'mahdant. At a crossroads in history, a hero would arise to slay a false Goddess, and shepherd the faithful through the End Times. You wonder if you believe it.
+{-sabotage_artifact: -> Rita_01}
+
+One day, <> 
+-> Wren_01
+
+= Rita_01
+One day, Rita invites you into her quarters.
+The artifact is on her desk, with the compartment open to reveal the cut wire.
+Her face is hard.
+/*
+"Was it you?"
+
+* You have a hard time answering.[]
+-
+"...Get out," she croaks.
+"Rita--"
+"Get. Out."
+
+* You leave.[]
+*/
+* You argue for hours.[]
+
+-
+Then <>
+
+-> Wren_01
+
+= Wren_01
+Wren calls you into her office.
+She tells you that Agatha must die.
+"...And, we think you're the one for the job," she says.
+* "...What?"[]
+"If we're going to make peace with the Old Delgorens, we need a hero," Wren explains. "You have a good reputation among the faithful and an understanding of scripture, which Rita lacks. That, and you're the spawn of Agatha. If you killed Agatha, and you still stood by Rita and I, it would give us the means to negotiate peace."
+"How, though? She's--"
+"Rita's working out the specifics, but we think it's possible. Are you in?"
+"I'm not an assassin."
+{
+    -jezebel_success:
+    "You've killed before."
+    "That wasn't my mother."
+    "I didn't know you two were so close," says Wren.
+    -else:
+    "We don't need an assassin. We need a hero."
+}
+-
+* You agree.[]
+
+* [You refuse.]"I'm not an assassin."
+    Wren says nothing.
+
+- 
+-> MQ_01

@@ -1,0 +1,1375 @@
+VAR rep_jezebel = 0
+
+=== MQ_05
+
+VAR things_eaten = 0
+
+[After three days...]
+
+RITA (COM)
+Ananth, come back to me whenever you're free. I got a lead.
+
+
+
+INT. RITA'S LAB
+
+RITA is sitting down with a cigarette, bleeding, and a man is tied and gagged in the corner of her room.
+
+RITA
+(holding a paper)
+You feel like taking a trip to Cor'deve?
+
+ANANTH
+The city of gangsters and slavers that all hate us?
+
+RITA
+Yeah.
+
+ANANTH
+I'm game.
+
+RITA
+Apparently, someone's found an artifact capable of tracing the movement of energy through Haven. If we had _that_, we could follow the energy from the Core and see just where the hell it's going. That should lead us to the Thing. / Trouble is, Lady Jezebel was the last to have it. So, off to Cor'deve we go.
+
+
+
+INT. AIRSHIP
+
+The airship to Cor'deve is luxurious. The dining room looks more like a party, complete with flight attendants serving alcohol and hors d'oeuvres.
+
+RITA
+Champagne?
+
+ANANTH
+...Rita? What are you doing here?
+
+RITA
+You thought I was going to miss out on _this_? / Dear brother, you have no idea what you're walking into. Unlike me. I know how Jezebel thinks, and I know how to get around her defenses. I also know how dangerous she can be -- so believe me, I'd be an idiot to let you go in alone.
+
+ANANTH
+But why are you dressed as an attendant and why are you so...
+
+Rita picks her teeth.
+
+ANANTH
+...fleshy?
+
+RITA
+Because I don't want anyone to recognize me in case they stick a knife in my back, and, half the guys here are prime for some blackmailin'. I'm going to get some photos toni-i-ight.
+
+ANANTH
+Aren't they going to recognize me, too?
+
+RITA
+Nope. Your name isn't officially on the registry, and nobody knows you're here. I made sure they mistook you for Alicia Morvarth, a wealthy performance artist who was already on the list. Here's a poster.
+
+She passes him a poster.
+
+ANANTH
+This is a woman.
+
+RITA
+Eh, you albinos all look alike.
+
+ANANTH
+But she's supposed to be on this flight, right? Where is she?
+
+RITA
+Threw her off the docks. / If you'll excuse me, that banker seems to be drinking alone. Time to help him discover his prostate.
+
+ANANTH
+...Have fun.
+
+
+EXT. COR'DEVE
+
+Ananth and Rita step off the airship onto a lavish dock.
+
+* ["So, what's the plan?]
+    RITA
+    Ideally, Jezebel gives us what we want out of mutual respect, and an understanding that it's the end of the world. / Our job, essentially, is to head off any attempts at betrayal. Which is easier said than done. / Don't eat or drink anything. Don't let yourself be led anywhere. If they offer we stay the night, decline, and we'll hide in the Warrens.
+
+-
+SERVANT
+Madame Kordo?
+
+RITA
+That'd be us.
+
+SERVANT
+Right this way.
+
+* ["All right, explain.]
+    RITA
+    (fanning herself)
+    I booked us for an audience with Jezebel under the name of 'Kordo'. /  There's been a few impersonators to our names over the years, so, she likely wouldn't receive us if I put us down as 'Ananth and Rita'.
+    
+    ANANTH
+    Okay. So who's Kordo?
+    
+    RITA
+    A slave boy she had killed right in front of me. Inside joke. / Wait, what do you call an inside joke that isn't funny?
+
+* Ignore it.
+
+-
+SERVANT
+Lady Jezebel was expecting an entourage. Shall we wait?
+
+RITA
+That won't be necessary.
+
+ANANTH
+(whispering)
+...Entourage?
+
+RITA
+Bodyguards.
+
+* ["Why _don't_ we have bodyguards?]
+    RITA
+    (fanning herself)
+    We do. They snuck into the manor yesterday. I'm not advertising the help in advance.
+
+* ["Well, we don't need 'em.]
+    RITA
+    (fanning herself)
+    Actually, we do. They snuck into the manor yesterday.
+    
+* [Defer to Rita.]
+    RITA
+    (fanning herself)
+    Can't let them know we have them. So I had them sneak into the manor yesterday.
+
+
+-
+EXT. MANOR JEZEBEL - ESTABLISHING
+
+An iron gate opens, revealing the path to Manor Jezebel. Slaves tend the gardens outside. A doorman stands outside front doors made of white wood.
+
+
+
+INT. MANOR JEZEBEL, LOBBY
+The lobby is extragavant, tall, and circular. Everything is white and gold, from the wallpaper, to the carpet, to the trim of the drapes.
+
+SERVANT
+She will be with you momentarily.
+
+RITA
+Excellent. / ... / Ananth, steal the mints.
+
+ANANTH
+What?
+
+RITA
+_Steal the mints._
+
+-> mints
+
+= mints
+* (eat_mint) [Pop one in your mouth.]
+    ~ things_eaten++
+    Very refreshing.
+    -> mints
+
+* [Take them to Rita.]
+    {
+        -eat_mint:
+        RITA
+        What did you do?!
+        
+        ANANTH
+        Uh?
+        
+        RITA
+        I specifically told you not to eat anything! Make sure you throw up, later.
+    }
+    Rita inspects the mints carefully.
+    
+    RITA
+    Hm. No discoloration, no odor... / By God. You know what this means?
+    
+    ** ["She has an odorless, colorless poison?]
+        ANANTH
+        "She--"
+    ** ["We're good?]
+        ANANTH
+        "We're--"
+    ** ["You're really, really paranoid?]
+        ANANTH
+        "You--"
+    --
+    RITA
+    She has an _odorless, colorless poison_. / I must have her recipe.
+    
+    She pours them out into her purse. <>
+
+-
+Ananth looks at something off camera.
+
+ANANTH
+That woman has no clothes on.
+
+RITA
+It happens.
+
+SERVANT
+My lady, Madame Jezebel has arrived.
+
+The doors at the top of the stairs open to a chorus of string instruments. She does a dramatic flourish and opens a paper fan.
+
+JEZEBEL
+Rita! Darling!
+
+RITA
+Jezebel.
+
+{
+    -not prologue_jez_met:
+    JEZEBEL
+    And this fetching young man must be...
+    
+    * ["Ananth.]
+        JEZEBEL
+        I've heard so much about you.
+    * ["Charmed.]
+        ~rep_jezebel++
+        JEZEBEL
+        A pleasure!
+    * ["Let's skip the pleasantries.]
+        JEZEBEL
+        Oho! A live one. / Rita? Be a dear and spank him.
+        
+        RITA
+        Pardon?
+        
+        JEZEBEL
+        Spank him. For old time's sake.
+        
+        RITA
+        He's my brother.
+        
+        JEZEBEL
+        (fanning herself)
+        And?
+        
+        RITA
+        And, it'd be weird.
+    * [Defer to Rita.]
+        ~rep_jezebel--
+        RITA
+        Ananth, yes.
+        
+        JEZEBEL
+        Ananth! I've heard so much about you.
+        
+    -else:
+    JEZEBEL
+    ...Ananth. Long time no see.
+    
+    * ["Good afternoon.]
+        JEZEBEL
+        {prologue_jez_beaten: As usual, excellent poker face. | Quite.}
+        
+    * ["Charmed.]
+        ~rep_jezebel++
+        JEZEBEL
+        {prologue_jez_met: Water under the bridge, 'ey, love? | Quite.}
+        
+    * {prologue_jez_beaten} ["Hey, remember how I kicked your ass that one time?]
+        ~rep_jezebel++
+        JEZEBEL
+        In exquisite detail. But, water under the bridge, 'ey, love?
+        
+    * [Say nothing.]
+        ~rep_jezebel--
+        JEZEBEL
+        Rita, teach the boy some manners.
+        
+        RITA
+        {prologue_jez_beaten: Of course. Last I recall, he'd taught you more than a few. | Let's just cut to the chase, shall we?}
+}
+
+-
+JEZEBEL
+How many years has it been? Feels like an eternity. We have so much to catch up on. / Sorry to hear about your mother. She and I were always such great friends.
+
+* ["Wait, what?]
+* ["I'm sure she was.]
+* ["Funny, I hadn't heard her speak about you.]
+
+-
+JEZEBEL
+Oh... he doesn't know?
+
+RITA
+You weren't exactly dinner room conversation.
+
+JEZEBEL
+I didn't know your family ate together.
+
+RITA
+We didn't kiss and tell, either. See my point?
+
+JEZEBEL
+Oh, the fun she and I had! All those long nights...
+
+* ["Why am I not surprised?]
+    RITA
+    Probably because you'd already realized 'Aunt Melonia' isn't our aunt.
+    
+    JEZEBEL
+    Ah, precious Melonia. There was one time that she, Agatha and I all--
+    
+    INT. COURTROOM
+    
+    MELONIA
+    (delighted)
+    Wha'-- Ya never tol' me this part!
+    
+    AGATHA
+    (mischevious)
+    "...got in the jacuzzi, with the band playing quietly in the corner. The servants kept us doused with warm water while we--"
+    
+    ROMULUS
+    _Please strike the defendant's sexual exploits from the record._
+    
+    AGATHA
+    Are you sure? It might be relevant.
+    
+    ROMULUS
+    I'm _sure_.
+    
+    
+    INT. MANOR JEZEBEL, LOBBY
+    
+    JEZEBEL
+    \--all while the hors d'oeuvres were served.
+    
+* ["I don't follow.]
+    RITA
+    Ananth, you realize that Aunt Melonia isn't our aunt.
+    
+    ANANTH
+    What is she?
+    
+    JEZEBEL
+    Ah, precious Melonia. There was one time that she, Agatha and I all--
+    
+
+    INT. COURTROOM
+    
+    MELONIA
+    (delighted)
+    Wha'-- Ya never tol' me this part!
+    
+    AGATHA
+    (mischevious)
+    "...got in the jacuzzi, with the band playing quietly in the corner. The servants kept us doused with warm water while we--"
+    
+    ROMULUS
+    _Please strike the defendant's sexual exploits from the record._
+    
+    AGATHA
+    Are you sure? It might be relevant.
+    
+    ROMULUS
+    I'm _sure_.
+    
+    
+    INT. MANOR JEZEBEL, LOBBY
+    
+    JEZEBEL
+    \--all while the hors d'oeuvres were served.
+    
+* ["Do you always have live music when you open the door?]
+    JEZEBEL
+    Only for special occasions!
+
+-
+The servant whispers something to Jezebel.
+
+JEZEBEL
+Up! Dinner is waiting. Come now; enough foreplay. / But wait. Is this all? Are we waiting for more?
+
+RITA
+Nope.
+
+JEZEBEL
+...Why on earth would you have come alone? / No matter. To the dining hall!
+
+She exits.
+
+{
+    -not prologue_jez_met:
+    ANANTH
+    (whispering)
+    You never told me Jezebel was an albino.
+    
+    RITA
+    She's not. She just bleaches her skin.
+    
+    -else:
+    ANANTH
+    (whispering)
+    Remind me, why's her skin all... y'know?
+    
+    RITA
+    She bleaches it.
+}
+
+ANANTH
+...Why?
+
+RITA
+Dunno. Personally, I think it just makes her look like a weirdo.
+
+
+INT. MANOR JEZEBEL, PARLOUR
+    
+PATRON
+Good day, Lady Jezebel.
+
+{
+    -prologue_jez_acceptedhelp:
+    PATRON
+    ...
+    
+    ANANTH
+    Hey, do I know you from somewhere?
+    
+    JEZEBEL
+    Oh yes! That's the young man who brought you to me last you were here.
+    -> patron_exchange
+    
+    -else:
+    JEZEBEL
+    To you as well.
+}
+
+-> dinner
+
+
+= patron_exchange 
+
+* ["No hard feelings.]
+* ["You sold me out!]
+* [Say nothing.]
+
+-
+PATRON
+I--
+
+JEZEBEL
+A paltry favour. Better men have done far worse to curry favour in my court.
+
+* ["Just keep him away from me.]
+    ~rep_jezebel--
+    JEZEBEL
+    Of course. Just say the word, and I'll have him executed.
+    -> execution_offer
+    
+* ["You've killed better men in front of my sister.]
+    ~rep_jezebel++
+    JEZEBEL
+    Indeed I have. / Sorry to have offended you, dear. Guards, execute this man.
+    
+    RITA
+    _What_?!
+    
+    -> execution
+    
+* ["I'm sure he had his reasons.]
+    JEZEBEL
+    (smirking)
+    As do they all.
+    
+* [Say nothing.]
+    JEZEBEL
+    Have I offended you? Just say the word, and I'll have him executed.
+    -> execution_offer
+
+- 
+JEZEBEL
+Anyway, let's not keep the chefs waiting a moment longer.
+-> dinner
+
+
+= execution_offer
+
+RITA
+_What_?!
+
+* ["Absolutely not!]
+    ~rep_jezebel--
+    JEZEBEL
+    Very well.
+
+* ["That won't be necessary.]
+    JEZEBEL
+    Oh, very well...
+
+* ["Go ahead.]
+    ~rep_jezebel++
+    JEZEBEL
+    Guard?
+    -> execution
+
+* [Say nothing.]
+    ~rep_jezebel--
+    JEZEBEL
+    Ah, say no more. I know just what you're thinking. / Guard?
+    -> execution
+
+-
+JEZEBEL
+Well, then, let's not keep the chefs waiting a moment longer. Enjoy yourself, Tom.
+
+PATRON
+...Yes, Madame.
+-> dinner
+
+
+= execution
+
+RITA
+Wait!
+
+A gunshot rings through the room.
+
+GUARD
+Yes, Madame.
+
+RITA
+(horrified)
+...
+
+* [Say nothing.]
+    ~rep_jezebel++
+* {execution_offer} ["I didn't think you were serious!]
+    ~rep_jezebel--
+    JEZEBEL
+    Of course! All for the sake of hospitality.
+* {not execution_offer} ["What?! Why?!]
+    ~rep_jezebel--
+    JEZEBEL
+    For the sake of hospitality, of course!
+* ["Serves him right.]
+    JEZEBEL
+    I live to please.
+
+-
+RITA
+You-- how could you--
+
+JEZEBEL
+Rita, remember protocol.
+
+Rita freezes.
+
+JEZEBEL
+Good. Now, let's not keep the chefs waiting a moment longer.
+-> dinner
+
+
+= dinner
+ANANTH
+(whispering)
+Where are the bodyguards?
+
+RITA
+{not execution: I don't know. | I-I don't know...}
+
+JEZEBEL
+This manor is as old as Cor'deve itself. Once, it was the yurt of our founding chieftain. He was the one who stopped here, on this Fragment, and forged an alliance with the Conclave ae Scolia. From there, Cor'deve began to blossom into the city you see today. The knowledge of the Progenitors and the spirit of the Draive, woven into one.
+
+ANANTH
+And where does crime and slavery fit into that?
+
+JEZEBEL
+Slaves? We don't have slaves, here. / I provided these men the opportunity to pay off a debt, and they accepted! It's a generous arrangement for us both, I assure you.
+
+ANANTH
+Was Rita given an offer?
+
+JEZEBEL
+You should ask her.
+
+RITA
+...
+
+JEZEBEL
+As for the crime... / Yes. For every right you claim, a law must be imposed... and for every law that's broken, another claims a right. Freedom is a zero-sum game, and our people are nothing if not freedom-seeking. / Do you disagree?
+
+* ["It can't be that simple.]
+    JEZEBEL
+    But it is! If you demand property rights, a man could starve to death right outside your shop. If he decided to steal from you, the Delgorens would have him thrown in jail. In Cor'deve, we'd invite him to try.
+    
+    ** ["The Delgorens would also make sure the man was fed.]
+        JEZEBEL
+        (fanning herself)
+        My child, do you really think nobody starved in Delgoren society? / Oh, believe me, if a fair and just society existed where everyone got what they deserved, I'd love to see it. For now, you're what you're talking about is fantasy. Nothing more. / Let's concede to fantasy, however. Even if the laws _could_ be made fair and just for everybody, people are all different. Someone could come to my husband's funeral and protest his religion -- freedom of speech, right? I, of course, would feel compelled to punch him in the jaw. Who's right? Who has the law at their side?
+        
+        RITA
+        You've never had a husband.
+        
+        JEZEBEL
+        Not the point. The Delgorens thought they could _make_ people uniform through strict adherence to their bloody religion, but there were always dissenters. The Delgorens treated them like criminals. And that's why so many of us fled their so-called 'perfect society'.
+        
+    ** ["What if I didn't want to have to steal?]
+        JEZEBEL
+        Then don't. Die in the streets.
+    
+* ["I don't know. Sounds fair.]
+    JEZEBEL
+    I'd expect nothing less from the spawn of Agatha.
+
+* ["I didn't come here to debate philosophy.]
+    JEZEBEL
+    Ah! Of course, you're right.
+
+-
+JEZEBEL
+Your colony is still young. You have yet to stop and really think about what you're trying to accomplish. When you do, perhaps you'll arrive at the same conclusion as us. After all, both of us escaped from the depths of slavery. In our hearts, you believe what we believe -- that the only thing a person should be concerned with, is their own happiness.
+
+RITA
+I'm starting to remember why I left.
+
+JEZEBEL
+Oh. We haven't even started dinner.
+
+
+INT. MANOR JEZEBEL, DINING HALL
+
+Six men are tied to their chairs and gagged, surrounding a long dining table.
+
+RITA
+(taken aback)
+...
+
+JEZEBEL
+I discovered these gentlemen hiding amongst the servants. Ruthless killers, the lot of them. You wouldn't happen to know anything about that, would you?
+
+One of Jezebel's guards points her gun at the back of a bodyguard's head.
+
+// If an execution has already happened, Rita loses her cool.
+
+JEZEBEL
+Of course, if they're your friends, I'd hate to have them killed...
+
+-> dinner_bodyguards
+
+= dinner_bodyguards
+* ["You don't waste any time, huh, lady?]
+    JEZEBEL
+    You two came all this way! I would hate to make your visit tedious.
+    -> dinner_bodyguards
+* [Look at Rita.]
+    RITA
+    They're with us. I hired them to meet us here.
+
+* ["They're ours.]
+    RITA
+    ...Yeah.
+    
+* ["Never seen them.]
+    RITA
+    Wha--
+    
+    JEZEBEL
+    Well, in that case... Murdoc?
+    
+    A gunshot rings out. One of the bodyguards slumps over, dead.
+    
+    JEZEBEL
+    I will miss that tablecloth, though.
+
+-
+JEZEBEL
+Rita, I have to admit. You disappoint me.
+
+RITA
+_Do tell_.
+
+JEZEBEL
+I kill one person in front of you -- one! -- and now all you think about is saving as many people as possible. It's so... / Boring! You're boring. There, I've said it. / Trauma is a terrible thing, isn't it? Take a lively and colourful woman, add just a little bit of terror, and this is what you get.
+
+RITA
+I'm sorry I don't live up to your standards.
+
+JEZEBEL
+And Ananth, darling... 
+{prologue_toldrita: -> jezebel_told | -> jezebel_nottold }
+
+
+= jezebel_told
+JEZEBEL
+{prologue_lostear: I know how you lost that ear.} {prologue_assailantskilled > 0: I know what you did.}
+
+ANANTH
+Wh-what?
+
+JEZEBEL
+Rita told me everything. How she found you crying in the courtyard... How you spilled your guts out to her.
+
+-> jezebel_lecture
+
+
+= jezebel_nottold
+{
+    -prologue_lostear: 
+    JEZEBEL
+    Tell me... how did you lose that ear?
+    -else:
+    JEZEBEL
+    You don't really think you got away with it, do you?
+}
+
+ANANTH
+Wh-what?
+
+JEZEBEL
+Oh, just a rumour... But a persistent one.
+
+-> jezebel_lecture
+
+
+= jezebel_lecture
+{
+    -prologue_assailantskilled > 0:
+    JEZEBEL
+    So many people think you a Messiah. Imagine if someone told them the truth. / You're a murderer.
+    * [Say nothing.]
+        JEZEBEL
+        Nothing?
+    * ["Screw you, lady.]
+        JEZEBEL
+        Ah, not used to prying?
+    * ["It was self-defense.]
+        JEZEBEL
+        Oh, don't get me wrong, I'm not criticizing!
+    * ["I didn't mean to kill {prologue_assailantskilled=1: him | them}.]
+        JEZEBEL
+        Oh, don't me wrong. They got what they deserved{jezebel_nottold:, I'm sure}.
+    
+    -else:
+    JEZEBEL
+    Let me ask you something. Why didn't you fight back?
+    
+    * [Say nothing.]
+        JEZEBEL
+        Nothing?
+    * ["Screw you, lady.]
+        JEZEBEL
+        Ah, not used to prying?
+    * ["I didn't want to hurt them.]
+        JEZEBEL
+        I hope you learned a lesson from that.
+    * ["I was afraid it would make things worse.]
+        JEZEBEL
+        Have some pride, boy!
+}
+
+-
+JEZEBEL
+How many people have you killed, since? {
+    -people_killed > 10: {people_killed/10*10}? {people_killed/10*10+10}? 
+    -people_killed > 0: Not that many... Yet.
+    -people_killed == 0: Surely, at least one.
+}
+
+{
+    -people_killed == 0: 
+    ANANTH
+    None.
+    -people_killed > 0:
+    * ["I did what I had to do.]
+        JEZEBEL
+        No doubt.
+    * ["What's your point?]
+    * ["It hurt, every time...]
+        JEZEBEL
+        Oh? And what were their names? Surely, such guilt would have driven you to do... something? Anything?
+    * ["They deserved it.]
+        JEZEBEL
+        No doubt.
+    * [Say nothing.]
+}
+
+- 
+-> jezebel_leaves
+
+
+= jezebel_leaves
+
+The servant whispers something in Jezebel's ear.
+
+JEZEBEL
+What, now? / Pardon me, but there's something I must attend to. Please, enjoy your meal. I'll be back as soon as I can.
+
+RITA
+...Uh, okay.
+
+Jezebel exits.
+
+RITA
+That's weird.
+
+They sit down. The bodyguards remain tied. The guard stands nearby -- more precisely, he stands right beside Rita.
+
+Beat.
+
+-> dinner_rita
+
+= dinner_rita
+* ["How did you two meet?]
+    RITA
+    Oh, God... / Okay. Once upon a time, I was young, and stupid. Stupid me heard about an important artifact in Jezebel's collection, and decided to try stealing it. / I was caught. If I hadn't told her who I was, she'd have me tortured for weeks before killing me.
+    -> dinner_rita
+* ["So what did she do to you?]
+    RITA
+    What _didn't_ she do? / I was her pet, and her prisoner. She alternated between pampering and tormenting me on a whim, and you can see how whimsical she is. / She tortured people in front of me, made me listen to her rants, said things that twisted my mind in knots... I think she saw herself as a strange, twisted mentor, if only because she wanted me under her thumb. / You know what's screwed up? I secretly thought it would be fun, seeing her again. That's how much she got to me. Somehow, I look back on her like an old friend.
+    -> dinner_rita
+* ["Are you okay?]
+    RITA
+    You're asking if I'm going to have a nervous breakdown? Have you _met_ me?
+    
+    ANANTH
+    I didn't mean--
+    
+    RITA
+    Don't worry, I know what you meant. / ...I'd be lying if I said I wasn't stressed. This isn't going well. Whatever she's doing, it's bad news.
+    
+    -> dinner_rita
+* ["What now?]
+
+-
+RITA
+...
+
+She grabs the guard's leg, and zaps him. He writhes and falls to the ground, unconscious.
+
+RITA
+Like hell I wasn't going to come in here without protection. / Come on. We'll find that artifact and get out.
+
+There's only one other door out that isn't locked. It takes Ananth to...
+
+
+INT. MANOR JEZEBEL, HALLWAY
+
+The door flings itself out of Ananth's hand and locks behind him before Rita can come through.
+
+ANANTH
+It's locked!
+
+RITA
+_Dammit all!_ / Okay... I'll hide the body, and you clear the way to the storage room. I'll be behind you as soon as I-- / ...Oh, shit. Ananth, run. Get out of here, _now_!
+
+A turret pops out and starts firing on Ananth, forcing him out of the hallway. Most of the doors are locked.
+
+Ananth opens the only door he can, and gets knocked out.
+
+
+INT. MANOR JEZEBEL, CELLAR
+
+ANANTH
+...Where am I?
+
+The cellar is pitch black.
+
+RADIO
+Hello, contestants!
+
+The lights come on, revealing the cellar. It's bloody, showing signs of a horrible struggle.
+
+RADIO
+Congratulations -- you're on One Night With Madame Jezebel!
+
+A live audience cheers in the background.
+
+ANANTH
+(whispering)
+Oh, hell no.
+
+RADIO
+Contestant number one is the administrator of Fol'deve. She and Jezebel have a long history, but had something of a falling out years ago. Now she's back, and she needs something. How many skeletons does _she_ have buried, I wonder? Let's find out! / Contestant number one, what's your name?
+
+RITA (COM)
+Rita.
+
+RADIO
+Give it up for Rita!
+
+A live audience cheers in the background.
+
+RADIO
+Contestant number two is known by some as the 'Arv'mahdant', the holiest figure in Arv'nogktism. He has a whole cult worshipping the ground he walks on. But how holy is he, really? Let's find out! / Contestant number two. What's your name?
+
+* [Say nothing.]
+    Beat.
+    
+    There's an error sound, and Ananth's shock collar goes off.
+    
+    RADIO
+    I'm sorry, but silence is not the correct answer!
+    
+* ["Bite me.]
+    ~health = health - 10
+    Ananth's shock collar goes off.
+    
+    RADIO
+    Whoa! Inappropriate! And also wrong!
+* ["Ananth.]
+    A chime goes off.
+    
+    RADIO
+    Correct!
+
+-
+RADIO
+Now, Ananth, I know you're from little old Fol'deve... Tell me, have you heard our show before?
+
+ANANTH
+No.
+
+RADIO
+Well, let me break down the rules for you! / One Night With Madame Jezebel is a real up-and-coming game show from your friends at Nightline Six, Cor'deve's number-one provider for radio lines and related services! / The rules are simple. Survive three rounds, and you get a fabulous prize!
+
+ANANTH
+Is it my life?
+
+Laughter comes from the radio.
+
+RADIO
+No, silly! Everyone goes to Madame Jezebel for something or another. All you have to do is survive, and you'll get whatever you came for! / Luckily for you, we know exactly what you're here for!
+
+RITA (COM)
+_We'll find that artifact and get out._
+
+RADIO
+You'll get your life back as a fun bonus. / Everyone, give it up for Ananth!
+
+The live audience applauds.
+
+RADIO
+Each round, you will be given a question. Then, you'll have to face a deadly challenge. Answer the question correctly, and we'll go easy on you! Maybe. Answer wrong, and we'll make things _much, much harder_. / The jewelery you were given can detect any lies, so answer carefully! / ...And since we've got two contestants this time, we'll have a bonus game for you at the start of each round! Isn't this exciting?
+
+-> game_start_q
+
+= game_start_q
+
+* ["Deadly challenges, eh?]
+    RADIO
+    Did I stutter? Yes, deadly challenges. Challenges where you might die.
+    
+    ANANTH
+    And you realize I _can't_ die, right?
+    
+    RADIO
+    Of course! Don't worry -- we've got something special in store for you!
+    
+    -> game_start_q
+
+* ["How many rounds are there?]
+    RADIO
+    More than three, less than six!
+    
+    ANANTH
+    Why so ambiguous?
+    
+    RADIO
+    Oh, you'll see. Or, maybe you won't. Rita can explain to you after you're done, I'm sure. Assuming she survives.
+
+    -> game_start_q
+
+* ["All right, I'm done.]
+
+-
+A dramatic stinger plays on the radio.
+
+RADIO
+First question! We noticed that {prologue_lostear: you're missing an ear| your eyes have some sun damage}, and you haven't fixed it yet! Is it because... you can't?
+
+* [Say nothing.]
+    RADIO
+    Ananth has chosen to remain silent! But we know the truth.
+* ["I just haven't done it yet.]
+    RADIO
+    That's a lie!
+* ["Yes, I can.]
+    RADIO
+    That's a lie!
+* ["No, I can't.]
+    RADIO
+    Correct!
+    
+    A chime plays.
+
+-
+RADIO
+If you get incapacitated during any of our challenges, we're going to remove something! Could be an eye, could be a hand... whatever it is, you sure will miss it! / Proceed to the first challenge!
+
+The door out opens.
+
+// Possibly have a way to recover major injuries later? The only injury before this would be the light sun damage to Ananth's eyes and maybe his ear, which isn't a big deal.
+
+
+INT. MANOR JEZEBEL, CHALLENGE ROOM 1
+
+Ananth has to solve a game of Concentration, with each failed attempt zapping away some of his life.
+
+-> prisoners_dilemma_1
+
+
+
+= prisoners_dilemma_1
+
+INT. MANOR JEZEBEL, TRUST CHAMBER
+
+RADIO
+All right, it's time for Round Two! Since we've got two contestants, we're going to play a bonus game. You know what we're talking about! Everyone put your hands together, for...
+
+AUDIENCE
+Trust Chamber!
+
+They applaud.
+
+RADIO
+That's right! Contestants, this time you'll both be answering questions about the other person! As always, silence _is_ an option! / If you both betray each other and answer honestly, you'll both face a slightly harder challenge this round. On the other hand, if you both remain silent, the next challenge will remain unchanged. / ...But, here's the fun part. If you remain silent, and your partner answers our question, _they'll_ get to skip this round altogether, and _you_ will have to face a much, _much_ harder challenge. / Say hello to the other contestant!
+
+RITA (COM)
+Ananth, listen to me, I'm--
+
+She gets drowned out by applause.
+
+RADIO
+All right, it's game time! Choose wisely!
+
+A dramatic stinger plays.
+
+RADIO
+(serious)
+Ananth. What is Rita's policy for dealing with criminals?
+
+-> prisoners_dilemma_1_q
+
+= prisoners_dilemma_1_q
+
+* ["Drop them into the Core.] #betray
+    RADIO
+    Of course!
+    
+    A chime plays. The audience boos.
+* [Say nothing.] #trust
+    RADIO
+    Ananth has chosen to remain silent!
+* ["I don't know.] #lie
+    RADIO
+    We know you boarded a prison ship! You must have _some_ idea. / Would you like to change your answer?
+    -> prisoners_dilemma_1_q
+* ["Exile.] #lie
+    RADIO
+    Incorrect! We know of no exiles from Fol'deve. Their only option would be to join the Delgorens, and we know Rita wouldn't let that happen. / Would you like to change your answer?
+    -> prisoners_dilemma_1_q
+
+-
+RADIO
+Here's what your opponent said!
+
+RADIO
+{
+    -prologue_assailantskilled > 0: Rita. When Ananth was young, did he, or did he not, murder Alec Tano{prologue_assailantskilled > 1: and Garrett White}?
+    
+    RITA (COM)
+    He did.
+
+    RADIO
+    Thank you, Rita!
+    
+    A chime plays. The audience boos.
+    
+    // Have one for 'did he steal' if he went to Cor'deve.
+
+    -else: Rita. When did Ananth stop wetting the bed?
+    
+    RITA (COM)
+    Fourteen.
+    
+    RADIO
+    Thank you, Rita!
+    
+    A chime plays. The audience laughs.
+}
+
+ANANTH
+Wh... what?
+
+RADIO
+It looks like Rita has chosen to betray her brother. Ananth, please proceed to the next challenge! Rita, _you_ get to spend this round in the spa. Congratulations!
+
+// The spa should be appropriately luxurious. With a slave boy doting on you hand and foot, making Ananth hella uncomfortable. Just for fun, he should also congratulate you for being so conniving. A radio can play the feed from Rita's challenge.
+
+RITA (COM)
+Bite me.
+
+The door ahead opens unceremoniously.
+
+// Rita's choice is dependent on her relationship with Ananth, but she's currently wounded and can't handle another challenge.
+
+// Questions to ask Rita: 'Did Ananth really kill Agatha?' (he didn't). 
+
+JEZEBEL (COM)
+People are so messy, aren't they? / You know why I love this game? Because it really helps you appreciate what goes on in another person's mind when you have no control over them. / Take away all the social constraints, and face it -- you don't know what's going on in her mind. All you have to do to 'win' is trust each other, but you can't.
+
+
+INT. MANOR JEZEBEL, QUESTION ROOM 2
+
+RADIO
+Second question.
+
+A dramatic stinger plays.
+
+RADIO
+Ananth. Several years ago, your sister went missing. You remained in the shelter.
+
+
+INT. MANOR JEZEBEL, CHALLENGE ROOM 2
+
+
+
+
+A note falls from a grate in the ceiling.
+
+ANANTH
+...This is Rita's handwriting...
+
+"I'm sorry. I was horribly wounded during the last round, and the next challenge would have killed me. If we keep betraying each other, Jezebel will win. She wants blackmail. No matter what, be silent during the next question. I'll do the same. "
+
+
+INT. MANOR JEZEBEL, TRUST CHAMBER
+
+RADIO
+Ananth. Last week, a Delgoren chapel was bombed in the Warrens of Tengloc'an. Its priests were non-combatants who only wanted to ease the extreme poverty in the area. Some are saying that Rita was responsible for this heinous act. Was she?
+
+-> prisoners_dilemma_2_q
+
+= prisoners_dilemma_2_q
+* [Say nothing.] #trust
+    RADIO
+    Oho! Ananth has chosen to remain silent! I guess that settles that!
+* ["No!"] #betray
+    A chime plays.
+    
+    RADIO
+    Well, I guess that settles that!
+* ["I don't know."]
+    RADIO
+    You don't know whether or not your own sister bombed a chapel full of innocent people? I don't know if the audience will believe that... / Let me ask again. Did she bomb the chapel?
+    -> prisoners_dilemma_2_q
+* ["Probably."] #betray
+    A chime plays.
+    
+    RADIO
+    Well, I guess that settles that!
+
+-
+RADIO
+Let's hear what your opponent said... / Rita. There are rumours that Ananth regularly attends brothels, specifically those owned by your mutual friend, Mav, a notorious pirate. Is this true?
+
+RITA
+That--
+
+Beat.
+
+RADIO
+Shall I take your silence as--
+
+RITA
+Ananth, if you're listening to this, I'm--
+
+She gets zapped, and cries out in pain.
+
+RADIO
+Are you answering the question, or no?
+
+RITA
+...I'm not falling for this. You people know better.
+
+RADIO
+I'm not sure, Rita -- this rumour's gotten a lot of traction. Is it true that he prefers the company of men?
+
+RITA
+Bite me.
+
+-> last_question_rita
+
+
+= last_question_rita
+
+RADIO
+Rita. Last question.
+
+RITA
+...Wait.
+
+RADIO
+Mm?
+
+RITA
+Was that _it_?
+
+Beat.
+
+RITA
+Oh my God. This is too perfect. / I was going to say, every person is flawed. If you want someone to judge your sins, which would you prefer, Cor'deve? Some faceless, heartless demigod who's never made a mistake in their life? Or, would you rather a human being who will _understand_ why you do whatever it is you do? Because that's Ananth. / But this is even better! Because you've got _nothing_. You hear me, Jezebel? You can drag me through the mud all day long, but the Arv'mahdant is a sweet summer child, and you can't change that! He's untouchable, and now, the whole world knows!
+
+RADIO
+Last question.
+
+RITA
+Do your worst.
+
+RADIO
+Who killed Agatha?
+
+Beat.
+
+Rita gets shocked.
+
+RADIO
+Silence is not an acceptable answer! Who killed Agatha?
+
+RITA
+He did!
+
+She gets shocked again.
+
+RADIO
+We know you're lying!
+
+RITA
+I'm not lying!
+
+RADIO
+Your vitals are off the charts!
+
+RITA
+Then _you're_ lying.
+
+She gets shocked, over and over again.
+
+RADIO
+Who killed Agatha?
+
+RITA
+Stop--
+
+She's shocked for several seconds.
+
+RITA
+Please...
+
+RADIO
+You are about to die. Who killed Agatha?
+
+Beat.
+
+RITA
+...I did.
+
+A chime goes off.
+
+RITA
+He tried, but--
+
+RADIO
+But then... doesn't that make _you_ the Arv'mahdant, Rita?
+
+RITA
+No!
+
+RADIO
+Did you lie about all this, just so you could keep on sinning your little heart out?
+
+Beat. 
+
+RITA
+(pained)
+I'm the administrator of Fol'deve. I have hard choices to make. I don't have the _luxury_ of living up to your impossible standards, so _go fuck yourself_.
+
+The audience boos.
+
+RADIO
+So you lied this whole time, because you aren't up to the job! And you let your sweet, sweet brother take the heat for you.
+
+-> jezebel_aftermath
+
+
+= jezebel_aftermath
+
+JEZEBEL
+Dear, dear... I don't know much about religious politics, but, seems to me this will be hard to recover from. / If you're going to have any chance of ruling after this, you're going to need some serious help. / What do you say? Ananth?
+
+ANANTH
+What...?
+
+JEZEBEL
+This doesn't have to make it to air, you know. All you have to do, is let me help the two of you out. / I can offer you resources. I can help... manage your PR. All I'd need is a few extra... privileges. Call it friends with benefits.
+
+* [Get revenge.]
+    -> revenge_start
+* [Skip.]
+    -> jezebel_final
+
+= revenge_start
+
+Ananth steals a sword from one of the suits of armour laying around. With that in hand, he goes into the off-limits areas of the manor.
+The guards don't respond, at first. They tell him to leave, only to be cut down without warning. The others retaliate, and Ananth begins the slow work of carving a path through the hallways.
+He fights his way to the storage room and finds the small wand that Rita had stolen from Jezebel years before, and given to Mav. He recalls that it can be used to generate a powerful magnetic field.
+He rushes to the recording room, and activates it. It erases all the tapes in Jezebel's possession.
+
+-> jezebel_final
+
+
+= jezebel_final
+
+INT. MANOR JEZEBEL, PARLOUR
+
+JEZEBEL
+Ah, and here he is!
+
+ANANTH
+...
+
+JEZEBEL
+What? Don't tell me you're still sore about losing.
+
+* {revenge_start} [Activate the wand.]
+    JEZEBEL
+    Wh--
+    
+    Her joints lock together, and she buckles onto her knees.
+    
+    ANANTH
+    I erased the tapes, too.
+    
+    RITA
+    Oh, I'm going to have some fun with you.
+    
+    JEZEBEL
+    You uncouth little--
+    
+    Rita hits her in the face. And then she keeps hitting her. Soon she's on top of the woman and pummelling her.
+    
+    * [Stop her.]
+    * [Absolutely do not stop her.]
+    
+    // This scene is about the consequences of Jezebel's way of being. Unlike the last mission, which was about the consequences of a monolithic religious faction, this is about Jezebel's extremist libertarianism. It isn't about avoiding pain and giving up rights for a greater good -- it's about enjoying the cartharsis of winning, or the player's own belief in the importance of empathy.
+    
+    -
+    
+* [Say nothing.]
+
+-
+
+-> Hub
