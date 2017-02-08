@@ -16,6 +16,12 @@ public class SaveFile {
 	public string bgm = "";
 	public string room = "";
 
+	public float posX = 0;
+	public float posY = 0;
+	public float posZ = 0;
+
+	public string currentState = "gameplay";
+
 	public string ToJson() {
 		return JsonUtility.ToJson(this);
 	}

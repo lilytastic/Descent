@@ -38,11 +38,7 @@ GUARD: I said, quiet!
 
 Melonia trembles and looks to Agatha for reassurance.
 
-AGATHA: Just keep your eyes straight, girl. I don’t want to die, either. #beat: 1
-
-MELONIA: Killin’ ‘em is still on tha table, righ’?
-
-AGATHA: I don’t see why not. 
+AGATHA: Just keep your eyes straight, girl. I don’t want to die, either.
 
 # gameplay
 
@@ -95,7 +91,13 @@ They are shown to the defendant’s podium, and sit.
 
 MELONIA: (sitting) Hell, ya’d think it were the end o’ tha world.
 
-AGATHA: (sitting) You know, darlin’, it just might be. #beat: 1
+AGATHA: (sitting) You know, darlin’, it just might be.
+
+#beat: 1
+
+MELONIA: Killin’ ‘em is still on tha table, righ’?
+
+AGATHA: I don’t see why not. 
 
 JUDGE: All rise.
 
@@ -105,7 +107,7 @@ AGATHA: I’m old. What part of ‘old’ do you people not understand?
 
 >SMASH TO BLACK
 
-The JUDGE bangs his gavel. #sfx:187705__odditonic__gavel-3-strikes-with-room-reverb
+The Judge bangs his gavel. #sfx:187705__odditonic__gavel-3-strikes-with-room-reverb
 
 FADE IN:
 
@@ -115,7 +117,23 @@ JUDGE: Attach the lie detectors. #beat: 1
 
 A guard attaches two devices to Agatha’s temples.
 
-JUDGE: Would the prosecution care to begin? #beat: 1
+JUDGE: Agatha--
+
+AGATHA: I'm sorry, I don't believe we're on a first-name basis, boy.
+
+JUDGE: May I remind you that I'm the executioner for this case, Ms.--you don't even _have_ a last name.
+
+AGATHA: Yes, so call me by my title. 'The Goddess of Ember'.
+
+JUDGE: Okay, let's just get this out of the way. Does _anybody_ have further requests they'd like to make of the court before we begin?
+
+AGATHA: Melonia quite enjoys being called 'pet'.
+
+MELONIA: Actually, I don't mind being on a first-name basis, Judge.
+
+The Judge pinches the bridge of his nose.
+
+JUDGE: ...Would the prosecution care to begin? #beat: 1
 
 Romulus approaches and holds up Agatha’s silver locket, which is open to reveal a small, black marble.
 
@@ -129,42 +147,116 @@ AGATHA:     Well, I’m not too sure myself. When I received it, it was called �
 
 ROMULUS:    By who? Where did you get it?
 
-AGATHA:     That’s a long story.
+AGATHA:     That’s a long story -- especially since, seeing as I don't know the nature of this case, I don't even know which parts are relevant...
 
-ROMULUS:    We want to hear it.
+ROMULUS:    So tell us everything, Agatha.
 
-AGATHA:     I certainly hope it’s relevant to your case, then.
+AGATHA:     _Goddess_, please and thank you.
 
-ROMULUS:    Tell us everything, Agatha.
+ROMULUS:    Agatha. The punishment for your crime is _execution_, so whatever you tell us, it can only help your case. On the other hand, refusing to answer these basic questions will shorten your remaining lifespan _considerably_, because if you couldn't tell, _time is of the essence_. _Do I make myself clear_?
 
-Agatha slumps for a moment...#beat: 0.4
+AGATHA:     Don't threaten me, little man.
+
+ROMULUS:    Agatha, once you may have been the most powerful woman alive. Now, you have trouble walking. Perhaps it's time you outgrew your pride, along with these silly games.
+
+Agatha slumps for a moment...
+
+//* [Give him the short version.] -> short_version
+* [] -> full_story
+
+
+= short_version
+AGATHA: I got it from my mother when I was 25. She told me it was the Seed of Our Destruction, and that I should keep it close to me at all times. She wouldn't tell me anything more.
+
+# beat: 1
+
+ROMULUS: ...Is that it?
+
+AGATHA: Read the lie detector.
+
+Romulus looks down at the display.
+
+JUDGE: Let the record show that no signs of lying were detected.
+
+ROMULUS: And was that the _whole_ truth?
+
+AGATHA: I'm sorry, I thought time was of the essence. The whole truth is a story nested within stories -- stories about my children, my assassination, and my third- and second-greatest triumphs of all time. But, you wanted the short version, so there it is. That's all I know about the Seed.
+
+ROMULUS: What does the Seed do?
+
+AGATHA: I was never told. It could just be an heirloom, for all I know.
+
+ROMULUS: ...Thank you, Agatha.
+
+AGATHA: Goddess.
+
+
+INT. COURTHOUSE
+
+Agatha and Melonia are sitting outside.
+
+AGATHA: I didn't think people would respect me after everything we've done, but I didn't think they'd pull me out of retirement just to put me on trial.
+
+MELONIA: Wha' could we have done?
+
+AGATHA: I don't know. I knew the Seed wasn't just a gem, but I didn't realize it would have such an important function...
+
+MELONIA: You didn' _really_ tell 'em the whole story of how ya got it.
+
+AGATHA: It was tempted. I'd love to have seen the look on Rom's face. I just didn't think it was worth the energy. They don't even plan on telling us what we _did_.
+
+MELONIA: Yeah... They prolly just think we're two ol' ladies who need ta be locked up, 'fore we hurt ourselves.
+
+AGATHA: Quite.
+#beat: 1
+AGATHA: You know what I think?
+
+MELONIA: Wha'?
+
+AGATHA: Fuck it. Let's kill 'em.
+
+<- end_trial
+
+AGATHA (O.S.): Do you want answers? Well, it's not that simple, and I don't say it because I want to torture you with pointless games...
+AGATHA (O.S.): People are tricky. Manic, crazed, downright awful women included. If you don't take the time to sit and listen, you'll miss something, and you won't even know it.
+AGATHA (O.S.): So please... when you're listening to someone, and you've hit the limit of your patience, just keep going, and see what happens.
+
+Roll credits.
+
+// Credits roll
+
+-> DONE
+
+
+= full_story
 ...and then her face lights up. # bgm: Covert Affair
-
-AGATHA: (deviously) Everything? #beat: 1
+AGATHA: (deviously) You want to know _everything_? #beat: 1
 
 The court pauses for a moment. Melonia bursts out in laughter.
 
-ROMULUS: You seem far too excited about this.
+ROMULUS:    You seem far too excited about this.
 
-AGATHA: Do I?
-AGATHA: Well, I’m happy to tell you. But I’ll need your assurance that I won’t be interrupted.
+AGATHA:     Do I?
+AGATHA:     Well, I’m happy to tell you. But I’ll need your assurance that I won’t be interrupted.
 
-ROMULUS: I can’t give you that.
+ROMULUS:    I can’t give you that.
 
-AGATHA: You’ll need to. I told you, it’s a long story.
+AGATHA:     You’ll need to. I told you, it’s a long story.
 
-ROMULUS: And how do I know you’re not playing games with us?
+ROMULUS:    And how do I know you’re not playing games with us?
 
-AGATHA: Oh, I am absolutely playing games with you.
+AGATHA:     Oh, I am absolutely playing games with you.
 
-REMUS: Your Grace, the Seed is central to these events, yet there’s no record of it anywhere. We don’t know anything about this artifact, and the only one who does, is Agatha.
-REMUS: I say, let her play her games. #beat: 1
+JUDGE:      I'm about ready to throw this case out of court.
+
+REMUS:  Your Grace, the Seed is central to these events, yet there’s no record of it anywhere. We don’t know anything about this artifact, and the only one who does, is Agatha.
+REMUS:      I say, let her play her games. #beat: 1
 
 ROMULUS: (reluctant) Am I going to regret this?
 
 AGATHA: Oh yes. But your brother is right. You’ll need to hear this.
 
-JUDGE: Fine. Begin your testimony.
+JUDGE: Fine. You may begin your testimony.
 
 AGATHA: Excellent. 
 AGATHA: We begin sixty years ago. There was this boy named Ananth, who I suppose you could call my son…

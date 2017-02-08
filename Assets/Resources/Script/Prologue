@@ -5,6 +5,7 @@ VAR prologue = false
 VAR study = ""
 VAR prologue_lostear = true
 VAR prologue_assailantskilled = 0
+VAR prologue_criedafter = false
 VAR prologue_jez_met = false
 VAR prologue_jez_beaten = false
 VAR prologue_jez_acceptedhelp = false
@@ -15,19 +16,19 @@ VAR prologue_wenttoarvvurdeve = true
 
 AGATHA (O.S.)
 Let's see... where to begin?
+
 -> skip_option
 
 = skip_option
-+ [Give them a little prologue.]
-+ [Skip it.]
-    There are several choices in this prologue that will come up later. These will be set to default values. Are you sure?
++ [Give them a detailed prologue.]
++ [Keep it short.]
+    There are several choices you can make in this prologue that will come up later. If you do the short version, some of these choices will be set to default values.
     ++ [Yes.]
-        AGATHA (O.S.)
-        There was this local religion that happened to be a big pain in the ass. They had this bit of Scripture about a holy prophet that would one day kill a false Goddess, and shepherd their people through the end of the world. / Long story short, the priests had a few issues with my rule, and decided to turn my own son against me. They didn't really believe in this prophecy -- who could? -- they just felt I was an enemy of their religion, and wanted me gone.
+        AGATHA (O.S.): The native religion where my family came from was a big pain in the ass. Like most religions, they had a morbid fascination with doomsday prophecies. This one, in particular, clung to this bit of Scripture about the 'Arv'mahdant' -- a holy prophet that would one day kill a false Goddess, and shepherd their people through the end of the world. They thought that Goddess was me.
+        AGATHA (O.S.): I didn't make much friends with the local priests. Long story short, they had a few issues with my rule, and decided to turn my own son against me.
         Choose an archetype for your character.
-        *** [Independent]
-            AGATHA (O.S.)
-            Ananth wanted nothing more than freedom and adventure. He was curious about religion, but, he turned against me for his own reasons.
+        *** [Independent (+Perks)]
+            AGATHA (O.S.): Ananth wanted nothing more than freedom and adventure. He was curious about religion, but, he turned against me for his own reasons.
             ~study = "sword"
             ~prologue_assailantskilled = 2
             ~prologue_lostear = false
@@ -36,9 +37,8 @@ Let's see... where to begin?
             ~prologue_jez_acceptedhelp = false
             ~prologue_jez_beaten = true
             ~prologue_wenttoarvvurdeve = false
-        *** [Sheltered]
-            AGATHA (O.S.)
-            Ananth never left my side, so, I taught him everything I knew. He never had much interaction with priests. They captured him and tried to turn him against me, but to no avail.
+        *** [Sheltered (+Stats)]
+            AGATHA (O.S.): Ananth never left my side, so, I taught him everything I knew. He never had much interaction with priests. They captured him and tried to turn him against me, but to no avail.
             ~study = "dance"
             ~prologue_assailantskilled = 1
             ~prologue_lostear = false
@@ -46,9 +46,8 @@ Let's see... where to begin?
             ~prologue_jez_met = false
             ~prologue_jez_beaten = false
             ~prologue_wenttoarvvurdeve = false
-        *** [Religious]
-            AGATHA (O.S.)
-            Ananth was a quiet soul who just wanted a place to belong. So, he was agreeable to religious teachings, and agreed to work against me.
+        *** [Religious (+Lore)]
+            AGATHA (O.S.): Ananth was a quiet soul who just wanted a place to belong. So, he was agreeable to religious teachings, and agreed to work against me.
             ~study = "art"
             ~prologue_assailantskilled = 0
             ~prologue_lostear = true
@@ -57,30 +56,40 @@ Let's see... where to begin?
             ~prologue_jez_beaten = false
             ~prologue_wenttoarvvurdeve = true
         ---
-        AGATHA (O.S.)
-        Let's just say... things popped off fairly quickly.
+        AGATHA (O.S.): There was a coup. Riots, fires, assassination plots... all very exciting stuff, but not where we want to begin. All you need to know, for now, is that it was violent. So, one year later, Ananth was out walking the earth... and he had no intention of coming home.
         -> MQ_01
     ++ [No.]
         -> skip_option
 
 -
-~prologue = true
-AGATHA (O.S.)
-Ananth grew up in a shelter, overlooking the ocean.
-I built it for him before he was born. People hated me -- no surprise there. Even he always seemed to feel nervous around me, though I'd never hurt him. Not really.
-Like me, he was an albino. He never left the shelter.
-On his fifteen birthday, his only sibling, Rita, told him about a festival in a nearby town, and asked him to join her. She wouldn't take 'no' for an answer.
 
-* [You go happily.]He went happily.
-* [You tell Agatha.]He told on her. I admonished him for trying to deny his sister her basic freedoms. He shrank away.
-* [You refuse, weakly.]He refused, weakly.
+~prologue = true
+
+VAR religious_path = 0
+VAR independent_path = 0
+VAR sheltered_path = 0
+AGATHA (O.S.)
+Ananth was an albino, just like me. I raised him in a shelter in the side of a cliff, overlooking the ocean. It was a safe place, away from prying eyes, and it kept him out of the sun. It was just the three of us -- me, him, and his sister Rita.
+* [You venture outside often. (-2 vision)] He and his sister, would venture out into the city of Fol'deve. On his fifteenth birthday, they were attending a local festival. Everyone he saw gave him dirty looks.    
+    ~ independent_path++
+
+* [You seldom leave the shelter.] He seldom left the shelter. On his fifteenth birthday, Rita told him about a festival in the nearby city of Fol'deve. It took a while for him to realize she was actually inviting him to join. It took far less time to realize she wouldn't take 'no' for an answer.
+    ~ sheltered_path++
+    ** [You go happily.]He went happily.
+    ** [You tell Agatha.]He told on her. I admonished him for it -- it wouldn't do for the two of them to distrust each other. Besides, the whole thing was my idea in the first place.
+    ** [You refuse, weakly.]He refused, weakly.
+
+    --
+    A day later, Rita was dragging him through the city. Fol'deve was a lively place -- though, unlike the shelter, it was also very dirty, and very crowded. What's more, everyone he saw gave him dirty looks.
 
 -
-A day later, Rita was dragging him through the city. Unlike the shelter, Fol'deve was dirty and crowded. The streets and walkways were a wicked snarl in the middle of the forest, ascending through the trees like spiderwebs.
-Everyone he saw gave him dirty looks.
-A priestess of Arv approached him while Rita stole candy from a local vendor. She smiled, and offered that he and Rita come eat at her chapel instead.
+* [It upsets you.] Rita could tell it was affecting him, and kept close to him.
+* [It doesn't bother you.] It didn't seem to faze him. Rita proudly took him through the most crowded parts of the city.
+-
+A priestess of Arv approached him while Rita stole candy from a local vendor. She paid no attention to the petty crime, smiled, and offered that he and Rita come eat at her chapel.
 
 * [You go with her.]He went with her. Rita refused to join, but said to meet her under the statue of the Goddess.
+    ~ religious_path++
     He realized the statue had been defaced.
     The priestess told him he had nothing to fear, and offered him a cloak to hide his albinism. She took him to the prayer room and offered him bread.
     ** [You listen.]He listened.
@@ -88,65 +97,84 @@ A priestess of Arv approached him while Rita stole candy from a local vendor. Sh
     Then she took his hand and comforted him. "Arv forgives all," she said.
     As he left, another priest recognized and threatened him.
     Rita lunged out of hiding and beat the man to a pulp.
-    ** [She drags you out.]She dragged Ananth out.
+    ** [You pull her off.]He pulled her off.
+        ~ religious_path++
+    ** [You join in.]He joined in. Needless to say, people were aghast, and the two were quickly thrown out of the church.
+        ~ independent_path++
+    ** [You run away.]He ran. She joined him minutes later.
+        ~ sheltered_path++
     
-* [You ignore her.]He ignored her.
-    Rita came back with a bag of assorted treats, and asked about the priestess. When he told her, her eyes hardened.
-    She told him about what I'd done -- that I was an enemy of their religion. See, around his birth, I destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens struggled to rebuild to that day.
+* [You politely decline.]
+    ~ sheltered_path++
+    He politely declined. Rita came back with a bag of assorted treats, and asked what was on his mind. When he told her about the priestess, her eyes hardened.
+    See, around his birth, I destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens had been struggling to rebuild to that day. The faithful had something of a grudge against me... and so branded my children 'demonspawn'.
+* [You ignore her.]
+    ~ independent_path++
+    He ignored her. Rita came back with a bag of assorted treats, and asked what was on his mind. When he told her about the priestess, her eyes hardened.
+    See, around his birth, I destroyed the holy city of Arv'vurdeve, seat of the Delgoren empire. The Old Delgorens had been struggling to rebuild to that day. The faithful had something of a grudge against me... and so branded my children 'demonspawn'
 
 -
-The news troubled him greatly. Rita told him what I'd told her -- that the Delgoren Empire ruled the world with an iron fist, and put harmony above all else. I'd wanted to break their hold and give people freedom again. Even if it meant slaughter.
+Rita told him what I'd told her -- that the Delgoren Empire ruled the world with an iron fist and a single mantra: harmony. Dissenters were silenced. Blasphemers were burnt at the stake. I had to do something about it.
+* [This terrifies you.] This didn't exactly smooth things over for him, however.
+    ~ religious_path++
+* [You understand.] At the time, he seemed to understand.
 
+-
 Over the next few years, he let his hair grow long. He occasionally ventured out into town, but preferred to spend time reading in the courtyard, overlooking the sea. 
-* [You sneak a bit of scripture into the shelter to read.]He snuck a bit of scripture into the shelter to read.
-- The idea of religion seemed beautiful to him. Old Delgoren culture had no concept of freedom; the closest to it, was being lost. If everyone was safe and content in God's embrace, what use was freedom? Wasn't it better to trust in God and know that everything would be okay?
-During the reign of the Old Delgorens, there was no war. Everyone was comfortable and protected by law. Nobody died of poverty. Everyone who could work had their own task. Anyone who couldn't, was cared for.
-It was a far cry from the state of Fol'deve.
-Despite his fascination with scripture, I did convince him to cultivate his own interests.
+* [You sneak a bit of scripture into the shelter to read. (+5 Lore)]He snuck a bit of scripture into the shelter to read.
+    ~ religious_path++
+    The idea of religion seemed beautiful to him. Old Delgoren culture had no concept of freedom; the closest to it, was being lost. If everyone was safe and content in God's embrace, what use was freedom? Wasn't it better to trust in God and know that everything would be okay?
+    During the reign of the Old Delgorens, there was no war. Everyone was comfortable and protected by law. Nobody died of poverty. Everyone who could work had their own task. Anyone who couldn't, was cared for.
+    It was a far cry from the state of Fol'deve.
+    Despite his fascination with scripture, I did convince him to cultivate his own interests.
+* [You take to your hobbies. (+2 Perks)] Ananth rarely sought my help, which was how I liked it. I thought the best thing to do was give a child room to grow. He quickly cultivated his own interests.
+    ~ independent_path++
+* [You seek Agatha's tutelage. (+5 Skill)] I encouraged him to do whatever he fancied. I gave him a little practical education wherever I could, since he seemed attentive enough... but I always believed that children should have room to grow. In time, he cultivated his own interests.
+    ~ sheltered_path++
+- 
 
-* [You study art.]He studied art.
+* [You study art. (+5 Lore)]He studied art. He spent days pouring over artifacts from earlier cultures, understanding the subtleties between techniques, and applying them in his own work. He painted beautifully.
     ~study="art"
-* [You study song and dance.]He studied song and dance.
+* [You study song and dance. (+3 Grace, +2 Skill)]He studied song and dance. Oral traditions were strong in Delgoren culture, and in Fol'deve there were still those who could pass on dances from years passed.
     ~study="dance"
-* [You study the sword.]He studied the sword.
+* [You study the sword. (+5 Skill)]He studied the sword. Oral traditions were strong in Delgoren culture, and in Fol'deve there were still those who could pass on techniques from years passed.
     ~study="sword"
-* [You study machines.]He studied machines.
+* [You study machines. (+3 Intellect, +2 Skill)]He studied machines. The world was full of artifacts of the Progenitors, the first race. All technology was reverse-engineered from what remained. The clear, abstract concepts of binary code and clockwork were beautiful to him, and his own work was intricate and complex.
     ~study="machinery"
 
 -
 While outside the shelter, two men recognized him as the son of Agatha.
 They drew knives and cornered him in an alley.
-* [You do nothing.]He did nothing.
-    ~prologue_lostear = true
+* [You do nothing. (Lose an ear)]He did nothing.
+    ~ prologue_lostear = true
+    ~ religious_path++
     By the time the city guard heard his cries, they'd cut off his ear and fled. I suppose they wanted him to match his mother.
-* {!(study=="sword")} [You kill one of them.]He killed one of them. The other fled before the city guard could arrive.
-    ~prologue_assailantskilled = 1
-    When the adrenaline was gone, he looked down at the mangled body at his feet. He threw up.
-* {study=="sword"} [You kill them.]He killed them.
-    ~prologue_assailantskilled = 2
-    When the adrenaline was gone, he looked down at their mangled bodies. He threw up.
+* {!(study=="sword")} [You kill one of them.]He killed one of them, brutally. It wasn't his fault. They tried to hold him down, and all he could do was swing his arms and pray for damage. He didn't realize it when his arms were free -- he just kept beating. The other fled before the city guard could arrive.
+    ~ independent_path++
+    ~ prologue_assailantskilled = 1
+    When the adrenaline was gone, Ananth looked down at the mangled body at his feet.
+    ** [You throw up] He threw up.
+        ~ prologue_criedafter = true
+    ** [You spit] He spat on it.
+        ~ prologue_criedafter = false
+* {study=="sword"} [You kill them.]He killed them with the sword he carried with him. They didn't even realize what was happening until it was too late. It was a clean kill -- painless. 
+    ~ independent_path++
+    ~ prologue_assailantskilled = 2
+    Still, when the adrenaline had passed, he saw their bloody corpses staring back at him.
+    ** [You throw up] He threw up.
+        ~ prologue_criedafter = true
+    ** [You spit] He spat on it.
+        ~ prologue_criedafter = false
 
 -
-Rita found him crying in the courtyard.
+Rita found him {prologue_criedafter: crying} in the courtyard{not prologue_criedafter:, sitting perfectly still}.
 * [You tell her to leave.]He told her to leave.
-* [You embrace her and tell her everything.]He embraced her and told her everything.
-    She held him and didn't let go for hours.
+* [You embrace her and tell her everything.]He {prologue_criedafter: embraced her and }told her everything. She held him and didn't let go for hours.
 
 -
 Around then, Rita began to sneak out for longer and longer periods. She came back with exotic equipment and tools, but hid them in her chambers.
 One day, she came back bruised and beaten. He confronted her, but she told him nothing.
-/*
-A week later, she left again.
-* [You sneak into her chambers.]He snuck into her chambers.
-    Whatever he had expected, it wasn't that. A few derelict robots sat in a corner, one of them muttering in a foreign language. Ancient artifacts littered the desk, some of them active and blinking. A pair of headphones connected to a terminal, blaring static.
 
-* [You ignore it.]He ignored it.
-*/
-/*
-You pick up an artifact, and it comes to life. You stare at it, mesmerized, when Agatha bursts into the room.
-She pulls it away and tells you to be careful with any artifacts you find. The derelict robots, she explains, are an ancient race called the Avo, and they are driven to find and retrieve any artifact they can. Each artifact makes a signal. If it's not correctly disabled, the remnants of the Avo will come for them.
-* You try to keep that in mind.
-*/
 - 
 A year later, Rita disappeared.
 I wasn't concerned. He was.
@@ -154,6 +182,7 @@ He asked about her in town, and was told that she boarded a ship bound for Cor'd
 The next ship left tomorrow, but he had no money.
 
 * [You steal some, and follow her.]He stole some, and followed her.
+    ~ independent_path++
     Cor'deve was a violent city, ruled by crime lords. Unlike Fol'deve, however, the streets were tall and gleaming with gold. To somehow who'd never travelled, it must have been marvelous.
     He asked around at a local tavern, and learned that Rita had a run-in with Madame Jezebel, the leader of one of the largest gangs in the city. She was being kept as a trophy to humiliate me. Adorable, really.
     Someone offered to help him infiltrate Jezebel's manor through a secret passage.
@@ -161,6 +190,7 @@ The next ship left tomorrow, but he had no money.
         He learned as soon as he was inside that it was a trap. Jezebel's bodyguards apprehended him, and hauled him into Rita's prison. The last thing he saw was his so-called accomplice accepting a bag of gold.
         -> jezebel_capture
     ** [You ignore him and take Jezebel head-on.]He ignored him and took Jezebel head-on. Just like his dear old mother.
+        ~ independent_path++
         He had the element of surprise. He entered Jezebel's parlour and demanded his sister back. She laughed.
         {
             -study=="sword": Her men came to apprehend him. They didn't take him seriously until it was too late, and their bodies lay open and bleeding. Ananth levelled his sword at Jezebel and made the same request again. This time, she was much more agreeable.
@@ -199,20 +229,77 @@ The next ship left tomorrow, but he had no money.
 The next year was much more uneventful. Rita's excursions continued, but were mostly confined to the local area. She started going back and forth to a place called the Conclave ae Scolia, but Ananth learned it was just a retreat for scholars.
 * [You start to relax again.]He started to relax again.
 -
-He continued to spend his days inside the shelter, but more and more he went out to see the city priests, learning about scripture and recieving piles of books to take home. The head priestess was overjoyed to help him escape my influence. I didn't stop him.
-He was immersed in the beauty of religion, and wanted nothing more than to pray at the chapel for the rest of his days.
-And yet, he felt helplessly alone. 
-The other priests refused to talk to him. Part of him understood. They looked at him and saw me, the demon who rained fire on Arv'vurdeve and buried it beneath the sand.
-* [You hate your mother more and more every day.]He hated me more and more every day.
+// {religious_path} / {independent_path} / {sheltered_path}
+{
+    -sheltered_path >= independent_path && sheltered_path >= religious_path:
+        Years passed, and Ananth spent most of his days in the shelter. He was a fantastic learner, and I gave him all the resources I could.
+        * [ ] ->
+    -independent_path >= religious_path && independent_path >= sheltered_path:
+        Years passed, and Ananth continued to do whatever pleased him. The more time he spent outside, the more it troubled him.
+        Fol'deve was not a rich city. It was founded in my name, and all its citizens were once slaves of the Old Delgorens, before the Cataclysm. I oversaw the creation of the city... and my shadow still loomed over it. There were those who lived well, in trees high above the ground. Those on the floor were far worse off. Poverty was rampant. Protests were not uncommon. It was easy for an idealistic young boy to jump to conclusions.
+        * [You hate your mother more and more every day.]He hated me more and more every day.
+    -religious_path >= independent_path && religious_path >= sheltered_path:
+        He continued to spend his days inside the shelter, but more and more he went out to see the city priests, learning about scripture and recieving piles of books to take home. The head priestess was overjoyed to help him escape my influence. I didn't stop him.
+        He was immersed in the beauty of religion, and wanted nothing more than to pray at the chapel for the rest of his days.
+        And yet, he felt helplessly alone. 
+        The other priests refused to talk to him. Part of him understood. They looked at him and saw me, the demon who rained fire on Arv'vurdeve and buried it beneath the sand.
+        * [You hate your mother more and more every day.]He hated me more and more every day.
+}
 
 -
-All was well, until the Old Delgorens announced a campaign to convert the other cities. Three accepted the terms of conversion, and were occupied within the month. The Delgoren Empire quietly began to spread again.
-A crowd of Arv's faithful took to the streets, demanding the Goddess surrender Fol'deve to the Old Delgorens and leave them in peace.
-I agreed to meet with the movement's leader. I even listened to him for a while, but of course I rebuked him. He wanted to choose for everyone. I couldn't abide that. So, while initially peaceful, the demonstrations quickly start to grow desperate.
+Things were fine, until the Old Delgorens announced their campaign to convert the freed cities. They had been working up to it for two decades... which is why three states accepted the terms of conversion immediately, and were occupied within the month. The Delgoren Empire had quietly begun their resurgence.
+In Fol'deve, protests broke out in greater numbers. Arv's faithful wanted a return to the Old Ways. The poor just wanted a better life. Both sides were joined under one movement.
+I agreed to meet with the movement's leader. I even listened to him for a while, before I rebuked him. He wanted to choose for everyone, and I couldn't abide that. So, while initially peaceful, the demonstrations quickly start to grow desperate.
 While outside the shelter, they found Ananth in the chapel and knocked him unconscious.
-The head priestess came to him in his cell. She insisted that the faithful wouldn't calm down, and that the city guard would be forced to retaliate. That is, unless he made a symbolic gesture.
+The head priestess came to him in his cell. She insisted that the movement was out of their control. The poor and the faithful would tear the city apart if they had to, and ultimately the city guard would be forced to retaliate. The only way to prevent it, was if Ananth made a symbolic gesture.
 She begged him to repent, and go to Arv'vurdeve to follow the Old Ways.
 * (enslavement_agree) [You agree.]He agreed.
+    
+* [You shake your head sadly.]He shook his head.
+    She said nothing, but smiled. She held his hand and told him everything would be okay. Her hands were shaking.
+    Rita rescued him before the church was razed. He never saw the priestess again.
+    
+* [You laugh.]He laughed. Rita rescued him shortly before the church was razed.
+
+-
+INT. COURTROOM
+
+Agatha finishes a glass of water and picks her teeth.
+
+ROMULUS: ...And?
+
+AGATHA: ...And, I suppose that's enough foreplay. Long story short, {enslavement_agree: Rita 'rescued' him from the holy city, | the dissident church burned,} the Old Delgorens became furious, and suddenly everyone wanted me dead. There was a coup. Riots, fires, assassination plots... all very exciting stuff, but not where we want to begin.
+/*
+ROMULUS: _Why_ was all that necessary?
+
+AGATHA: I told you, no interruptions. More scotch?
+
+ROMULUS: That was water. All you get is water.
+
+AGATHA: Pity. Anyway, I told you that story so I could tell you this one.
+*/
+AGATHA: More scotch?
+
+ROMULUS: That was water. All you get is water.
+
+AGATHA: Pity. Anyway, I told you that story so I could tell you this one.
+AGATHA: All you need to know, for now, is that the coup was violent. So, one year later, Ananth was out walking the earth... and he had no intention of coming home.
+
+SUPER: "One year later..."
+-> MQ_01
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
     A local pirate named Mav comes to collect you. You depart on a cramped airship with three other converts, confined to a single room.
     Arv'vurdeve is a city in ruins, though it remains somehow beautiful. The tops of pyramids rise from the desert sands like jewels. The excavation has made streets against the old city walls.
@@ -234,37 +321,6 @@ She begged him to repent, and go to Arv'vurdeve to follow the Old Ways.
                 ***** You have no words.
                 ----- You learn she has the same pirate, Mav, under her thumb. Something about a favour. He is sheepish as you cross paths in the hallway.
     */
-    
-* [You shake your head sadly.]He shook his head.
-    She said nothing, but smiled. She held his hand and told him everything would be okay. Her hands were shaking.
-    Rita rescued him before the church was razed. He never saw the priestess again.
-
--
-
-INT. COURTROOM
-
-Agatha finishes a glass of water and picks her teeth.
-
-ROMULUS
-...And?
-
-AGATHA
-...And, I suppose that's enough foreplay. Long story short, {enslavement_agree: Rita 'rescued' him from the holy city,} the Old Delgorens became furious, and suddenly everyone wanted me dead. Now, one year later, when the real story takes place...
-
-ROMULUS
-_Why_ was all that necessary?
-
-AGATHA
-I told you, no interruptions. More scotch?
-
-ROMULUS
-That was water. All you get is water.
-
-AGATHA
-Pity.
-
-SUPER: "One year later..."
--> MQ_01
 
 
 == Old_MQ00_2

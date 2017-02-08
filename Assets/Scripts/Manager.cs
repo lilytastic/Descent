@@ -4,6 +4,7 @@ using System.Linq;
 using Ink.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.IO;
@@ -14,14 +15,66 @@ public class Manager : MonoBehaviour {
 	private Coroutine speakingRoutine = null;
 
 	public AudioSource audioMain;
+	public AudioMixer mainMixer;
+
+	public static Vector3 positionOnLevelLoad = new Vector3();
+
+	public static CameraControl mainCamera = null;
+	public static Canvas mainCanvas = null;
+	public static GameObject mainMenu = null;
+	public static bool mainMenuOpen = false;
+
+	public static State currentState = State.Dialogue;
+	public enum State {
+		Dialogue,
+		Menu,
+		Gameplay
+	}
+
+	static Manager _instance;
+	private static object _lock = new object();
+	static public bool isActive { get { return _instance != null; } }
+	static public Manager instance {
+		get {
+			lock (_lock) {
+				if (_instance == null) {
+					Debug.Log("[Singleton] Creating Singleton: " + FindObjectsOfType(typeof(Manager)).Length.ToString());
+
+					_instance = UnityEngine.Object.FindObjectOfType(typeof(Manager)) as Manager;
+
+					if (FindObjectsOfType(typeof(Manager)).Length > 1) {
+						Debug.LogError("[Singleton] Something went really wrong " +
+							" - there should never be more than 1 singleton!" +
+							" Reopening the scene might fix it.");
+						//DontDestroyOnLoad(_instance.gameObject);
+						return _instance;
+					}
+
+					if (_instance == null) {
+						GameObject go = new GameObject("StoryManager Story");
+						//DontDestroyOnLoad(go);
+						_instance = go.AddComponent<Manager>();
+						Debug.Log("[Singleton] An instance of " + typeof(Manager) +
+							" is needed in the scene, so '" + go.name +
+							"' was created with DontDestroyOnLoad.");
+					}
+					else {
+						//DontDestroyOnLoad(_instance.gameObject);
+						Debug.Log("[Singleton] Using instance already created: " +
+							_instance.gameObject.name);
+					}
+				}
+				return _instance;
+			}
+		}
+	}
 
 	public VoicePack voicePack = new VoicePack();
 
 	public Color mainColor;
 
 	public Language standardLanguage = new Language();
-
-	public Canvas mainCanvas;
+	
 	public EventSystem eventSystem;
 
 	public static List<Interactable> interactables = new List<Interactable>();
@@ -33,6 +86,8 @@ public class Manager : MonoBehaviour {
 	public Transform choiceAnchor;
 
 	public GameObject particleEffect = null;
+
+	public static Character player = null;
 
 	public RectTransform dialogueView;
 	public Text dialogueText;
@@ -79,8 +134,6 @@ public class Manager : MonoBehaviour {
 
 	public Scene currentScene;
 
-	Core.State currentState = Core.State.Dialogue;
-
 	public List<Transform> choices = new List<Transform>();
 
 	public enum LineFormat {
@@ -94,63 +147,80 @@ public class Manager : MonoBehaviour {
 	}
 
 	void Start () {
-		currentState = Core.currentState;
-		Debug.Log(Core.instance.name);
+		StartCoroutine(ChangeState(currentState,false));
+		Debug.Log(StoryManager.instance.name);
+
+		SceneManager.activeSceneChanged += OnSceneWasChanged;
+		SceneManager.sceneLoaded += OnSceneWasLoaded;
+		SceneManager.sceneUnloaded += OnSceneWasUnloaded;
+		CameraControl cc = Camera.main.GetComponent<CameraControl>();
+		if (cc) {
+			mainCamera = cc;
+		}
+		else {
+			mainCamera = Camera.main.gameObject.AddComponent<CameraControl>();
+		}
+
 		HandleLoad();
-		Core.inProgress = true;
-		//Core.bgm = (AudioClip)Resources.Load("Audio/Music/Faster Does It");
+		StoryManager.inProgress = true;
+		
+		//StoryManager.bgm = (AudioClip)Resources.Load("Audio/Music/Faster Does It");
 	}
 
-	IEnumerator ChangeState(Core.State state) {
-		currentState = Core.currentState;
+	public IEnumerator ChangeState(State state, bool fade = true) {
+		currentState = state;
 		Debug.Log("Change to " + currentState.ToString());
 
 		float steps = 100;
-		dialogueText.text = "";
-		speakerText.text = "";
-		if (currentState == Core.State.Dialogue) {
-			inProgress = true;
-			dialogueUI.alpha = 0;
-			for (int i = 0; i < steps; i++) {
-				float lerp = i / steps;
-				dialogueUI.alpha = lerp;
-				yield return new WaitForSeconds(1 / steps);
+		if (dialogueText) { dialogueText.text = ""; }
+		if (speakerText) { speakerText.text = ""; }
+		if (currentState == State.Dialogue) {
+			if (dialogueUI) {
+				if (fade) {
+					inProgress = true;
+					dialogueUI.alpha = 0;
+					for (int i = 0; i < steps; i++) {
+						float lerp = i / steps;
+						dialogueUI.alpha = lerp;
+						yield return new WaitForSeconds(1 / steps);
+					}
+				}
+				dialogueUI.alpha = 1;
 			}
-			dialogueUI.alpha = 1;
 			inProgress = false;
 			StartCoroutine(Next());
 		}
 		else {
-			dialogueUI.alpha = 1;
-			for (int i = 0; i < steps; i++) {
-				float lerp = i / steps;
-				dialogueUI.alpha = 1-lerp;
-				yield return new WaitForSeconds(1 / steps);
+			if (dialogueUI) {
+				if (fade) {
+					dialogueUI.alpha = 1;
+					for (int i = 0; i < steps; i++) {
+						float lerp = i / steps;
+						dialogueUI.alpha = 1 - lerp;
+						yield return new WaitForSeconds(1 / steps);
+					}
+				}
+				dialogueUI.alpha = 0;
 			}
-			dialogueUI.alpha = 0;
 		}
 
 		yield return null;
 	}
 		
 	void Update () {
-		if (currentState != Core.currentState) {
-			StartCoroutine(ChangeState(Core.currentState));
-		}
-
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			if (Core.mainMenuOpen) { StartCoroutine(Core.instance.CloseMenu()); }
-			else { StartCoroutine(Core.instance.OpenMenu()); }
+			if (mainMenuOpen) { StartCoroutine(instance.CloseMenu()); }
+			else { StartCoroutine(instance.OpenMenu()); }
 		}
 
-		if (currentState == Core.State.Dialogue) {
+		if (currentState == State.Dialogue) {
 			bool clicked = Input.GetMouseButtonDown(0);
 			if (clicked && EventSystem.current.IsPointerOverGameObject()) {
 				GameObject woo = EventSystem.current.currentSelectedGameObject;
 				if (woo) { clicked = false; }
 			}
 			if (clicked || Input.GetKey(KeyCode.LeftControl)) {
-				//Debug.Log("Story can continue: " + Core.story.canContinue.ToString());
+				//Debug.Log("Story can continue: " + StoryManager.story.canContinue.ToString());
 				if (!writing && !inProgress) {
 					//if (clicked) { PlaySound((AudioClip)Resources.Load("Audio/SFX/Interface/110429__soundbyter-com__www-soundbyter-com-selectsound"),0.2f); }
 					StartCoroutine(Next());
@@ -169,8 +239,61 @@ public class Manager : MonoBehaviour {
 		if (screenFadeImage && screenFadeImage.color.a != screenFade) {
 			screenFadeImage.color = new Color(0, 0, 0, screenFade);
 		}
+
+		float currentLowPass = 0; mainMixer.GetFloat("LowPass", out currentLowPass);
+		mainMixer.SetFloat("LowPass", Mathf.Lerp(currentLowPass, mainMenuOpen ? 1750 : 22000, Time.fixedDeltaTime));
+
+		float currentHighPass = 0; mainMixer.GetFloat("HighPass", out currentHighPass);
+		mainMixer.SetFloat("HighPass", Mathf.Lerp(currentHighPass, mainMenuOpen ? 1000 : 0, Time.fixedDeltaTime));
+
+		//lowPassFilter.cutoffFrequency = Mathf.Lerp(lowPassFilter.cutoffFrequency, mainMenuOpen ? 1750 : 9999, Time.fixedDeltaTime);
+		//highPassFilter.cutoffFrequency = Mathf.Lerp(highPassFilter.cutoffFrequency, mainMenuOpen ? 1000 : 0, Time.fixedDeltaTime);
 	}
-	IEnumerator Next() {
+
+	public IEnumerator OpenMenu() {
+		if (mainMenuOpen || !mainMenu) { yield break; }
+		mainMenuOpen = true;
+		mainMenu.SetActive(true);
+
+		CanvasGroup group = mainMenu.GetComponent<CanvasGroup>();
+		if (group) {
+			group.alpha = 0;
+			float steps = 100;
+			float fadeTime = 0.2f;
+			for (int i = 0; i < steps; i++) {
+				float lerp = (i / steps);
+				group.alpha = lerp;
+				yield return new WaitForSeconds(fadeTime / steps);
+			}
+			group.alpha = 1;
+		}
+
+		yield return null;
+	}
+
+	public IEnumerator CloseMenu() {
+		if (!mainMenuOpen || !mainMenu) { yield break; }
+		mainMenuOpen = false;
+
+		CanvasGroup group = mainMenu.GetComponent<CanvasGroup>();
+		if (group) {
+			group.alpha = 1;
+			float steps = 100;
+			float fadeTime = 0.2f;
+			for (int i = 0; i < steps; i++) {
+				float lerp = (i / steps);
+				group.alpha = 1 - lerp;
+				yield return new WaitForSeconds(fadeTime / steps);
+			}
+			group.alpha = 0;
+		}
+
+		mainMenu.SetActive(false);
+		yield return null;
+	}
+
+
+	public IEnumerator Next() {
 		if (inProgress) { yield break; }
 		pause = false;
 		inProgress = true;
@@ -180,8 +303,8 @@ public class Manager : MonoBehaviour {
 		//PlaySound((AudioClip)Resources.Load("Audio/SFX/198449__callum-sharp279__menu-scroll-selection-sound"));
 
 		float beat = 0;
-		foreach (string tag in Core.story.currentTags) {
-			Debug.Log(tag);
+		foreach (string tag in StoryManager.story.currentTags) {
+			//Debug.Log(tag);
 			string[] tagTokens = tag.Split(':');
 			if (tagTokens.Length > 1) {
 				if (tagTokens[0] == "beat") {
@@ -193,9 +316,37 @@ public class Manager : MonoBehaviour {
 		else {yield return new WaitForSeconds(0.1f);}
 
 		if (linesToWrite.Count == 0) {
-			while (!pause && Core.story.canContinue) {
-				string fullText = Core.story.Continue().Trim();				
+			while (!pause && StoryManager.story.canContinue) {
+				string fullText = StoryManager.story.Continue().Trim();
 				string[] textBroken = fullText.Split('/');
+
+				foreach (string tag in StoryManager.story.currentTags) {
+					Debug.Log(tag);
+					string[] tagTokens = tag.Split(':');
+					if (tagTokens.Length > 1) {
+						if (tagTokens[0].Trim() == "atmosphere") {
+							foreach (Atmosphere atmos in StoryManager.atmospheres) {
+								if (atmos.name.ToLower() == tagTokens[1].Trim().ToLower()) {
+									StartCoroutine(ChangeAtmosphere(atmos));
+								}
+							}
+						}
+						if (tagTokens[0].Trim() == "bgm") {
+							AudioClip snd = (AudioClip)Resources.Load("Audio/Music/" + tagTokens[1].Trim());
+							if (snd != StoryManager.bgm) { StoryManager.bgm = snd; }
+							StoryManager.story.variablesState["bgm"] = tagTokens[1].Trim();
+						}
+						if (tagTokens[0].Trim() == "sfx") {
+							AudioClip snd = (AudioClip)Resources.Load("Audio/SFX/Foley/" + tagTokens[1].Trim());
+							StoryManager.PlaySound(snd);
+						}
+					}
+					else if (tag.Trim() == "gameplay") {
+						yield return StartCoroutine(ChangeState(State.Gameplay));
+						inProgress = false;
+						yield break;
+					}
+				}
 
 				string textWithoutTokens = fullText.Replace(">", "").Replace(":", "").Replace("@", "").ToLower();
 				if (textWithoutTokens == "fade in") {
@@ -221,33 +372,6 @@ public class Manager : MonoBehaviour {
 					//currentRoom = fullText;
 					yield return StartCoroutine(ChangeScene(fullText));
 				}
-				foreach (string tag in Core.story.currentTags) {
-					Debug.Log(tag);
-					string[] tagTokens = tag.Split(':');
-					if (tagTokens.Length > 1) {
-						if (tagTokens[0].Trim() == "atmosphere") {
-							foreach (Atmosphere atmos in Core.atmospheres) {
-								if (atmos.name.ToLower() == tagTokens[1].Trim().ToLower()) {
-									StartCoroutine(ChangeAtmosphere(atmos));
-								}
-							}
-						}
-						if (tagTokens[0].Trim() == "bgm") {
-							AudioClip snd = (AudioClip)Resources.Load("Audio/Music/" + tagTokens[1].Trim());
-							if (snd != Core.bgm) { Core.bgm = snd; }
-							Core.story.variablesState["bgm"] = tagTokens[1].Trim();
-						}
-						if (tagTokens[0].Trim() == "sfx") {
-							AudioClip snd = (AudioClip)Resources.Load("Audio/SFX/Foley/" + tagTokens[1].Trim());
-							Core.PlaySound(snd);
-						}
-					}
-					else if (tag.Trim() == "gameplay") {
-						Core.ChangeState(Core.State.Gameplay);
-						inProgress = false;
-						yield break;
-					}
-				}
 
 				if (format != LineFormat.Dialogue && format != LineFormat.Parenthetical) {
 					lastSpeaker = "";
@@ -257,8 +381,8 @@ public class Manager : MonoBehaviour {
 				if (format == LineFormat.Character) {
 					lastSpeaker = fullText;
 					string _name = fullText.Replace("(O.S.)", "").Replace("(COM)", "").Trim();
-					for (var i = 0; i < Core.entities.Length; i++) {
-						if (Core.entities[i].name.ToLower() == _name.ToLower()) { currentSpeaker = Core.entities[i]; }
+					for (var i = 0; i < StoryManager.entities.Length; i++) {
+						if (StoryManager.entities[i].name.ToLower() == _name.ToLower()) { currentSpeaker = StoryManager.entities[i]; }
 					}
 				}
 				else if (format == LineFormat.Action || format == LineFormat.Dialogue) {
@@ -270,7 +394,7 @@ public class Manager : MonoBehaviour {
 		}
 
 		if (linesToWrite.Count > 0) {
-			yield return StartCoroutine(WriteLine(linesToWrite[0].Trim(), lastLine, lastSpeaker, 0, Core.story.currentTags));
+			yield return StartCoroutine(WriteLine(linesToWrite[0].Trim(), lastLine, lastSpeaker, 0, StoryManager.story.currentTags));
 			linesToWrite.RemoveAt(0);
 			//Debug.Log(linesToWrite.Count);
 
@@ -285,6 +409,7 @@ public class Manager : MonoBehaviour {
 	}
 	
 	IEnumerator WriteLine(string text, LineFormat format, string speaker = "", int succession = 0, List<string> tags = null) {
+		if (!dialogueText) { yield break; }
 		pause = true;
 		writing = true;
 		skip = false;
@@ -295,8 +420,8 @@ public class Manager : MonoBehaviour {
 		if (broken.Length > 1) { speaker = broken[0].Trim(); text = broken[1].Trim(); }
 
 		speaker = speaker.Replace("(O.S.)", "").Replace("(COM)", "").Trim();
-		for (var i = 0; i < Core.entities.Length; i++) {
-			if (Core.entities[i].name.ToLower() == speaker.ToLower()) { entity = Core.entities[i]; }
+		for (var i = 0; i < StoryManager.entities.Length; i++) {
+			if (StoryManager.entities[i].name.ToLower() == speaker.ToLower()) { entity = StoryManager.entities[i]; }
 		}
 
 		if (entity) {
@@ -306,16 +431,18 @@ public class Manager : MonoBehaviour {
 			speaker = char.ToUpper(speaker[0]) + speaker.Substring(1).ToLower();
 		}
 
-		dialogueText.color = Color.white;
-		if (format == LineFormat.Action) {
-			Color col = Color.white;
-			ColorUtility.TryParseHtmlString("#C79F73FF", out col);
-			dialogueText.color = col;
+		if (dialogueText) {
+			dialogueText.color = Color.white;
+			if (format == LineFormat.Action) {
+				Color col = Color.white;
+				ColorUtility.TryParseHtmlString("#C79F73FF", out col);
+				dialogueText.color = col;
+			}
 		}
-		speakerText.text = speaker;
+		if (speakerText) { speakerText.text = speaker; }
 
 		if (format == LineFormat.Dialogue) {
-			//if (!skip) { Core.PlaySound((AudioClip)Resources.Load("Audio/SFX/Interface/179007__smartwentcody__book-page-turning-2"), 0.8f); }
+			//if (!skip) { StoryManager.PlaySound((AudioClip)Resources.Load("Audio/SFX/Interface/179007__smartwentcody__book-page-turning-2"), 0.8f); }
 			if (speakingRoutine != null) { StopCoroutine(speakingRoutine); }
 			//speakingRoutine = StartCoroutine(Speak(Translate(text, standardLanguage)));
 		}
@@ -336,9 +463,9 @@ public class Manager : MonoBehaviour {
 	}
 
 	void LoadChoices() {
-		if (Core.story.currentChoices.Count > 0) {
-			for (int i = 0; i < Core.story.currentChoices.Count; ++i) {
-				Choice choice = Core.story.currentChoices[i];
+		if (StoryManager.story.currentChoices.Count > 0) {
+			for (int i = 0; i < StoryManager.story.currentChoices.Count; ++i) {
+				Choice choice = StoryManager.story.currentChoices[i];
 				//Debug.Log("Choice " + (i + 1) + ". " + choice.text);
 
 				int ind = i;
@@ -363,8 +490,8 @@ public class Manager : MonoBehaviour {
 	}
 
 	IEnumerator SelectChoice(int opt) {
-		string fullText = Core.story.currentChoices[opt].text.Trim();
-		Core.story.ChooseChoiceIndex(opt);
+		string fullText = StoryManager.story.currentChoices[opt].text.Trim();
+		StoryManager.story.ChooseChoiceIndex(opt);
 		for (int i = 0; i < choices.Count; i++) {
 			if (choices[i]) { Destroy(choices[i].gameObject); }
 		}
@@ -407,15 +534,15 @@ public class Manager : MonoBehaviour {
 		return format;
 	}
 
-	IEnumerator ChangeScene(string room, bool fadeIn = true) {
+	IEnumerator ChangeScene(string room, bool fadeIn = true, Vector3 pos = new Vector3()) {
 		if (sceneHeading) { sceneHeading.text = room; }
 		string sceneName = room.Replace("INT.", "").Replace("EXT.", "").Trim();
 		Debug.Log(sceneName);
-		Core.currentScene = room;
+		StoryManager.currentScene = room;
 		
 		string[] sceneTokens = sceneName.Split(new char[] { '-', ',' });
 		foreach (string token in sceneTokens) {
-			foreach (Atmosphere atmos in Core.atmospheres) {
+			foreach (Atmosphere atmos in StoryManager.atmospheres) {
 				if (atmos.name.ToLower() == token.ToLower().Trim()) {
 					StartCoroutine(ChangeAtmosphere(atmos));
 					break;
@@ -424,27 +551,35 @@ public class Manager : MonoBehaviour {
 		}
 
 		string technicalName = sceneName.ToLower().Trim();
-		if (Core.scenes.ContainsKey(technicalName)) {
-			if (screenFade < 0.5f) { yield return SetFade(1, 1f); }
+		if (technicalName != "") {
+			string _scene = StoryManager.GetScene(technicalName);
+			if (_scene != "") {
+				if (currentScene.name == null || currentScene.name != SceneManager.GetSceneByName(_scene).name) {
+					if (screenFade < 0.5f) { yield return SetFade(1, 1f); }
 
-			Debug.Log(currentScene.name);
-			if (currentScene.name != null) {
-				SceneManager.UnloadSceneAsync(currentScene);
+					if (currentScene.name != null) {
+						SceneManager.UnloadSceneAsync(currentScene);
+					}
+					SceneManager.LoadScene(_scene, LoadSceneMode.Additive);
+					currentScene = SceneManager.GetSceneByName(_scene);
+					positionOnLevelLoad = pos;
+
+					yield return new WaitForSeconds(0.5f);
+					yield return SetFade(0, 1);
+				}
+				else {
+					Debug.Log("Attempting to reload " + technicalName);
+				}
 			}
-			SceneManager.LoadScene(Core.scenes[technicalName],LoadSceneMode.Additive);
-			currentScene = SceneManager.GetSceneByName(Core.scenes[technicalName]);
-
-			yield return new WaitForSeconds(0.5f);
-			yield return SetFade(0, 1);
 		}
 
 		AudioClip snd = null;
-		foreach (string tag in Core.story.currentTags) {
+		foreach (string tag in StoryManager.story.currentTags) {
 			Debug.Log(tag);
 			string[] tagTokens = tag.Split(':');
 			if (tagTokens.Length > 0) {
 				if (tagTokens[0].Trim() == "atmosphere") {
-					foreach (Atmosphere atmos in Core.atmospheres) {
+					foreach (Atmosphere atmos in StoryManager.atmospheres) {
 						if (atmos.name.ToLower() == tagTokens[1].Trim().ToLower()) {
 							StartCoroutine(ChangeAtmosphere(atmos));
 						}
@@ -456,10 +591,70 @@ public class Manager : MonoBehaviour {
 			}
 		}
 
-		if (snd != Core.bgm) { StartCoroutine(Core.instance.ChangeBGM(snd)); }
-		Core.story.variablesState["room"] = room;
+		if (snd != StoryManager.bgm) { StartCoroutine(StoryManager.instance.ChangeBGM(snd)); }
+		StoryManager.story.variablesState["room"] = room;
 
 		yield break;
+	}
+
+	void OnSceneWasChanged(Scene previousScene, Scene nextScene) {
+	}
+	void OnSceneWasLoaded(Scene _scene, LoadSceneMode mode) {
+		Camera[] cameras = GameObject.FindObjectsOfType<Camera>();
+		if (cameras.Length > 1) {
+			int camerasDestroyed = 0;
+			for (int i = 0; i < cameras.Length; i++) {
+				CameraControl cc = cameras[i].GetComponent<CameraControl>();
+				if (!cc && cameras[i] != mainCamera && !(i == cameras.Length - 1 && camerasDestroyed == cameras.Length - 1)) {
+					camerasDestroyed++;
+					Destroy(cameras[i].gameObject);
+				}
+			}
+		}
+
+		mainCanvas = GameObject.FindObjectOfType<Canvas>();
+		Debug.Log(mainCanvas);
+
+		if (!mainMenu) {
+			mainMenu = GameObject.Find("Main Menu");
+			if (!mainMenu) { mainMenu = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Utility/Main Menu")); }
+			mainMenu.transform.SetParent(mainCanvas.transform);
+			RectTransform _rect = mainMenu.GetComponent<RectTransform>();
+			_rect.sizeDelta = new Vector2(0, 0);
+			_rect.anchoredPosition = new Vector2(0, 0);
+			mainMenu.SetActive(mainMenuOpen);
+		}
+
+		GameObject _player = GameObject.FindGameObjectWithTag("Player");
+		if (!_player) { _player = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Player")); }
+
+		if (positionOnLevelLoad != new Vector3()) {
+			_player.transform.position = positionOnLevelLoad;
+			positionOnLevelLoad = new Vector3();
+		}
+		else {
+			PositionMarker[] markers = GameObject.FindObjectsOfType<PositionMarker>();
+			_player.transform.position = new Vector3();
+			for (int i = 0; i < markers.Length; i++) {
+				if (markers[i].defaultEntry) { _player.transform.position = markers[i].transform.position; }
+			}
+		}
+
+		Character c = _player.GetComponent<Character>();
+		if (c) {
+			Manager.player = c;
+			c.movement = _player.transform.position;
+		}
+		mainCamera.relativeTo = _player.transform;
+
+		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Invisible")) {
+			MeshRenderer mr = g.GetComponent<MeshRenderer>();
+			if (mr) { mr.enabled = false; }
+		}
+
+	}
+	void OnSceneWasUnloaded(Scene _scene) {
+
 	}
 
 	IEnumerator ChangeAtmosphere(Atmosphere atmos) {
@@ -492,55 +687,45 @@ public class Manager : MonoBehaviour {
 		yield break;
 	}
 
-	/*
-	public void Save() {
-		string json = Core.CreateSaveFile().ToJson();//Core.story.state.ToJson();
-		Debug.Log(json);
-
-		StreamWriter sr = File.CreateText("Saves/save"+(Core.currentSaveSlot!=-1 ? (Core.currentSaveSlot+1).ToString() : "1")+".txt");
-		sr.Write(json);
-		sr.Close();
-
-		Core.LoadSaves();
-	}
-
-	public void Load() {
-		string json = "";
-		if (File.Exists("Saves/save" + (Core.currentSaveSlot != -1 ? (Core.currentSaveSlot + 1).ToString() : "1") + ".txt")) {
-			StreamReader sr = File.OpenText("Saves/save" + (Core.currentSaveSlot != -1 ? (Core.currentSaveSlot + 1).ToString() : "1") + ".txt");
-			json = sr.ReadToEnd();
-			Debug.Log(json);
-			Core.story.state.LoadJson(json);
-			sr.Close();
-			HandleLoad();
-		}
-	}
-	*/
-
 	void HandleLoad() {
 		Clear();
-		StartCoroutine(ChangeScene(Core.story.variablesState["room"].ToString()));
+
+		Vector3 pos = new Vector3();
+		if (StoryManager.lastSave != null) { pos = new Vector3(StoryManager.lastSave.posX, StoryManager.lastSave.posY, StoryManager.lastSave.posZ); }
+		StartCoroutine(ChangeScene(StoryManager.story.variablesState["room"].ToString(),true,pos));
 		object stream = null;
-		Core.story.state.jsonToken.TryGetValue("outputStream", out stream);
+		StoryManager.story.state.jsonToken.TryGetValue("outputStream", out stream);
 		if (stream != null) {
 			List<object> streamObj = (List<object>)stream;
 			if (streamObj.Count > 0) {
-				StartCoroutine(WriteLine(streamObj[0].ToString().Substring(1), LineFormat.Dialogue));
-				StartCoroutine(ChangeScene(Core.story.variablesState["room"].ToString()));
+				for (int i = 0; i < streamObj.Count; i++) {
+					// Find the first actual string.
+					if (streamObj[i] is Dictionary<string,object>) {
+						Dictionary<string,object> tags = streamObj[i] as Dictionary<string,object>;
+						if ((string)tags["#"] == "gameplay") { StartCoroutine(ChangeState(State.Gameplay, false));  break; }
+					}
+					else if (streamObj[i] is string) {
+						StartCoroutine(ChangeState(State.Dialogue, false));
+						StartCoroutine(WriteLine(streamObj[i].ToString().Substring(1), LineFormat.Dialogue));
+						break;
+					}
+				}
 			}
 			else {
 				StartCoroutine(Next());
 			}
 		}
-		StartCoroutine(Core.instance.ChangeBGM((AudioClip)Resources.Load("Audio/Music/"+Core.story.variablesState["bgm"])));
-		StartCoroutine(Core.instance.CloseMenu());
+		StartCoroutine(StoryManager.instance.ChangeBGM((AudioClip)Resources.Load("Audio/Music/"+StoryManager.story.variablesState["bgm"])));
+		StartCoroutine(Manager.instance.CloseMenu());
 	}
 
 	void Clear() {
-		for (int i = 0; i < scriptView.childCount; i++) {
-			Destroy(scriptView.GetChild(i).gameObject);
+		if (scriptView) {
+			for (int i = 0; i < scriptView.childCount; i++) {
+				Destroy(scriptView.GetChild(i).gameObject);
+			}
+			Debug.Log(scriptView.childCount);
 		}
-		Debug.Log(scriptView.childCount);
 	}
 
 	public void ScrollToBottom() {

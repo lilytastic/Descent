@@ -31,7 +31,7 @@ public class Interactable : MonoBehaviour {
 
 	public void OnInteract(Transform other) {
 		Debug.Log(onInteract);
-		Core.StartKnot(onInteract);
+		StoryManager.StartKnot(onInteract);
 	}
 
 	/*

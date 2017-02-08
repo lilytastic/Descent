@@ -86,13 +86,14 @@
     <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\Classes.cs" />
-    <Compile Include="Assets\Scripts\Core.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\SaveSlots.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Atmosphere.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\Entity.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\SceneRedirect.cs" />
+    <Compile Include="Assets\Scripts\StoryManager.cs" />
     <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrAudioPlayer.cs" />
     <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrCacheSurrogate.cs" />
     <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrParams.cs" />

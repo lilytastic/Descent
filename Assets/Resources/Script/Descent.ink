@@ -9,6 +9,7 @@ INCLUDE Prologue
 INCLUDE RI_00
 INCLUDE Fragments
 EXTERNAL getReputation(name)
+#title: Descent
 
 VAR bgm = "" // Music playing.
 VAR room = "" // Room, with all the atmosphere entailed.
@@ -42,6 +43,7 @@ VAR mq04_lostfoldeve = false
 -> MQ_00
 
 === Hub
+#gameplay
 [Hub]
 What would you like to do next?
 + [Talk to Rita] -> RI_00

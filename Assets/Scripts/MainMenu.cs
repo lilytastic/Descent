@@ -111,7 +111,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void OnEnable() {
-		if (Core.mostRecentSave == -1) {
+		if (StoryManager.mostRecentSave == -1) {
 			if (continueButton) { continueButton.SetActive(false); }
 		}
 		if (menuTitle) { menuTitle.SetActive(false); }
@@ -149,53 +149,44 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void NewGame(int ind) {
-		Core.story.ResetState();
-		Core.currentSaveSlot = ind;
+		StoryManager.story.ResetState();
+		StoryManager.currentSaveSlot = ind;
 		SceneManager.LoadScene("main");
 	}
 	public void Continue () {
-		if (Core.inProgress) {
+		if (StoryManager.inProgress) {
 			SceneManager.LoadScene("main");
 		}
-		else if (Core.mostRecentSave != -1) {
-			Load(Core.mostRecentSave);
+		else if (StoryManager.mostRecentSave != -1) {
+			Load(StoryManager.mostRecentSave);
 		}
 	}
 
 	public void Save(int index) {
-		Core.currentSaveSlot = index;
+		StoryManager.currentSaveSlot = index;
 		/*
-		string json = Core.story.state.ToJson();
+		string json = StoryManager.story.state.ToJson();
 		Debug.Log(json);
 
-		StreamWriter sr = File.CreateText("Saves/save" + (Core.currentSaveSlot != -1 ? (Core.currentSaveSlot + 1).ToString() : "1") + ".txt");
+		StreamWriter sr = File.CreateText("Saves/save" + (StoryManager.currentSaveSlot != -1 ? (StoryManager.currentSaveSlot + 1).ToString() : "1") + ".txt");
 		sr.Write(json);
 		sr.Close();
 		*/
 
-		string json = Core.CreateSaveFile().ToJson();//Core.story.state.ToJson();
+		string json = StoryManager.CreateSaveFile().ToJson();//StoryManager.story.state.ToJson();
 		Debug.Log(json);
 
-		StreamWriter sr = File.CreateText("Saves/save" + (Core.currentSaveSlot != -1 ? (Core.currentSaveSlot + 1).ToString() : "1") + ".txt");
+		StreamWriter sr = File.CreateText("Saves/save" + (StoryManager.currentSaveSlot != -1 ? (StoryManager.currentSaveSlot + 1).ToString() : "1") + ".txt");
 		sr.Write(json);
 		sr.Close();
 
-		Core.saveSlots[index] = json;
+		StoryManager.saveSlots[index] = json;
 
 		StartCoroutine(ChangeState(MenuState.Main));
-		//Core.LoadSaves();
+		//StoryManager.LoadSaves();
 	}
 
 	public void Load(int index) {
-		Core.currentSaveSlot = index;
-		/*
-		Core.story.state.LoadJson(Core.saveSlots[index]);
-		*/
-		SaveFile save = JsonUtility.FromJson<SaveFile>(Core.saveSlots[index]);
-		Core.story.state.LoadJson(save.storyState);
-		Debug.Log(save.storyState);
-
-		Debug.Log("Loaded");
-		SceneManager.LoadScene("main");
+		StoryManager.LoadSaveFile(index);
 	}
 }

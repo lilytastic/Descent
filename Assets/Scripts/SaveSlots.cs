@@ -42,7 +42,7 @@ public class SaveSlots : MonoBehaviour {
 			switch (type) {
 				case MenuType.CreateNew:
 					b.onClick.AddListener(() => mainMenu.NewGame(ind));
-					if (Core.saveSlots[i] != null) {
+					if (StoryManager.saveSlots[i] != null) {
 						b.enabled = true;
 					}
 					else {
@@ -51,7 +51,7 @@ public class SaveSlots : MonoBehaviour {
 					break;
 				case MenuType.Save:
 					b.onClick.AddListener(() => mainMenu.Save(ind));
-					if (Core.saveSlots[i] != null) {
+					if (StoryManager.saveSlots[i] != null) {
 						b.enabled = true;
 					}
 					else {
@@ -60,7 +60,7 @@ public class SaveSlots : MonoBehaviour {
 					break;
 				case MenuType.Load:
 					b.onClick.AddListener(() => mainMenu.Load(ind));
-					if (Core.saveSlots[i] != null) {
+					if (StoryManager.saveSlots[i] != null) {
 						b.enabled = true;
 					}
 					else {
@@ -70,15 +70,15 @@ public class SaveSlots : MonoBehaviour {
 			}
 
 			// Choose what to display in cell
-			if (Core.saveSlots[i] != null) {
+			if (StoryManager.saveSlots[i] != null) {
 				slot.transform.FindChild("Empty").gameObject.SetActive(false);
 
 				GameObject info = slot.transform.FindChild("Non-Empty").gameObject;
 				info.SetActive(true);
 
-				Story duh = new Story(Core.mainStory.text);
+				Story duh = new Story(StoryManager.mainStory.text);
 
-				SaveFile save = JsonUtility.FromJson<SaveFile>(Core.saveSlots[i]);
+				SaveFile save = JsonUtility.FromJson<SaveFile>(StoryManager.saveSlots[i]);
 				try { duh.state.LoadJson(save.storyState); }
 				catch { }
 

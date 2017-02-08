@@ -28,7 +28,7 @@ public class PlayerInput : MonoBehaviour {
 		input = new Vector3();
 
 		// If no input allowed, we reset all inputs and return before adjusting them at all.
-		if (Core.currentState != Core.State.Gameplay) { return; }
+		if (Manager.currentState != Manager.State.Gameplay) { return; }
 
 		Vector3 euler = Camera.main.transform.eulerAngles;
 		Camera.main.transform.eulerAngles = new Vector3(90, euler.y, 0);

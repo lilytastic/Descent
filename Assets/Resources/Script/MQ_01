@@ -37,12 +37,19 @@ He has lunch. When he's nearly done, he pauses, seeing a red moth fluttering in 
 = Virrea
 # gameplay
 // TODO: Have a scene here to represent gameplay. Should show in a different colour in Unity.
-There are no animals in the forest; nothing living, in fact, save for the occasional moth. { not Virrea_Grove: Ananth begins to hear the whisper of a hundred voices from a nearby grove.}
+There are no animals in the forest. Nothing living, in fact, save for the occasional moth. { not Virrea_Grove: Ananth begins to hear the whisper of a hundred voices from a nearby grove.}
 
-* [Check out the voices] -> Virrea_Grove
-* [Leave] -> Pathway
++ [Check out the voices] -> Virrea_Grove
++ [Leave] -> Pathway
 
 = Virrea_Grove
+    { -not soulweave_01: -> soulweave_01 | -> soulweave_fallback }
+
+= soulweave_fallback
+    ???: What are you still doing here?!
+    -> Virrea
+
+= soulweave_01
 
 ANANTH
 Hello?
@@ -82,19 +89,19 @@ Alone. Unable to die.
 ???
 We don’t know how they track their prey, but if even one crosses your path, the swarm will follow.
 
--> soulweave_01
+-> soulweave_02
 
-= soulweave_01
+= soulweave_02
 
 *[“Where did they come from?]
     ???
     Are you not paying attention? We’re trying to save you from a fate worse than death.
-    -> soulweave_01
+    -> soulweave_02
 
 *[“How do I get you out?]
     ???
     You can’t! Leave the way you came.
-    -> soulweave_01
+    -> soulweave_02
 
 *[“I could take you with me.]
     The voices pause.
@@ -125,7 +132,7 @@ ANANTH senses a Pathway inside the ocean and dives in. He swims for it, but enco
 
 CUT TO:
 
-INT. THE HOLE - INTERROGATION
+INT. THE HOLE, INTERROGATION
 
 Darkness. Chains clink together, and a man is heard coughing in the distance, as if in pain.
 
@@ -238,7 +245,7 @@ AGATHA
 I said, no interruptions! / Look, it’s simple. I was an enemy of the Delgorens. Those priests convinced him of this bit of scripture that foretold of the coming of the "Arv’mahdant", a prophet who would sacrifice themselves to kill a false Goddess. / They told him he was that prophet, and _used_ him to assassinate me.
 
 
-INT. THE HOLE - INTERROGATION
+INT. THE HOLE, INTERROGATION
 
 EMISSARY
 Did you do it? Is she... really dead?
@@ -397,7 +404,7 @@ Oh, calm your tits, it's not as complicated as it sounds.
 
 CUT TO:
 
-INT. THE HOLE - PRISON
+INT. THE HOLE, BASIN
 
 There is the sound of howling and dripping walls, echoing on the walls of a cavern. Ananth is lying in a heap of straw in a beam of light.
 There are several captives, one of which is standing alone against a wall. The one standing, KAELA, is female, and dressed like a low-rank pirate.
@@ -406,7 +413,7 @@ There are several captives, one of which is standing alone against a wall. The o
 
 
 = The_Hole
-# switchTo: theHole.prison
+# gameplay
 + [Talk to the standing captive.] -> Kaela_01
 * [Try opening the door.] -> Open_Door
 
@@ -518,7 +525,7 @@ Hush.
 
 = Storage
 
-INT. THE HOLE - STORAGE
+INT. THE HOLE, STORAGE
 
 Choose your starting loadout.
 
@@ -542,7 +549,7 @@ Hey, no worries. I don’t want to talk about how I got half this stuff, either.
 - -> Head_Office
 
 = Head_Office
-INT. THE HOLE - HEAD OFFICE
+INT. THE HOLE, HEAD OFFICE
 
 EMISSARY
 You!
@@ -957,9 +964,8 @@ CUT TO:
 
 INT. RITA’S LAB
 
-RITA
-All right, I think we're in the clear.
-
+RITA: All right, I think we're in the clear.
+    
 *[“Okay, start from the beginning.]
     RITA
     What? Don’t tell me you don’t remember.
@@ -975,43 +981,39 @@ All right, I think we're in the clear.
         Yup. Super dead.
 
     ** ["Nope.]
-        ANANTH
-        I remember most things, just… the last few months are a blur.
+        ANANTH: I remember most things, just… the last few months are a blur.
         
         Rita gives him a once-over.
     
-        RITA
-        Huh. I guess dying would do that to you.
-        Well, good! Maybe you’ll finally start to lighten up!
+        RITA: Huh. I guess dying would do that to you. That, and falling out of a tower.
+        
+        RITA: Well, good! Maybe you’ll finally start to lighten up!
 
-        ANANTH
-        I died?
+        ANANTH: I died?
         
-        RITA
-        Oh, yeah. You got all righteous and shit and decided to go be a holy warrior. Ended up causing quite a bit of damage in the process. / You got the idea that God wanted you to take down the Goddess of Embers, our mother, and then… well…
+        RITA: Oh, yeah. You got all righteous and shit and decided to go be a holy warrior. Ended up causing quite a bit of damage in the process.
         
-        ANANTH
-        …Did I win?
+        ANANTH: ...Wait, I fell out of a tower? Did I hit my head--?
         
-        RITA
-        Yep! Fulfilled the prophecy like a champ. / Unfortunately, things went downhill pretty quick. The Old Delgorens are starting to rebuild their empire, which… means conquering the known world. / For them, religion and Delgoren rule go hand-in-hand, and the Arv’mahdant is a hero who would make it all possible.
+        RITA: You got the idea that God wanted you to take down the Goddess of Embers, our mother, and then... well...
         
-        ANANTH
-        So… is Agatha dead?
+        ANANTH: Did I win?
         
-        RITA
-        Yup. Super dead.
+        RITA: Yep! Fulfilled the prophecy like a champ.
+        RITA: Unfortunately, things went downhill pretty quick. The Old Delgorens are starting to rebuild their empire, which… means conquering the known world.
+        RITA: For them, religion and Delgoren rule go hand-in-hand, and the Arv’mahdant is a hero who would make it all possible.
+        
+        ANANTH: So, Agatha _is_ dead?
+        
+        RITA: Yup. Super dead.
 
 *[Wait for her to calm down (Skip explanation)]
-    RITA
-    God, things have been so screwed up since Agatha died…
+    RITA: God, things have been so screwed up since Agatha died...
 
 - 
-AGATHA (O.S.)
-I wasn't dead.
+AGATHA (O.S.): I wasn't dead.
 
-ROMULUS (O.S.)
-We know.
+ROMULUS (O.S.): We know.
 
 /*
 - -> Court_Interruption
@@ -1034,23 +1036,35 @@ CUT TO:
 INT. RITA’S LAB
 */
 
-RITA
-…Oh, and P.S., you _may_ be a religious icon, now. / I have a copy of the Scripture somewhere around here, but it’s simple. You killed the false Goddess, now you’re supposed to lead the faithful to their rightful place, and ‘tear down the Veil’ so that all can meet Judgment on the appointed day. Etc. / I think there was something in there about coming back to life with all sorts of divine powers, too. It’s a whole thing. Do you have any of that?
+RITA: Oh, and P.S., you _may_ be a religious icon, now. 
+
+ANANTH: Oh, no...
+
+RITA: Yeah. You killed the false Goddess, so now you’re supposed to lead the faithful to their rightful place and ‘tear down the Veil’ so that all can meet Judgment on the appointed day. Etc.
+
+ANANTH: Just how many people think I'm their Messiah?
+
+RITA: A lot. People love a martyr!
+
+ANANTH: I'm not _dead_.
+
+RITA: Details.
+RITA: Oh--I think there was something in there about coming back to life with all sorts of divine powers, too. Any of that?
 
 ANANTH
-I can open Gates to other worlds.
+I can open pathways to other worlds.
 
 RITA
-Lame. What else? Can you make fire with your mind?
+Aw, is that it?
 
 ANANTH
-I think so.
+I can also make fire with my mind.
 
 RITA
-Oh, good. That’s a real problem-solver. So, we’ve got that going for us. 
+Oh. Well, that there’s a _real_ problem-solver. 
 
 ANANTH
-I think I’d rather, y’know, go back to sleep.
+Can I go back to sleep, now?
 
 RITA
 You weren’t sleeping.
@@ -1064,7 +1078,7 @@ Ananth, you’re the goddamn Messiah! Act like it!
 *[“Don't say it like that!]
 
 RITA
-Get used to it, toots.
+Get used to it.
 
 *[“Fine, what’s next?]
 
@@ -1073,13 +1087,13 @@ That’s the spirit!
 
 *[“I’m not even religious!]
 
-RITA
-Whew! That’s a relief. You have no idea how stuffy you were before. / I mean you still have to deal with people thinking you’re the Messiah and all, but we’ll just deal with that as it comes.
+RITA: Whew! That’s a relief. You have no idea how stuffy you were before.
+RITA: I mean you still have to deal with people thinking you’re the Messiah and all, but we’ll just deal with that as it comes.
 
 - Rita claps her hands together.
 
-RITA
-So, welcome back to Fol’deve, one of the last free cities. The Matriarch hired me as lead administrator, which basically means I’m in charge. / Any questions?
+RITA: So, welcome back to Fol’deve, one of the last free cities. The Matriarch hired me as lead administrator, which basically means I’m in charge.
+RITA: Any questions?
 
 -> Rita_01
 
@@ -1087,79 +1101,75 @@ So, welcome back to Fol’deve, one of the last free cities. The Matriarch hired
 = Rita_01
 
 *(get_radio)[“Is there anything I can do to help?]
-    RITA
-    …Well, there’s a couple of things. / Our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
+    RITA …Well, there’s a couple of things.
+    RITA: Our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
     
-    ANANTH
-    Sounds like you’re trying to get rid of me again.
+    ANANTH: Sounds like you’re trying to get rid of me again.
     
-    RITA
-    Uh, yeah. You’re a religious icon come back from the dead. Let’s keep this hush-hush, for now. / Look, it does suck to watch you go off again. Take this two-way radio.
+    RITA: Uh, yeah. You’re a religious icon come back from the dead. Let’s keep this hush-hush, for now.
+    RITA: Look, it does suck to watch you go off again. Take this two-way radio.
     
-    ANANTH
-    Do I press this—
+    ANANTH: Do I press this—
     
     Feedback blares out over the speakers.
     
-    RITA
-    You press that button, yes.
+    RITA: You press that button, yes.
     
     Feedback blares out over the speakers.
     
-    RITA
-    Not now! Later!
+    RITA: Not now! Later!
     
-    ANANTH
-    Oh!
+    ANANTH: Oh!
     -> Rita_01
 
 
 *[“What do you mean, ‘one of the last free cities’?]
-    RITA
-    Many of the other cities have already thrown in with the Old Delgorens. / Most of ‘em are just doing it to avoid conflict, but I’m afraid if they’re trying to keep things peaceful, they’re misguided…
+    RITA: Many of the other cities have already thrown in with the Old Delgorens.
+    RITA: Most of ‘em are just doing it to avoid conflict, but I’m afraid if they’re trying to keep things peaceful, they’re misguided…
     -> Rita_01
 
 * [“What are these robots?]
-    RITA
-    My babies? They’re remnants of the Progenitors. Avo, they’re called. The Progenitors probably used them for manual labour, maintenance – you know, all the boring stuff. / But the Progenitors are long gone. Whatever kind of intelligence the Avo had came from a central processing unit, which died long before our time. / Since you died, I’ve given them a new processor. Probably not as good as the original, but it’s given them some of their old functionality back. They’re just a little slow, sometimes.
+    RITA: My babies? They’re remnants of the Progenitors. Avo, they’re called. The Progenitors probably used them for manual labour, maintenance – you know, all the boring stuff. 
+    RITA: But the Progenitors are long gone. Whatever kind of intelligence the Avo had came from a central processing unit, which died long before our time. 
+    RITA: Since you died, I’ve given them a new processor. Probably not as good as the original, but it’s given them some of their old functionality back. They’re just a little slow, sometimes.
     
-    ANANTH
-    So like, a big brain? That they all share? How does that even work?
+    ANANTH: So like, a big brain? That they all share? How does that even work?
     
-    RITA
-    Poorly, thanks for asking.
+    RITA: Poorly, thanks for asking.
     -> Rita_01
 
 *[“All right, I’m good.]
     {
         -not get_radio:
-        RITA
-        Great. Now, our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
+        RITA: Great. Now, our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
         
-        ANANTH
-        Sounds like you’re trying to get rid of me again.
+        ANANTH: Sounds like you’re trying to get rid of me again.
         
-        RITA
-        Uh, yeah. You’re a religion icon come back from the dead. Let’s keep this hush-hush, for now. / Look, it does suck to watch you go off again. Take this two-way radio.
+        RITA: Uh, yeah. You’re a religion icon come back from the dead. Let’s keep this hush-hush, for now.
+        RITA: Look, it does suck to watch you go off again. Take this two-way radio.
     }
 
-    RITA
-    {get_radio: Great. Fantastic.} I have another meeting in five for some nut claiming leavened bread is ‘frivolous’ and ‘against Scripture’. I don’t even know what leavened bread is. Is it cheaper to unleaven it? Don’t answer that, I have experts that can tell me these things. / Now get out there, and for Arv’s sake, try to keep a low profile.
+    RITA: {get_radio: Great. Fantastic.} I have another meeting in five for some nut claiming leavened bread is ‘frivolous’ and ‘against Scripture’. I don’t even know what leavened bread is. Is it cheaper to unleaven it? Don’t answer that, I have experts that can tell me these things.
+    RITA: Now get out there, and for Arv’s sake, try to keep a low profile.
     
-- [Activate “NEW DATA”]
-
-* [Exit]
+- 
+[Activate “NEW DATA”]
 
 EXT. FOLDEVE
 
 The two-way radio crackles to life.
 
-RITA
-Ananth! Some things I forgot to mention. / Our treasurer, Mav, went missing a while ago. I’m thinking the Old Del nabbed him. Could you ask around at his favourite watering hole? I’d like to know who’s seen him last. / Also, the religious among our people are leaving for the Old Del in droves. As much as I hate having priests breathing down my neck, we could really use your old friend, Dominic. He’s got enough clout to keep ‘em in check. / Last thing, promise. If you’re interested, you can talk to our Matriarch. She might have something for you. Either way, it’d be good to introduce yourself. / Oh, one more thing. If you die again, I’ll kick your ass.
+RITA: Ananth! Some things I forgot to mention.
+RITA: Our treasurer, Mav, went missing a while ago. I’m thinking the Old Del nabbed him. Could you ask around at his favourite watering hole? I’d like to know who’s seen him last.
+RITA: Also, the religious among our people are leaving for the Old Del in droves. As much as I hate having priests breathing down my neck, we could really use your old friend, Dominic. He’s got enough clout to keep ‘em in check.
+RITA: Last thing, promise. If you’re interested, you can talk to our Matriarch. She might have something for you. Either way, it’d be good to introduce yourself.
+RITA: Oh, one more thing. If you die again, I’ll kick your ass.
 
 [Activate “ETERNAL FUGITIVE”]
 [Activate “IRON FIST OF FOL’DEVE”]
 [Activate “SOLE SURVIVOR”]
+
+#
 
 Wait four seconds. If the player doesn’t move:
 

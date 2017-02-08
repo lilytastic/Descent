@@ -13,6 +13,8 @@ public class ScriptableObjects {
 	public static void CreateAtmosphere() { CustomAssetUtility.CreateAsset<Atmosphere>(); }
 	[MenuItem("Assets/Create/Game/Entity")]
 	public static void CreateEntity() { CustomAssetUtility.CreateAsset<Entity>(); }
+	[MenuItem("Assets/Create/Game/Scene Redirect")]
+	public static void CreateSceneRedirect() { CustomAssetUtility.CreateAsset<SceneRedirect>(); }
 }
 
 public static class CustomAssetUtility {
