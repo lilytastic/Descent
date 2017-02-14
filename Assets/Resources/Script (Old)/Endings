@@ -1,0 +1,40 @@
+=== endings
+
+VAR submit = false
+VAR playthrough = 1
+VAR player_name = "Ananth"
+
+-> ending_void
+
+
+== ending_void
+
+Agatha appears before the player in an endless, black void. It seems to ripple under her feet.
+
+{
+    -playthrough == 1: 
+    AGATHA
+    So this is the end.
+    
+    Beat.
+    
+    // I feel like she might actually be talking about preventing the suicide, making her the one to buy the world more time.
+    AGATHA
+    Romulus thought he could change history by killing you. What he didn't know -- couldn't have known -- was that I'd inserted myself at a critical moment in time. / Simply put... without me, there would _be_ no present, and therefore, any timeline where I die prematurely is void. / Elegant, isn't it? No matter what happens, there will always be an Agatha. The Designer can see no future without us present. I'm unkillable. / ...While you will fade from existence. / {
+            -submit: This is what you wanted, right? To shepherd people into the void? / Were you expecting Paradise? Walls made of gold, and rivers beneath? / You wanted rest and comfort in God's embrace, and you've found it. / Look around, {player_name}. / This is your God.
+            -else: I'm sorry.
+        }
+        
+    Beat.
+    
+    AGATHA
+    I guess there's nothing more to talk about. In another time, we might have had more to say to one another. But there's no point. / The Designer is gone. Nobody will remember what happened here. / So... this is where I leave you. / Another time, {player_name}.
+                
+    -else:
+    AGATHA
+    Here again... {submit: / Did you think it would be different this time? } / I admire your persistence. Perhaps, another time... / Or maybe you'll leave this world altogether? / Oh, well.
+}
+
+>FADE TO BLACK
+
+-> DONE

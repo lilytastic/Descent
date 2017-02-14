@@ -1,0 +1,69 @@
+VAR environment = "plains"
+
+=== battle(_enemy)
+
+VAR enemy = ""
+~enemy = _enemy
+
+VAR enemy_health = 30
+
+-> start
+
+== start
+
+VAR initiative = 0
+VAR enemy_initiative = 0
+~initiative = RANDOM(1,20)+skill
+~enemy_initiative = RANDOM(1,20)
+
+VAR turn = 0
+
+{
+    -initiative > 8:
+        The {enemy} takes the initiative.
+        -> enemy_turn
+    -initiative > 5:
+        You take the initiative.
+        -> player_turn
+    -else:
+        -> unaware
+}
+
+== unaware
+    The {enemy} is unaware of your presence.
+
+    -> next
+    
+== player_turn
+    ~enemy_health = enemy_health - RANDOM(1,20)
+    VAR action_points = 5
+    
+    It's your turn.
+    
+    -> next
+
+== enemy_turn
+    ~health = health - RANDOM(1,20)
+    It's the {enemy}'s turn.
+
+    -> next
+
+== next
+    {
+        -enemy_health <= 0: 
+            The {enemy} falls dead.
+            -> DONE
+        -health <= 0: 
+            You fall dead.
+            -> DONE
+    }
+    
+    ~turn++
+    VAR current_turn = 0
+    ~current_turn = turn mod 2
+    {
+        -current_turn == 0: -> player_turn
+        -else: -> enemy_turn
+    }
+    
+    -> DONE

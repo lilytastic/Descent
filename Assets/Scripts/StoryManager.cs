@@ -16,7 +16,17 @@ public class StoryManager : MonoBehaviour {
 
 	public AudioLowPassFilter lowPassFilter = null;
 	public AudioHighPassFilter highPassFilter = null;
-	
+
+	public enum LineFormat {
+		Action,
+		Character,
+		Dialogue,
+		Parenthetical,
+		Transition,
+		SceneHeading,
+		MissionHeading
+	}
+
 	public static bool inProgress = false;
 
 	public static SceneRedirect[] scenes = new SceneRedirect[0];
@@ -100,6 +110,7 @@ public class StoryManager : MonoBehaviour {
 
 		mainStory = _mainStory;
 
+		/*
 		Transform __bgm = transform.FindChild("BGM");
 		if (!__bgm) {
 			__bgm = new GameObject("BGM").transform;
@@ -109,6 +120,7 @@ public class StoryManager : MonoBehaviour {
 		if (!_bgm) { _bgm = __bgm.gameObject.AddComponent<AudioSource>(); }
 		_bgm.outputAudioMixerGroup = Manager.instance.mainMixer.FindMatchingGroups("Master")[0];
 		_bgm.loop = true;
+		*/
 
 		/*
 		if (!_bgm.GetComponent<AudioLowPassFilter>()) { _bgm.gameObject.AddComponent<AudioLowPassFilter>(); }
@@ -152,6 +164,27 @@ public class StoryManager : MonoBehaviour {
 		//Debug.Log(StoryManager.story.currentText);
 		//StoryManager.story.Continue();
 	}
+
+	public static LineFormat GetFormat(string fullText, LineFormat lastLine = LineFormat.Action) {
+		LineFormat format = LineFormat.Action;
+		if (fullText.Length == 0) { return format; }
+
+		string[] dialogueBroken = fullText.Split(':');
+
+		string lowerText = fullText.ToLower();
+		if (lowerText.StartsWith("int.") || lowerText.StartsWith("ext.")) { format = LineFormat.SceneHeading; }
+		else if (fullText.StartsWith("[") && fullText.EndsWith("]")) { format = LineFormat.MissionHeading; }
+		else if ((fullText.ToUpper() == fullText && fullText.EndsWith("TO:")) || fullText.StartsWith(">") || fullText == "FADE IN:") {
+			format = LineFormat.Transition;
+			if (fullText.StartsWith(">")) { fullText = fullText.Remove(0, 1).Trim(); }
+		}
+		else if ((fullText[0] == '@' || fullText.ToUpper() == fullText) && fullText != "...") { format = LineFormat.Character; }
+		else if ((lastLine == LineFormat.Character || lastLine == LineFormat.Dialogue) && fullText.StartsWith("(") && fullText.EndsWith(")")) { format = LineFormat.Parenthetical; }
+		else if (dialogueBroken.Length > 1 || lastLine == LineFormat.Character || lastLine == LineFormat.Parenthetical) { format = LineFormat.Dialogue; }
+
+		return format;
+	}
+
 
 	public IEnumerator ChangeBGM(AudioClip clip = null) {
 		float steps = 100;

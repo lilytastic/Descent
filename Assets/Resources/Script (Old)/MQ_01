@@ -1,0 +1,1056 @@
+VAR times_pleaded_ignorance = 0
+VAR rep_emissary = 0
+
+=== MQ_01
+-> waking_up
+
+# room: virrea
+
+[Land of Confusion]
+
+SUPER: 3 BU, VIRREA
+
+EXT. VIRREA
+
+FADE IN:
+
+# move: (ananth; (inside cave, outside cave); 3 )
+ANANTH is wandering through a forest. The leaves are a loud, bright red, dripping off the branches. The bark is white. There is no sound but the wind and the rustling of trees.
+He starts to unpack everything.
+He has lunch. When he's nearly done, he pauses, seeing a red moth fluttering in front of him.
+
+* [Let it perch on your finger]
+    He extends a finger, and the moth lands on it, closing its wings.
+    
+    ANANTH: You’re a cute little guy. You have any friends?
+    
+    It stares at him for a moment, and then flutters away.
+
+* [Watch it]
+    It meanders around, and then sharply turns towards the forest, disappearing.
+
+* [Shoo it away]
+    It meanders around, and then sharply turns towards the forest, disappearing.
+
+- Ananth looks out over the landscape of Virrea. The forest explodes across the horizon, its canopy red and violet below a verdant sky.
+
+
+-> Virrea
+
+= Virrea
+# gameplay
+// TODO: Have a scene here to represent gameplay. Should show in a different colour in Unity.
+There are no animals in the forest. Nothing living, in fact, save for the occasional moth. { not Virrea_Grove: Ananth begins to hear the whisper of a hundred voices from a nearby grove.}
+
++ [Check out the voices] -> Virrea_Grove
++ [Leave] -> Pathway
+
+= Virrea_Grove
+    { -not soulweave_01: -> soulweave_01 | -> soulweave_fallback }
+
+= soulweave_fallback
+    ???: What are you still doing here?!
+    -> Virrea
+
+= soulweave_01
+
+ANANTH: Hello?
+
+The voices pause.
+
+SOULWEAVE (???): …What are you doing here?
+
+*[“Sorry, I didn’t know.]
+    ???: Leave. Now.
+
+*[“I don’t know where I am.]
+    ???: How did you even get here…? The Pathway’s been closed for—
+    
+    ???: What’s important is that he gets out of here.
+
+*[“Who are you?]
+    ???: Look above you. See the silk in the trees?
+
+- ???: This forest is infested with a cursed breed of moths. They steal the souls of their victims to spin their silk.
+
+???
+We’ve been trapped here for decades.
+
+???
+Some of us, centuries.
+
+???
+Alone. Unable to die.
+
+???
+We don’t know how they track their prey, but if even one crosses your path, the swarm will follow.
+
+-> soulweave_02
+
+= soulweave_02
+
+*[“Where did they come from?]
+    ???
+    Are you not paying attention? We’re trying to save you from a fate worse than death.
+    -> soulweave_02
+
+*[“How do I get you out?]
+    ???
+    You can’t! Leave the way you came.
+    -> soulweave_02
+
+*[“I could take you with me.]
+    The voices pause.
+    
+    ???
+    What do you mean?
+    
+    ANANTH
+    I’m a traveller. If I can’t save you, I can at least get you out of this forest. / You could see the world. Maybe even find a cure.
+    
+    The voices talk amongst themselves. There is a pause, as Ananth looks around the forest.
+    
+    ???
+    If you’re serious, hurry.
+
+
+*[“Thanks for the warning!]
+    ???
+    Don’t worry about us. Just save yourself.
+
+- # switchTo: virrea.grove
+-> Virrea
+
+
+= Pathway
+
+ANANTH senses a Pathway inside the ocean and dives in. He swims for it, but encounters a Guardian. Before he passes out from lack of oxygen, he manages to open the Pathway.
+
+CUT TO:
+
+-> waking_up
+
+= waking_up
+
+INT. THE HOLE, INTERROGATION
+
+Darkness. Chains clink together, and a man is heard coughing in the distance, as if in pain.
+
+???: Wake him.
+
+There is a sound of rushing water, followed quickly by a boy's yelp. We cut from black.
+A Delgoren stands overhead holding a bucket, and tosses it. He steps aside, revealing the EMISSARY, another Delgoren in regal armour. He looks down at Ananth over a pair of sharp cheekbones.
+
+EMISSARY: You’re supposed to be dead.
+
+Ananth splutters while his mind races to make sense of this. When he can finally take a breath without choking, he meets the Emissary's eyes.
+
+*[“That wasn’t necessary.]
+    The other Delgoren says something in a foreign language. The emissary ignores him.
+    
+    EMISSARY: You were asleep for three days, so I rather think it was.
+
+*[Remain silent]
+    The other Delgoren says something in a foreign language. The emissary ignores him.
+    
+    EMISSARY: Don’t make this more difficult than it needs to be.
+
+*[“...What?]
+    The other Delgoren says something in a foreign language. The emissary ignores him.
+    
+    EMISSARY: Our scouts found you in the forest… several days’ flight from the tower where you supposedly died.
+
+*[“Who are you?]
+    The other Delgoren says something in a foreign language. The emissary ignores him.
+    
+    EMISSARY: I’m an emissary of the Old Del. I’ve been charged with questioning you, before the Arv’ae can arrive to take such matters into their own hands. Speaking of which…
+
+-
+DELGOREN: Lord Constance is on his way, sir. Expects to be here within the week.
+
+The emissary smiles a little at that, almost smugly.
+
+EMISSARY: I’d like to have some answers for him when he arrives.
+
+The other Delgoren says something in a foreign language.
+
+EMISSARY: No. I will call on you should we require such methods.
+
+The other exits, leaving Ananth and the Emissary alone.
+
+EMISSARY: He's a little eager.
+
+*[“What do you want?]
+    The Emissary gets down on one knee.
+    
+    EMISSARY: Answers.
+
+*[“Are you going to torture me?]
+    The Emissary gets down on one knee.
+    
+    EMISSARY: I’m not planning on it.
+
+*[Spit at his feet]
+    ~ rep_emissary--
+    The Emissary gets down on one knee.
+    
+    EMISSARY: I’m just looking for answers, boy.
+
+*[Remain silent]
+    The Emissary gets down on one knee.
+    
+    EMISSARY: I hope this doesn’t become a habit.
+
+- EMISSARY: You’re alive, when you should be dead. Help me make sense of this. / You’ve been gone for months. Where have you been all this time?
+
+*[“Hiding.]
+*[“Exploring.]
+*[“Uh...]
+*[“I do what I want.]
+    ~ rep_emissary--
+*[Remain silent]
+    ~ rep_emissary--
+
+-
+EMISSARY: And are the rumours true? Did you kill Agatha?
+
+{
+    -not MQ_00:
+    -> emissary_00
+}
+- -> Court_Interruption
+
+= Court_Interruption
+
+INT. COURTROOM
+
+JUDGE
+Wait, what?!
+
+AGATHA: I said, no interruptions! 
+AGATHA: Look, it’s simple. I was an enemy of the Delgorens. Those priests convinced him of this bit of scripture that foretold of the coming of the "Arv’mahdant", a prophet who would sacrifice themselves to kill a false Goddess. 
+AGATHA: They told him he was that prophet, and _used_ him to assassinate me.
+
+
+INT. THE HOLE, INTERROGATION
+
+EMISSARY: Did you do it? Is she... really dead?
+
+-> emissary_00
+
+= emissary_00
+
+*[“Who?]
+    EMISSARY: ...Your mother, the Goddess of Embers.
+
+    **[“You must have the wrong person.]
+        EMISSARY: We know you’re Ananth. Don’t try and trick us.
+        
+        ***[“How do you know?]
+            EMISSARY: We recovered your mother’s weapon from your body. It’s magic; one-of-a-kind. Damaged, but unmistakably the same.
+        
+        ***[“I don’t remember anything.]
+        ~ times_pleaded_ignorance++
+            EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+
+    **[“I don’t remember anything.]
+    ~ times_pleaded_ignorance++
+    EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+    
+*[“I don’t remember.]
+    EMISSARY: Don't remember your mother? The Goddess of Embers? Or do you not remember what happened in that tower?
+    
+    **[“I don’t remember anything.]
+    ~ times_pleaded_ignorance++
+        EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+
+    **[“You must have the wrong person.]
+        EMISSARY: We know you’re Ananth. Don’t try and trick us.
+        
+        ***[“How do you know?]
+            EMISSARY: We recovered your mother’s weapon from your body. It’s magic; one-of-a-kind. Damaged, but unmistakably the same.
+        
+        ***[“I don’t remember anything.]
+        ~ times_pleaded_ignorance++
+            EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+
+/*
+*[“She’s alive.]
+    ~ rep_emissary = rep_emissary + 3
+    EMISSARY
+    …Dammit.
+    -> emissary_02
+*/
+
+*[“Yes, I killed her.]
+    ~ rep_emissary = rep_emissary + 5
+    EMISSARY: …By Arv.
+    EMISSARY: This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…
+    -> emissary_02
+
+*[Shrug]
+    ~ rep_emissary--
+    EMISSARY: This is going to be a long week, isn’t it?
+
+- EMISSARY: There were rumors that you were setting out on a holy quest – with our blessing, no less – to kill Agatha and liberate the Old Del. You entered her tower, and never returned. Agatha has been silent ever since.
+EMISSARY: If it’s true – if you killed her – then the Old Del are free to reclaim their lost empire. So.
+
+-> emissary_01
+
+= emissary_01
+
+*[“Slow down. Who’s Agatha?]
+    ~ times_pleaded_ignorance++
+    
+    { 
+        -times_pleaded_ignorance==2:
+        EMISSARY: You’re serious, aren’t you? Whatever happened in there, it addled your mind.
+    }
+    EMISSARY: Agatha is your mother. We’ve never been sure of who or what she is. Honestly, I was hoping you’d know. The Delgorens know her as a demon of chaos, capable of raining fire from the heavens and bringing nations to their knees. She ruled the Draive – your people – as a heathen Goddess.
+    -> emissary_01
+
+*[“‘Lost empire’?]
+    EMISSARY: Thirty years ago your mother, Agatha, purged our civilization, and forced us to live in the fringes. We’ve been struggling to protect what remains of our culture, and excavate the ruins of our nation from beneath the sand that swallowed it.
+    EMISSARY: And then, you appeared. Her only son. You came to us seeking repentance, and from what I’ve been told, we did not deny you.
+    -> emissary_01
+
+/*
+*[“She’s alive.]
+    ~ rep_emissary = rep_emissary + 3
+    EMISSARY
+    …Dammit.
+*/
+  
+*[“Yes, I killed her.]
+    ~ rep_emissary = rep_emissary + 5
+    EMISSARY: …By Arv.
+    EMISSARY: This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…
+    
+*[“I seriously don’t remember any of this.]
+    ~ times_pleaded_ignorance++
+    
+    { 
+        -times_pleaded_ignorance==2:
+        EMISSARY: You’re serious, aren’t you? Whatever happened in there, it addled your mind.
+        -times_pleaded_ignorance<2:
+        EMISSARY: Somehow, I fail to believe you.
+        -times_pleaded_ignorance>2:
+        EMISSARY: I see...
+    }
+
+*[Shrug]
+    ~rep_emissary--
+    EMISSARY: I will have answers, boy. Even if it means I have to beat them out of you
+    
+    
+- -> emissary_02
+
+= emissary_02 
+
+{
+    -times_pleaded_ignorance+rep_emissary > 1:
+    EMISSARY: Guards! Take the boy back to the basin. And make sure he’s well treated.
+
+    -else:
+    EMISSARY: Guards! Take the boy back to the basin. Maybe a day’s confinement will soften him up.
+}
+
+{
+    -MQ_00:
+    INT. COURTROOM
+    
+    ROMULUS: How long do you intend to confuse the courtroom like this?
+    
+    AGATHA: Oh, calm your tits, it's not as complicated as it sounds.
+}
+
+-> The_Hole_Intro
+
+
+= The_Hole_Intro
+
+CUT TO:
+
+INT. THE HOLE, BASIN
+
+There is the sound of howling and dripping walls, echoing on the walls of a cavern. Ananth is lying in a heap of straw in a beam of light.
+There are several captives, one of which is standing alone against a wall. The one standing, KAELA, is female, and dressed like a low-rank pirate.
+
+-> The_Hole
+
+
+= The_Hole
+# gameplay
++ [Talk to the standing captive.] -> Kaela_01
+* [Try opening the door.] -> Open_Door
+
+= Kaela_01
+{
+    -Kaela_01 == 3:
+    KAELA: You again?
+    -Kaela_01 == 2:
+    KAELA: 'Sup?
+    -Kaela_01 == 1:
+    KAELA: Mornin’, darlin’. Welcome to the Hole.
+    
+    ANANTH: …Is it actually called that?
+    
+    KAELA: The Delgorens have a fancy name for it, if you’d prefer. Only I can’t pronounce it, so ‘the Hole’ will have to do.
+    
+    -else:
+    She doesn't acknowledge you.
+}
+
+-> Kaela_02
+
+= Kaela_02
+*["Tell me about the Hole.]
+    KAELA: Somethin’ of a holding facility. Old Del bring prisoners from nearby regions here. It keeps us from running, until they can bring one of their slave ships ‘round and send us all back to their capital.
+
+*["Tell me about this ‘Arv’ thing.]
+    KAELA: Seriously? It’s the name of the Delgoren’s ‘one true God’. The Delgorens love to name everythin’ for it. ‘Arv’vurdeve’ – New City of God. ‘Arv’ae’ – Council of God. And so on. 
+    KAELA: Personally, I think they jus’ like the ‘ar’ sound.
+
+*["The emissary said they’re bringing the Arv’ae here.]
+    KAELA: You sure? They’re bringin’ the High Lords here? Interesting… / If I can hold one of them hostage, maybe we could come an agreement. Well, it’s something to think about, anyway.
+
+*["Tell me about the capital.]
+    KAELA: Arv’vurdeve? Just a big desert. Used to be the seat of the Delgoren Empire, but it was buried during Agatha’s little Cataclysm. I hear they’ve been digging out the old ruins ever since.
+    KAELA: It’s a week’s flight from here. Shouldn’t be long before the slave ship swings around.
+    
+*["Who are you?]
+    KAELA: Just an unlucky Sky Pirate. Sorry, I got nothin’ to do with you bein’ here. Take that up with the Ol’ Del.
+    
++["Goodbye]
+    {
+        -Kaela_01 < 2:
+        KAELA: Sure, I’m not goin’ anywhere.
+        -else:
+        She gives you a funny look.
+    }
+    -> The_Hole
+
+- -> Kaela_02
+
+= Open_Door
+
+The captives jump and everyone freezes for a second.
+
+KAELA: You… you opened it!
+KAELA: Wait a minute -- you’re Ananth!
+
+The other captives approach.
+
+CAPTIVE: He is…!
+
+CAPTIVE: The Arv’mahdant? Here?
+
+CAPTIVE: Bit of a nancy boy, isn't he?
+
+CAPTIVE: Hush.
+
+-> Captives_01
+
+
+= Captives_01
+*[“‘Arv’mahdant’?]
+
+    KAELA: You’re Ananth, right? You killed Agatha. And according to legend, you were supposed to come back to life and be our saviour.
+    
+    Ananth stares, obliviously.
+    
+    ANANTH: Well, I’ll just deal with that as it comes.
+    -> Captives_01
+
+* [“Does this mean we can get out of here?]
+    
+    KAELA: If we can get to a radio, we can call in Fol’deve’s airships to fly us out.
+    
+    CAPTIVE: Take us with you!
+    
+    KAELA: Relax, kiddos; I'm sure they'll have enough room for everyone. / The radio should be in the head honcho’s office. Let’s go, before the guards catch on that the door’s broken.
+    -> Storage
+
+
+= Storage
+
+INT. THE HOLE, STORAGE
+
+Choose your starting loadout.
+
+KAELA: Awww yeah, found my Rail Gun.
+KAELA: …Holy crap, that’s Agatha’s sword!
+KAELA: And that’s—! Gods, man, you must have done some serious shit. I don’t recognize half the stuff you’ve got.
+
+*[“I know, right?!]
+KAELA: You and I, we gotta swap stories when all this is done.
+
+*[“I may have done some adventuring.]
+KAELA: No doubt. You and I have gotta swap stories, later.
+
+*[“Don’t ask.]
+KAELA: Hey, no worries. I don’t want to talk about how I got half this stuff, either.
+
+- -> Head_Office
+
+= Head_Office
+INT. THE HOLE, HEAD OFFICE
+
+EMISSARY: You!
+
+*[“Sorry about this.]
+*[“Wasn’t my idea.]
+*[“Yep.]
+*[Attack.]
+    -> fight
+
+-
+KAELA: Nothing personal, buckaroo, but you’re in the way of our radio.
+
+EMISSARY: The radio? You really think anyone is going to come save you lot?
+
+KAELA: They’ll come for the Arv’mahdant.
+
+EMISSARY: (frustrated) You don't know a goddamn thing about--!
+EMISSARY: (composing himself) ...Ahem. The Arv'mahdant is our holiest figure. Even if you _could_ convince someone out there he's throw in with some _filthy pirates_--
+
+ANANTH: I'm right here.
+
+EMISSARY: _--nobody even knows he's alive!_
+
+*[“They'll know it's me if they hear my voice.]
+    EMISSARY: Not many have heard your voice, child. 
+    EMISSARY: But fine. If you want to take that chance, do as you will.
+
+*[“Would you risk killing me?]
+    EMISSARY: ...The Arv’ae would have me flogged for this failure. 
+    EMISSARY: But no, you’re right. We're not enemies.
+
+*["We’ll take that chance.]
+    EMISSARY: Fine.
+
+*[Attack.]
+    -> fight
+
+- 
+KAELA: ...Wait, what? You’re just letting us through?
+
+EMISSARY: ‘Us’? No – I speak only to the Arv’mahdant. / I do have a condition, Ananth. If you truly wish to avoid bloodshed, do the right thing, and return these apostates to my care.
+
+CAPTIVE: What?!
+
+ANANTH: And just how would that be ‘the right thing’?
+
+EMISSARY: All right, look – you think this lot was chosen at random? These captives are criminals. Destitutes. I know at least one of them came willingly.
+
+CAPTIVE: That was before I learned the Arv’mahdant was here.
+
+CAPTIVE: You took me because of my debt...? But I have family!
+
+EMISSARY: Oh, well, this is awkward... Boy, your family sold you to pay off your gambling debts – and the payments are still outstanding.
+
+CAPTIVE: That’s impossible!
+
+EMISSARY: And you…
+
+KAELA: Yeah, yeah, okay, so maybe I’m not the most upstanding citizen. 
+KAELA: But c’mon, guy, you can’t think that crimes and debts are enough to warrant slavery.
+
+EMISSARY: Return the captives to me and escape peacefully, or fight.
+
+-> Emissary
+
+= Emissary
+*[“What, you’d kill the Arv’mahdant over a few captives?]
+    EMISSARY: I’d hope not to have to kill you.
+    EMISSARY: Try to understand, boy. These are bottom-feeders and murderers. I can’t just let them roam free.
+    
+    KAELA: So why would you let _him_ go so easily?
+    
+    EMISSARY: The Arv’mahdant was never truly a captive slave, and I feel no shame in releasing him – though I imagine the Arv’ae will have me flogged regardless.
+    
+    KAELA: He just doesn’t want that flogging to turn into a beheading.
+    
+    EMISSARY: I admit, the punishment for losing my captives would be... harsh.
+    
+    KAELA: Ooh, and maybe they'll throw in some good ol' fashioned castration. First one head, then the other.
+    
+    EMISSARY: (deadpan) Enough.
+    -> Emissary
+
+*[“Let me take the guy who came willingly.]
+    EMISSARY: ...
+    {
+        -rep_emissary >= 0: 
+        EMISSARY: Fine.
+        -else:
+        EMISSARY: No. Whatever conflicts you get embroiled in, I can't let one of my captives get caught up in it.
+        
+        CAPTIVE: I...
+
+        EMISSARY: Ananth can't protect you. You put yourself in my care. Trust me.
+        
+        CAPTIVE: Yes, Sir.
+    }
+    KAELA: You're not seriously considering this!
+    -> Emissary
+    
+*[“Whatever it takes to do this peacefully.]
+    KAELA: You can’t be serious!
+    
+    EMISSARY: Thank you, Arv’mahdant. Go in peace.
+    -> surrender
+
+
+*[“Fine, take them. I really don’t care.]
+    KAELA: Wha— Oh, you bastard!
+    
+    EMISSARY: I--okay, very well. Go in peace.
+    -> surrender
+
+*[“I can’t let you take them.]
+    The EMISSARY sighs, looking rather put out by all this.
+    
+    EMISSARY: ...Then I will do what I must.
+    -> fight
+
+- -> Radio
+
+
+= surrender
+    
+KAELA: You really think we’ll come quietly?
+
+EMISSARY: I have six men stationed just outside this room so, assuming you value your life, yes.
+
+KAELA: (looking at Ananth) …You’ll regret this.
+
+-> Radio
+
+
+= fight
+
+-> Radio
+
+
+= Radio
+Ananth rushes to the radio and switches it on.
+
+ANANTH: Hello?
+
+{
+    -fight: 
+    They wait.
+    
+    KAELA: Give me that.
+    KAELA: This is Kaela. If anyone’s out there, I’m an ex-member of the Reavers, and boy do I have some juicy secrets to share. They abandoned me to the Old Del, and you can find me at The Hole. Dock’s free.
+    
+    ANANTH: What if your old gang comes to shut you up?
+    
+    KAELA: They fled the area when their job went bad.
+}
+{
+    -surrender: 
+    He waits.
+    
+    ANANTH: This is Ananth. I… I don’t know a whole lot, but I woke up in a prison run by the Delgorens. People keep calling me the Arv’mahdant, and I—I… 
+    ANANTH: Look, I don’t know what’s happening, but if there’s someone – anyone – out there who can help me, please, come find me!
+}
+RITA (O.S.): Ananth?
+
+ANANTH: Who’s that?
+
+RITA (O.S.): It can’t be!
+RITA (O.S.): Ananth, it’s me, Rita. Where are you?
+
+ANANTH: I’m in some kind of prison. The Delgorens have me captured.
+
+RITA: The Hole?! Shit! Hang on, I’ll see if there’s anyone nearby…
+{
+    -fight: 
+    KAELA: Rita? That’s your sister, isn’t it?
+}
+{
+    -surrender:
+    ANANTH: Wait, you didn’t tell me who you were!
+    
+    RITA: It’s Rita, dammit! Your sister!
+}
+
+{
+    -fight:
+    KAELA: Can you get us?
+    
+    RITA: Yes, yes, just... get to the dock. The one who's picking you up won't want to stick around. / Ananth, we'll talk more when you're back.
+    
+    KAELA: Be there in a jiffy.
+    
+    She turns off the radio.
+    
+    KAELA: Your sister’s got the resources to come get us? I suppose I shouldn’t look a gift horse in the mouth, but still, weird.
+    
+    ANANTH: What’s weird about it?
+    
+    KAELA: You two are the spawn of Agatha. You were supposed to have died while killing that demon, and now your sister has enough clout to mobilize a ship in Delgoren airspace? Do you know what she’s been doin’ since you’ve been gone?
+    
+    ANANTH: I’m having some trouble remembering things, if that weren’t obvious.
+    
+    KAELA: Well, there’s been rumours that your family was colludin’ – fakin’ this whole ‘holy quest’ thing to consolidate power. Make you out to be the divine saviour while your mom goes into hiding.
+    
+    *[“I’ve been dead this whole time!]
+        KAELA: I’m not blaming you! It’s your sister I’m worried about!
+    
+    *[“Do you really believe that?]
+        KAELA: I’m not blaming you! But if your sister has all these resources then… maybe the rumours have some truth to ‘em?
+    
+    *["Hell, maybe.]
+        KAELA: I guess we’ll just have to see…
+        KAELA: We should go clear out the dock. I’m sure we haven’t seen the last of these guards.
+}
+{
+    -surrender:
+    RITA: Just... get to the dock. We'll talk when you're home.
+    -> Docks
+}
+
+- -> Docks
+
+= Docks
+EXT. THE HOLE - DOCKS
+
+{
+    -surrender:
+    -> delgorens_01
+}
+{
+    -fight:
+    DELGOREN: Get him!
+    -> docks_02
+}
+
+= delgorens_01
+DELGOREN: Stand down, men! Let the Arv’mahdant pass.
+DELGOREN: You ought to stay. The Arv’ae have a lot to ask you.
+
+*[“Sorry, I already called the ship…]
+*[“I have places to be.]
+*[“I don’t care about your leaders.]
+    DELGOREN: Hmph.
+    
+- DELGOREN: Very well. Peace be with you, Arv’mahdant.
+-> docks_02
+
+= docks_02
+
+After clearing the dock, an airship lands, bound for Fol’deve.
+
+CAPTAIN: (frantic) Get in!
+
+
+INT. AIRSHIP
+
+PASSENGER: What are we doing in Delgoren airspace?!
+
+CAPTAIN: Fol’devean business. Go back to your drinks.
+CAPTAIN: Are you okay, son?
+
+ANANTH: I… think so.
+
+CAPTAIN: Well, welcome aboard. Rita sent word that you were to be taken straight to Fol’deve.
+CAPTAIN: She did ask that you keep a low profile. Try to keep that in mind.
+CAPTAIN: Sorry for the rushed greeting, but I have to get back. We’re all anxious to get out of Delgoren airspace.
+CAPTAIN: If you need me, come see me in the cockpit.
+
+The player can go to sleep to pass the time (cut to Foldeve_Docks). The ship itself is populated with random passengers.
+
+-> Foldeve_Docks
+
+
+// Consider adding backstory here, when Ananth goes to sleep. Prologue right up until after Ananth makes his decision of whether to go to Arv'vurdeve.
+
+
+= Foldeve_Docks
+
+INT. FOL’DEVE DOCKS
+
+{
+    -fight:
+    RITA
+    …And whatever crimes or debts you had are forgiven. You can take shelter in the chapel, for now.
+    
+    CAPTIVE
+    Bless you, Lady Administrator.
+    
+    RITA
+    You can thank the Matriarch.
+    
+    KAELA starts to walk away.
+    
+    RITA
+    Ah, yes, the pirate. Do you sing, by any chance?
+    
+    KAELA
+    …Poorly, but yes.
+    
+    RITA
+    Great. Sing your heart out, if you know what’s good for you. Boys?
+    
+    RITA’s bodyguards approach KAELA, escorting her off-screen.
+}
+
+ANANTH steps down from the airship.
+
+RITA
+Ananth?
+
+ANANTH
+Um… hey.
+
+RITA steps towards him. She pauses.
+
+RITA
+…You’re not dead.
+
+ANANTH
+Ah, no—
+
+RITA
+Why aren’t you dead?!
+
+ANANTH
+Uh?
+
+RITA
+I missed you!
+Great, I’ve spent all this time trying to clean up your mess, it’s good you showed up.
+Or bad. Really, really bad, actually.
+Shit, this is bad. This really complicates things…
+
+ANANTH
+Well, I-
+
+RITA
+Shh! Come on. We shouldn’t let anyone see you.
+
+
+CUT TO:
+
+
+INT. RITA’S LAB
+
+RITA: All right, I think we're in the clear.
+    
+*[“Okay, start from the beginning.]
+    RITA
+    What? Don’t tell me you don’t remember.
+
+    **[“I remember.]
+        RITA
+        Oh, you just want to be caught up. / After Agatha disappeared, things went downhill pretty quick. The Old Delgorens are starting to rebuild their empire… which, basically means re-conquering the whole world. / For them, religion and Delgoren rule go hand-in-hand. The Arv’mahdant is the hero who would make it all possible.
+    
+        ANANTH
+        So… is Agatha dead?
+        
+        RITA
+        Yup. Super dead.
+
+    ** ["Nope.]
+        ANANTH: I remember most things, just… the last few months are a blur.
+        
+        Rita gives him a once-over.
+    
+        RITA: Huh. I guess dying would do that to you. That, and falling out of a tower.
+        
+        RITA: Well, good! Maybe you’ll finally start to lighten up!
+
+        ANANTH: I died?
+        
+        RITA: Oh, yeah. You got all righteous and shit and decided to go be a holy warrior. Ended up causing quite a bit of damage in the process.
+        
+        ANANTH: ...Wait, I fell out of a tower? Did I hit my head--?
+        
+        RITA: You got the idea that God wanted you to take down the Goddess of Embers, our mother, and then... well...
+        
+        ANANTH: Did I win?
+        
+        RITA: Yep! Fulfilled the prophecy like a champ.
+        RITA: Unfortunately, things went downhill pretty quick. The Old Delgorens are starting to rebuild their empire, which… means conquering the known world.
+        RITA: For them, religion and Delgoren rule go hand-in-hand, and the Arv’mahdant is a hero who would make it all possible.
+        
+        ANANTH: So, Agatha _is_ dead?
+        
+        RITA: Yup. Super dead.
+
+*[Wait for her to calm down (Skip explanation)]
+    RITA: God, things have been so screwed up since Agatha died...
+
+- 
+AGATHA (O.S.): I wasn't dead.
+
+ROMULUS (O.S.): We know.
+
+/*
+- -> Court_Interruption
+
+
+= Court_Interruption
+
+INT. COURTROOM
+
+JUDGE
+What, what?!
+
+AGATHA
+I said, no interruptions! / Look, it’s simple. My children, Ananth and Rita, decided one day that I was a tyrant and needed to be destroyed. / Ananth, bless his soul, was taken in by a Delgoren priest. He convinced Ananth of some Scripture that foretold of the coming of the Arv’mahdant, who would sacrifice themselves to kill the Goddess, and claim her powers as their own.
+Which meant…
+
+
+CUT TO:
+
+INT. RITA’S LAB
+*/
+
+RITA: Oh, and P.S., you _may_ be a religious icon, now. 
+
+ANANTH: Oh, no...
+
+RITA: Yeah. You killed the false Goddess, so now you’re supposed to lead the faithful to their rightful place and ‘tear down the Veil’ so that all can meet Judgment on the appointed day. Etc.
+
+ANANTH: Just how many people think I'm their Messiah?
+
+RITA: A lot. People love a martyr!
+
+ANANTH: I'm not _dead_.
+
+RITA: Details.
+RITA: Oh--I think there was something in there about coming back to life with all sorts of divine powers, too. Any of that?
+
+ANANTH
+I can open pathways to other worlds.
+
+RITA
+Aw, is that it?
+
+ANANTH
+I can also make fire with my mind.
+
+RITA
+Oh. Well, that there’s a _real_ problem-solver. 
+
+ANANTH
+Can I go back to sleep, now?
+
+RITA
+You weren’t sleeping.
+
+ANANTH
+Whatever it was, it was a lot less stressful.
+
+RITA
+Ananth, you’re the goddamn Messiah! Act like it!
+
+*[“Don't say it like that!]
+
+RITA
+Get used to it.
+
+*[“Fine, what’s next?]
+
+RITA
+That’s the spirit!
+
+*[“I’m not even religious!]
+
+RITA: Whew! That’s a relief. You have no idea how stuffy you were before.
+RITA: I mean you still have to deal with people thinking you’re the Messiah and all, but we’ll just deal with that as it comes.
+
+- Rita claps her hands together.
+
+RITA: So, welcome back to Fol’deve, one of the last free cities. The Matriarch hired me as lead administrator, which basically means I’m in charge.
+RITA: Any questions?
+
+-> Rita_01
+
+
+= Rita_01
+
+*(get_radio)[“Is there anything I can do to help?]
+    RITA …Well, there’s a couple of things.
+    RITA: Our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
+    
+    ANANTH: Sounds like you’re trying to get rid of me again.
+    
+    RITA: Uh, yeah. You’re a religious icon come back from the dead. Let’s keep this hush-hush, for now.
+    RITA: Look, it does suck to watch you go off again. Take this two-way radio.
+    
+    ANANTH: Do I press this—
+    
+    Feedback blares out over the speakers.
+    
+    RITA: You press that button, yes.
+    
+    Feedback blares out over the speakers.
+    
+    RITA: Not now! Later!
+    
+    ANANTH: Oh!
+    -> Rita_01
+
+
+*[“What do you mean, ‘one of the last free cities’?]
+    RITA: Many of the other cities have already thrown in with the Old Delgorens.
+    RITA: Most of ‘em are just doing it to avoid conflict, but I’m afraid if they’re trying to keep things peaceful, they’re misguided…
+    -> Rita_01
+
+* [“What are these robots?]
+    RITA: My babies? They’re remnants of the Progenitors. Avo, they’re called. The Progenitors probably used them for manual labour, maintenance – you know, all the boring stuff. 
+    RITA: But the Progenitors are long gone. Whatever kind of intelligence the Avo had came from a central processing unit, which died long before our time. 
+    RITA: Since you died, I’ve given them a new processor. Probably not as good as the original, but it’s given them some of their old functionality back. They’re just a little slow, sometimes.
+    
+    ANANTH: So like, a big brain? That they all share? How does that even work?
+    
+    RITA: Poorly, thanks for asking.
+    -> Rita_01
+
+*[“All right, I’m good.]
+    {
+        -not get_radio:
+        RITA: Great. Now, our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
+        
+        ANANTH: Sounds like you’re trying to get rid of me again.
+        
+        RITA: Uh, yeah. You’re a religion icon come back from the dead. Let’s keep this hush-hush, for now.
+        RITA: Look, it does suck to watch you go off again. Take this two-way radio.
+    }
+
+    RITA: {get_radio: Great. Fantastic.} I have another meeting in five for some nut claiming leavened bread is ‘frivolous’ and ‘against Scripture’. I don’t even know what leavened bread is. Is it cheaper to unleaven it? Don’t answer that, I have experts that can tell me these things.
+    RITA: Now get out there, and for Arv’s sake, try to keep a low profile.
+    
+- 
+[Activate “NEW DATA”]
+
+EXT. FOLDEVE
+
+The two-way radio crackles to life.
+
+RITA: Ananth! Some things I forgot to mention.
+RITA: Our treasurer, Mav, went missing a while ago. I’m thinking the Old Del nabbed him. Could you ask around at his favourite watering hole? I’d like to know who’s seen him last.
+RITA: Also, the religious among our people are leaving for the Old Del in droves. As much as I hate having priests breathing down my neck, we could really use your old friend, Dominic. He’s got enough clout to keep ‘em in check.
+RITA: Last thing, promise. If you’re interested, you can talk to our Matriarch. She might have something for you. Either way, it’d be good to introduce yourself.
+RITA: Oh, one more thing. If you die again, I’ll kick your ass.
+
+[Activate “ETERNAL FUGITIVE”]
+[Activate “IRON FIST OF FOL’DEVE”]
+[Activate “SOLE SURVIVOR”]
+
+#
+
+Wait four seconds. If the player doesn’t move:
+
+RITA
+What are you just standing there for? Get moving.
+
+/*If ANANTH lingers in Fol’deve, NPCs have a slight chance of identifying him, and will then attempt to initiate dialogue. If ANANTH confirms that he’s alive, it will cause news to spread much faster (increasing the ‘Recognition’ stat). RITA will chide him the first few times this happens, as it will put ANANTH under a microscope before they can work out a strategy. Recognition causes your actions to affect the colony more, for better or worse.*/
+
+
+-> Hub

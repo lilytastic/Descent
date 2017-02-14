@@ -1,14 +1,19 @@
 INCLUDE MQ_00
+INCLUDE Prologue
 INCLUDE MQ_01
 INCLUDE MQ_02
 INCLUDE MQ_03
 INCLUDE MQ_04
 INCLUDE MQ_05
-INCLUDE Endings
-INCLUDE Prologue
 INCLUDE RI_00
+INCLUDE Endings
 INCLUDE Fragments
+INCLUDE Choices_GOE
+INCLUDE Choices_ELI
+INCLUDE Choices_DEP
+INCLUDE Battle
 EXTERNAL getReputation(name)
+
 #title: Descent
 
 VAR bgm = "" // Music playing.
@@ -21,6 +26,11 @@ VAR state = "ADV" // ADV, NVL, GAME
 
 VAR health = 100
 VAR max_health = 100
+
+VAR grace = 1
+VAR intellect = 1
+VAR skill = 1
+VAR lore = 0
 
 // Player traits -- used for calculating reputations
 VAR kindness = 0
@@ -39,8 +49,10 @@ VAR people_killed = 44
 
 VAR mq04_lostfoldeve = false
 
+VAR knows_ritakilledagatha = false
 
--> MQ_00
+
+-> MQ_01
 
 === Hub
 #gameplay

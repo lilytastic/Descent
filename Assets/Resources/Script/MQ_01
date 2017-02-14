@@ -2,24 +2,20 @@ VAR times_pleaded_ignorance = 0
 VAR rep_emissary = 0
 
 === MQ_01
+-> waking_up
+
 # room: virrea
 
-[Land of Confusion]
-
-EXT. VIRREA
-
-FADE IN:
+3 BU, VIRREA
 
 # move: (ananth; (inside cave, outside cave); 3 )
-ANANTH is wandering through a forest. The leaves are a loud, bright red, dripping off the branches. The bark is white. There is no sound but the wind and the rustling of trees.
-He starts to unpack everything.
-He has lunch. When he's nearly done, he pauses, seeing a red moth fluttering in front of him.
+You are wandering through a forest. The leaves are a loud, bright red, dripping off the branches. The bark is white. There is no sound but the wind and the rustling of trees.
+You have lunch. When you're nearly done, you pause, seeing a red moth fluttering in front of your nose.
 
 * [Let it perch on your finger]
-    He extends a finger, and the moth lands on it, closing its wings.
+    You extend a finger, and the moth lands on it, closing its wings.
     
-    ANANTH
-    You’re a cute little guy. You have any friends?
+    "You’re a cute little guy," you say. "You have any friends?"
     
     It stares at him for a moment, and then flutters away.
 
@@ -37,7 +33,7 @@ He has lunch. When he's nearly done, he pauses, seeing a red moth fluttering in 
 = Virrea
 # gameplay
 // TODO: Have a scene here to represent gameplay. Should show in a different colour in Unity.
-There are no animals in the forest. Nothing living, in fact, save for the occasional moth. { not Virrea_Grove: Ananth begins to hear the whisper of a hundred voices from a nearby grove.}
+There are no animals in the forest. Nothing living, in fact, save for the occasional moth. { not Virrea_Grove: You begin to hear the whisper of a hundred voices from a nearby grove.}
 
 + [Check out the voices] -> Virrea_Grove
 + [Leave] -> Pathway
@@ -51,31 +47,24 @@ There are no animals in the forest. Nothing living, in fact, save for the occasi
 
 = soulweave_01
 
-ANANTH
-Hello?
+ANANTH: Hello?
 
 The voices pause.
 
-SOULWEAVE (???)
-…What are you doing here?
+SOULWEAVE (???): …What are you doing here?
 
 *[“Sorry, I didn’t know.]
-    ???
-    Leave. Now.
+    ???: Leave. Now.
 
 *[“I don’t know where I am.]
-    ???
-    How did you even get here…? The Pathway’s been closed for—
+    ???: How did you even get here…? The Pathway’s been closed for—
     
-    ???
-    What’s important is that he gets out of here.
+    ???: What’s important is that he gets out of here.
 
 *[“Who are you?]
-    ???
-    Look above you. See the silk in the trees?
+    ???: Look above you. See the silk in the trees?
 
-- ???
-This forest is infested with a cursed breed of moths. They steal the souls of their victims to spin their silk.
+- ???: This forest is infested with a cursed breed of moths. They steal the souls of their victims to spin their silk.
 
 ???
 We’ve been trapped here for decades.
@@ -132,91 +121,78 @@ ANANTH senses a Pathway inside the ocean and dives in. He swims for it, but enco
 
 CUT TO:
 
-INT. THE HOLE, INTERROGATION
+-> waking_up
+
+= waking_up
 
 Darkness. Chains clink together, and a man is heard coughing in the distance, as if in pain.
 
-???
-Wake him.
+"Wake him."
 
 There is a sound of rushing water, followed quickly by a boy's yelp. We cut from black.
-A Delgoren stands overhead holding a bucket, and tosses it. He steps aside, revealing the EMISSARY, another Delgoren in regal armour. He looks down at Ananth over a pair of sharp cheekbones.
+A Delgoren stands overhead holding a bucket, and tosses it. He steps aside, revealing the Emissary, another Delgoren in regal armour. He looks down at Ananth over a pair of sharp cheekbones.
 
-EMISSARY
-You’re supposed to be dead.
+"You’re supposed to be dead," he says.
 
 Ananth splutters while his mind races to make sense of this. When he can finally take a breath without choking, he meets the Emissary's eyes.
 
 *[“That wasn’t necessary.]
     The other Delgoren says something in a foreign language. The emissary ignores him.
     
-    EMISSARY
-    You were asleep for three days, so I rather think it was.
+    EMISSARY: You were asleep for three days, so I rather think it was.
 
 *[Remain silent]
     The other Delgoren says something in a foreign language. The emissary ignores him.
     
-    EMISSARY
-    Don’t make this more difficult than it needs to be.
+    EMISSARY: Don’t make this more difficult than it needs to be.
 
 *[“...What?]
     The other Delgoren says something in a foreign language. The emissary ignores him.
     
-    EMISSARY
-    Our scouts found you in the forest… several days’ flight from the tower where you supposedly died.
+    EMISSARY: Our scouts found you in the forest… several days’ flight from the tower where you supposedly died.
 
 *[“Who are you?]
     The other Delgoren says something in a foreign language. The emissary ignores him.
     
-    EMISSARY
-    I’m an emissary of the Old Del. I’ve been charged with questioning you, before the Arv’ae can arrive to take such matters into their own hands. Speaking of which…
+    EMISSARY: I’m an emissary of the Old Del. I’ve been charged with questioning you, before the Arv’ae can arrive to take such matters into their own hands. Speaking of which…
 
 -
-DELGOREN
-Lord Constance is on his way, sir. Expects to be here within the week.
+DELGOREN: Lord Constance is on his way, sir. Expects to be here within the week.
 
 The emissary smiles a little at that, almost smugly.
 
-EMISSARY
-I’d like to have some answers for him when he arrives.
+EMISSARY: I’d like to have some answers for him when he arrives.
 
 The other Delgoren says something in a foreign language.
 
-EMISSARY
-No. I will call on you should we require such methods.
+EMISSARY: No. I will call on you should we require such methods.
 
 The other exits, leaving Ananth and the Emissary alone.
 
-EMISSARY
-He's a little eager.
+EMISSARY: He's a little eager.
 
 *[“What do you want?]
     The Emissary gets down on one knee.
     
-    EMISSARY
-    Answers.
+    EMISSARY: Answers.
 
 *[“Are you going to torture me?]
     The Emissary gets down on one knee.
     
-    EMISSARY
-    I’m not planning on it.
+    EMISSARY: I’m not planning on it.
 
 *[Spit at his feet]
     ~ rep_emissary--
     The Emissary gets down on one knee.
     
-    EMISSARY
-    I’m just looking for answers, boy.
+    EMISSARY: I’m just looking for answers, boy.
 
 *[Remain silent]
     The Emissary gets down on one knee.
     
-    EMISSARY
-    I hope this doesn’t become a habit.
+    EMISSARY: I hope this doesn’t become a habit.
 
-- EMISSARY
-You’re alive, when you should be dead. Help me make sense of this. / You’ve been gone for months. Where have you been all this time?
+- EMISSARY: You’re alive, when you should be dead. Help me make sense of this. / You’ve been gone for months. Where have you been all this time?
 
 *[“Hiding.]
 *[“Exploring.]
@@ -226,12 +202,13 @@ You’re alive, when you should be dead. Help me make sense of this. / You’ve 
 *[Remain silent]
     ~ rep_emissary--
 
-// TODO: Change it to affirm that Agatha is dead.
+-
+EMISSARY: And are the rumours true? Did you kill Agatha?
 
--EMISSARY
-And are the rumours true? Did you kill Agatha?
-
-
+{
+    -not MQ_00:
+    -> emissary_00
+}
 - -> Court_Interruption
 
 = Court_Interruption
@@ -241,62 +218,52 @@ INT. COURTROOM
 JUDGE
 Wait, what?!
 
-AGATHA
-I said, no interruptions! / Look, it’s simple. I was an enemy of the Delgorens. Those priests convinced him of this bit of scripture that foretold of the coming of the "Arv’mahdant", a prophet who would sacrifice themselves to kill a false Goddess. / They told him he was that prophet, and _used_ him to assassinate me.
+AGATHA: I said, no interruptions! 
+AGATHA: Look, it’s simple. I was an enemy of the Delgorens. Those priests convinced him of this bit of scripture that foretold of the coming of the "Arv’mahdant", a prophet who would sacrifice themselves to kill a false Goddess. 
+AGATHA: They told him he was that prophet, and _used_ him to assassinate me.
 
 
 INT. THE HOLE, INTERROGATION
 
-EMISSARY
-Did you do it? Is she... really dead?
+EMISSARY: Did you do it? Is she... really dead?
 
 -> emissary_00
 
 = emissary_00
 
 *[“Who?]
-    EMISSARY
-    ...Your mother, the Goddess of Embers.
+    EMISSARY: ...Your mother, the Goddess of Embers.
 
     **[“You must have the wrong person.]
-        EMISSARY
-        We know you’re Ananth. Don’t try and trick us.
+        EMISSARY: We know you’re Ananth. Don’t try and trick us.
         
         ***[“How do you know?]
-            EMISSARY
-            We recovered your mother’s weapon from your body. It’s magic; one-of-a-kind. Damaged, but unmistakably the same.
+            EMISSARY: We recovered your mother’s weapon from your body. It’s magic; one-of-a-kind. Damaged, but unmistakably the same.
         
         ***[“I don’t remember anything.]
         ~ times_pleaded_ignorance++
-            EMISSARY
-            I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+            EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
 
     **[“I don’t remember anything.]
     ~ times_pleaded_ignorance++
-    EMISSARY
-    I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+    EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
     
 *[“I don’t remember.]
-    EMISSARY
-    Don't remember your mother? The Goddess of Embers? Or do you not remember what happened in that tower?
+    EMISSARY: Don't remember your mother? The Goddess of Embers? Or do you not remember what happened in that tower?
     
     **[“I don’t remember anything.]
     ~ times_pleaded_ignorance++
-        EMISSARY
-        I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+        EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
 
     **[“You must have the wrong person.]
-        EMISSARY
-        We know you’re Ananth. Don’t try and trick us.
+        EMISSARY: We know you’re Ananth. Don’t try and trick us.
         
         ***[“How do you know?]
-            EMISSARY
-            We recovered your mother’s weapon from your body. It’s magic; one-of-a-kind. Damaged, but unmistakably the same.
+            EMISSARY: We recovered your mother’s weapon from your body. It’s magic; one-of-a-kind. Damaged, but unmistakably the same.
         
         ***[“I don’t remember anything.]
         ~ times_pleaded_ignorance++
-            EMISSARY
-            I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
+            EMISSARY: I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week.
 
 /*
 *[“She’s alive.]
@@ -308,17 +275,16 @@ Did you do it? Is she... really dead?
 
 *[“Yes, I killed her.]
     ~ rep_emissary = rep_emissary + 5
-    EMISSARY
-    …By Arv. / This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…
+    EMISSARY: …By Arv.
+    EMISSARY: This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…
     -> emissary_02
 
 *[Shrug]
     ~ rep_emissary--
-    EMISSARY
-    This is going to be a long week, isn’t it?
+    EMISSARY: This is going to be a long week, isn’t it?
 
-- EMISSARY
-There were rumors that you were setting out on a holy quest – with our blessing, no less – to kill Agatha and liberate the Old Del. You entered her tower, and never returned. Agatha has been silent ever since. / If it’s true – if you killed her – then the Old Del are free to reclaim their lost empire. So.
+- EMISSARY: There were rumors that you were setting out on a holy quest – with our blessing, no less – to kill Agatha and liberate the Old Del. You entered her tower, and never returned. Agatha has been silent ever since.
+EMISSARY: If it’s true – if you killed her – then the Old Del are free to reclaim their lost empire. So.
 
 -> emissary_01
 
@@ -329,16 +295,14 @@ There were rumors that you were setting out on a holy quest – with our blessin
     
     { 
         -times_pleaded_ignorance==2:
-        EMISSARY
-        You’re serious, aren’t you? Whatever happened in there, it addled your mind.
+        EMISSARY: You’re serious, aren’t you? Whatever happened in there, it addled your mind.
     }
-    EMISSARY
-    Agatha is your mother. We’ve never been sure of who or what she is. Honestly, I was hoping you’d know. The Delgorens know her as a demon of chaos, capable of raining fire from the heavens and bringing nations to their knees. She ruled the Draive – your people – as a heathen Goddess.
+    EMISSARY: Agatha is your mother. We’ve never been sure of who or what she is. Honestly, I was hoping you’d know. The Delgorens know her as a demon of chaos, capable of raining fire from the heavens and bringing nations to their knees. She ruled the Draive – your people – as a heathen Goddess.
     -> emissary_01
 
 *[“‘Lost empire’?]
-    EMISSARY
-    Thirty years ago your mother, Agatha, purged our civilization, and forced us to live in the fringes. We’ve been struggling to protect what remains of our culture, and excavate the ruins of our nation from beneath the sand that swallowed it. / And then, you appeared. Her only son. You came to us seeking repentance, and from what I’ve been told, we did not deny you.
+    EMISSARY: Thirty years ago your mother, Agatha, purged our civilization, and forced us to live in the fringes. We’ve been struggling to protect what remains of our culture, and excavate the ruins of our nation from beneath the sand that swallowed it.
+    EMISSARY: And then, you appeared. Her only son. You came to us seeking repentance, and from what I’ve been told, we did not deny you.
     -> emissary_01
 
 /*
@@ -350,29 +314,24 @@ There were rumors that you were setting out on a holy quest – with our blessin
   
 *[“Yes, I killed her.]
     ~ rep_emissary = rep_emissary + 5
-    EMISSARY
-    …By Arv.
-    This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…
+    EMISSARY: …By Arv.
+    EMISSARY: This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…
     
 *[“I seriously don’t remember any of this.]
     ~ times_pleaded_ignorance++
     
     { 
         -times_pleaded_ignorance==2:
-        EMISSARY
-        You’re serious, aren’t you? Whatever happened in there, it addled your mind.
+        EMISSARY: You’re serious, aren’t you? Whatever happened in there, it addled your mind.
         -times_pleaded_ignorance<2:
-        EMISSARY
-        Somehow, I fail to believe you.
+        EMISSARY: Somehow, I fail to believe you.
         -times_pleaded_ignorance>2:
-        EMISSARY
-        I see...
+        EMISSARY: I see...
     }
 
 *[Shrug]
     ~rep_emissary--
-    EMISSARY
-    I will have answers, boy. Even if it means I have to beat them out of you
+    EMISSARY: I will have answers, boy. Even if it means I have to beat them out of you
     
     
 - -> emissary_02
@@ -380,22 +339,21 @@ There were rumors that you were setting out on a holy quest – with our blessin
 = emissary_02 
 
 {
-    -times_pleaded_ignorance+rep_emissary > 2:
-    EMISSARY
-    Guards! Take the boy back to the basin. And make sure he’s well treated.
+    -times_pleaded_ignorance+rep_emissary > 1:
+    EMISSARY: Guards! Take the boy back to the basin. And make sure he’s well treated.
 
     -else:
-    EMISSARY
-    Guards! Take the boy back to the basin. Maybe a day’s confinement will soften him up.
+    EMISSARY: Guards! Take the boy back to the basin. Maybe a day’s confinement will soften him up.
 }
 
-INT. COURTROOM
-
-ROMULUS
-How long do you intend to confuse the courtroom like this?
-
-AGATHA
-Oh, calm your tits, it's not as complicated as it sounds.
+{
+    -MQ_00:
+    INT. COURTROOM
+    
+    ROMULUS: How long do you intend to confuse the courtroom like this?
+    
+    AGATHA: Oh, calm your tits, it's not as complicated as it sounds.
+}
 
 -> The_Hole_Intro
 
@@ -420,20 +378,15 @@ There are several captives, one of which is standing alone against a wall. The o
 = Kaela_01
 {
     -Kaela_01 == 3:
-    KAELA
-    You again?
+    KAELA: You again?
     -Kaela_01 == 2:
-    KAELA
-    'Sup?
+    KAELA: 'Sup?
     -Kaela_01 == 1:
-    KAELA
-    Mornin’, darlin’. Welcome to the Hole.
+    KAELA: Mornin’, darlin’. Welcome to the Hole.
     
-    ANANTH
-    …Is it actually called that?
+    ANANTH: …Is it actually called that?
     
-    KAELA
-    The Delgorens have a fancy name for it, if you’d prefer. Only I can’t pronounce it, so ‘the Hole’ will have to do.
+    KAELA: The Delgorens have a fancy name for it, if you’d prefer. Only I can’t pronounce it, so ‘the Hole’ will have to do.
     
     -else:
     She doesn't acknowledge you.
@@ -443,30 +396,26 @@ There are several captives, one of which is standing alone against a wall. The o
 
 = Kaela_02
 *["Tell me about the Hole.]
-    KAELA
-    Somethin’ of a holding facility. Old Del bring prisoners from nearby regions here. It keeps us from running, until they can bring one of their slave ships ‘round and send us all back to their capital.
+    KAELA: Somethin’ of a holding facility. Old Del bring prisoners from nearby regions here. It keeps us from running, until they can bring one of their slave ships ‘round and send us all back to their capital.
 
 *["Tell me about this ‘Arv’ thing.]
-    KAELA
-    Seriously? It’s the name of the Delgoren’s ‘one true God’. The Delgorens love to name everythin’ for it. ‘Arv’vurdeve’ – New City of God. ‘Arv’ae’ – Council of God. And so on. / Personally, I think they jus’ like the ‘ar’ sound.
+    KAELA: Seriously? It’s the name of the Delgoren’s ‘one true God’. The Delgorens love to name everythin’ for it. ‘Arv’vurdeve’ – New City of God. ‘Arv’ae’ – Council of God. And so on. 
+    KAELA: Personally, I think they jus’ like the ‘ar’ sound.
 
 *["The emissary said they’re bringing the Arv’ae here.]
-    KAELA
-    You sure? They’re bringin’ the High Lords here? Interesting… / If I can hold one of them hostage, maybe we could come an agreement. Well, it’s something to think about, anyway.
+    KAELA: You sure? They’re bringin’ the High Lords here? Interesting… / If I can hold one of them hostage, maybe we could come an agreement. Well, it’s something to think about, anyway.
 
 *["Tell me about the capital.]
-    KAELA
-    Arv’vurdeve? Just a big desert. Used to be the seat of the Delgoren Empire, but it was buried during Agatha’s little Cataclysm. I hear they’ve been digging out the old ruins ever since. / It’s a week’s flight from here. Shouldn’t be long before the slave ship swings around.
+    KAELA: Arv’vurdeve? Just a big desert. Used to be the seat of the Delgoren Empire, but it was buried during Agatha’s little Cataclysm. I hear they’ve been digging out the old ruins ever since.
+    KAELA: It’s a week’s flight from here. Shouldn’t be long before the slave ship swings around.
     
 *["Who are you?]
-    KAELA
-    Just an unlucky Sky Pirate. Sorry, I got nothin’ to do with you bein’ here. Take that up with the Ol’ Del.
+    KAELA: Just an unlucky Sky Pirate. Sorry, I got nothin’ to do with you bein’ here. Take that up with the Ol’ Del.
     
 +["Goodbye]
     {
         -Kaela_01 < 2:
-        KAELA
-        Sure, I’m not goin’ anywhere.
+        KAELA: Sure, I’m not goin’ anywhere.
         -else:
         She gives you a funny look.
     }
@@ -478,22 +427,18 @@ There are several captives, one of which is standing alone against a wall. The o
 
 The captives jump and everyone freezes for a second.
 
-KAELA
-You… you opened it! / Wait a minute -- you’re Ananth!
+KAELA: You… you opened it!
+KAELA: Wait a minute -- you’re Ananth!
 
 The other captives approach.
 
-CAPTIVE
-He is…!
+CAPTIVE: He is…!
 
-CAPTIVE
-The Arv’mahdant? Here?
+CAPTIVE: The Arv’mahdant? Here?
 
-CAPTIVE
-Bit of a nancy boy, isn't he?
+CAPTIVE: Bit of a nancy boy, isn't he?
 
-CAPTIVE
-Hush.
+CAPTIVE: Hush.
 
 -> Captives_01
 
@@ -501,25 +446,20 @@ Hush.
 = Captives_01
 *[“‘Arv’mahdant’?]
 
-    KAELA
-    You’re Ananth, right? You killed Agatha. And according to legend, you were supposed to come back to life and be our saviour.
+    KAELA: You’re Ananth, right? You killed Agatha. And according to legend, you were supposed to come back to life and be our saviour.
     
     Ananth stares, obliviously.
     
-    ANANTH
-    Well, I’ll just deal with that as it comes.
+    ANANTH: Well, I’ll just deal with that as it comes.
     -> Captives_01
 
 * [“Does this mean we can get out of here?]
     
-    KAELA
-    If we can get to a radio, we can call in Fol’deve’s airships to fly us out.
+    KAELA: If we can get to a radio, we can call in Fol’deve’s airships to fly us out.
     
-    CAPTIVE
-    Take us with you!
+    CAPTIVE: Take us with you!
     
-    KAELA
-    Relax, kiddos; I'm sure they'll have enough room for everyone. / The radio should be in the head honcho’s office. Let’s go, before the guards catch on that the door’s broken.
+    KAELA: Relax, kiddos; I'm sure they'll have enough room for everyone. / The radio should be in the head honcho’s office. Let’s go, before the guards catch on that the door’s broken.
     -> Storage
 
 
@@ -529,30 +469,25 @@ INT. THE HOLE, STORAGE
 
 Choose your starting loadout.
 
-KAELA
-Awww yeah, found my Rail Gun. / …Holy crap, that’s Agatha’s sword! / And that’s—! Gods, man, you must have done some serious shit. I don’t recognize half the stuff you’ve got.
+KAELA: Awww yeah, found my Rail Gun.
+KAELA: …Holy crap, that’s Agatha’s sword!
+KAELA: And that’s—! Gods, man, you must have done some serious shit. I don’t recognize half the stuff you’ve got.
 
 *[“I know, right?!]
-KAELA
-You and I, we gotta swap stories when all this is done.
+KAELA: You and I, we gotta swap stories when all this is done.
 
 *[“I may have done some adventuring.]
-
-KAELA
-No doubt. You and I have gotta swap stories, later.
+KAELA: No doubt. You and I have gotta swap stories, later.
 
 *[“Don’t ask.]
-
-KAELA
-Hey, no worries. I don’t want to talk about how I got half this stuff, either.
+KAELA: Hey, no worries. I don’t want to talk about how I got half this stuff, either.
 
 - -> Head_Office
 
 = Head_Office
 INT. THE HOLE, HEAD OFFICE
 
-EMISSARY
-You!
+EMISSARY: You!
 
 *[“Sorry about this.]
 *[“Wasn’t my idea.]
@@ -561,151 +496,113 @@ You!
     -> fight
 
 -
-KAELA
-Nothing personal, buckaroo, but you’re in the way of our radio.
+KAELA: Nothing personal, buckaroo, but you’re in the way of our radio.
 
-EMISSARY
-The radio? You really think anyone is going to come save you lot?
+EMISSARY: The radio? You really think anyone is going to come save you lot?
 
-KAELA
-They’ll come for the Arv’mahdant.
+KAELA: They’ll come for the Arv’mahdant.
 
-EMISSARY
-(frustrated)
-You don't know a goddamn thing about--!
-(composing himself)
-...Ahem. The Arv'mahdant is our holiest figure. Even if you _could_ convince someone out there he's throw in with some _filthy pirates_--
+EMISSARY: (frustrated) You don't know a goddamn thing about--!
+EMISSARY: (composing himself) ...Ahem. The Arv'mahdant is our holiest figure. Even if you _could_ convince someone out there he's throw in with some _filthy pirates_--
 
-ANANTH
-I'm right here.
+ANANTH: I'm right here.
 
-EMISSARY
-_--nobody even knows he's alive!_
+EMISSARY: _--nobody even knows he's alive!_
 
 *[“They'll know it's me if they hear my voice.]
-    EMISSARY
-    Not many have heard your voice, child. / But fine. If you want to take that chance, do as you will.
+    EMISSARY: Not many have heard your voice, child. 
+    EMISSARY: But fine. If you want to take that chance, do as you will.
 
 *[“Would you risk killing me?]
-    EMISSARY
-    ...The Arv’ae would have me flogged for this failure. / But no, you’re right. We're not enemies.
+    EMISSARY: ...The Arv’ae would have me flogged for this failure. 
+    EMISSARY: But no, you’re right. We're not enemies.
 
 *["We’ll take that chance.]
-    EMISSARY
-    Fine.
+    EMISSARY: Fine.
 
 *[Attack.]
     -> fight
 
 - 
-KAELA
-...Wait, what? You’re just letting us through?
+KAELA: ...Wait, what? You’re just letting us through?
 
-EMISSARY
-‘Us’? No – I speak only to the Arv’mahdant. / I do have a condition, Ananth. If you truly wish to avoid bloodshed, do the right thing, and return these apostates to my care.
+EMISSARY: ‘Us’? No – I speak only to the Arv’mahdant. / I do have a condition, Ananth. If you truly wish to avoid bloodshed, do the right thing, and return these apostates to my care.
 
-CAPTIVE
-What?!
+CAPTIVE: What?!
 
-ANANTH
-And just how would that be ‘the right thing’?
+ANANTH: And just how would that be ‘the right thing’?
 
-EMISSARY
-All right, look – you think this lot was chosen at random? These captives are criminals. Destitutes. I know at least one of them came willingly.
+EMISSARY: All right, look – you think this lot was chosen at random? These captives are criminals. Destitutes. I know at least one of them came willingly.
 
-CAPTIVE
-That was before I learned the Arv’mahdant was here.
+CAPTIVE: That was before I learned the Arv’mahdant was here.
 
-CAPTIVE
-You took me because of my debt...? But I have family!
+CAPTIVE: You took me because of my debt...? But I have family!
 
-EMISSARY
-Oh, well, this is awkward... Boy, your family sold you to pay off your gambling debts – and the payments are still outstanding.
+EMISSARY: Oh, well, this is awkward... Boy, your family sold you to pay off your gambling debts – and the payments are still outstanding.
 
-CAPTIVE
-That’s impossible!
+CAPTIVE: That’s impossible!
 
-EMISSARY
-And you…
+EMISSARY: And you…
 
-KAELA
-Yeah, yeah, okay, so maybe I’m not the most upstanding citizen. / But c’mon, guy, you can’t think that crimes and debts are enough to warrant slavery.
+KAELA: Yeah, yeah, okay, so maybe I’m not the most upstanding citizen. 
+KAELA: But c’mon, guy, you can’t think that crimes and debts are enough to warrant slavery.
 
-EMISSARY
-Return the captives to me and escape peacefully, or fight.
+EMISSARY: Return the captives to me and escape peacefully, or fight.
 
 -> Emissary
 
 = Emissary
 *[“What, you’d kill the Arv’mahdant over a few captives?]
-    EMISSARY
-    I’d hope not to have to kill you. / Try to understand, boy. These are bottom-feeders and murderers. I can’t just let them roam free.
+    EMISSARY: I’d hope not to have to kill you.
+    EMISSARY: Try to understand, boy. These are bottom-feeders and murderers. I can’t just let them roam free.
     
-    KAELA
-    So why would you let _him_ go so easily?
+    KAELA: So why would you let _him_ go so easily?
     
-    EMISSARY
-    The Arv’mahdant was never truly a captive slave, and I feel no shame in releasing him – though I imagine the Arv’ae will have me flogged regardless.
+    EMISSARY: The Arv’mahdant was never truly a captive slave, and I feel no shame in releasing him – though I imagine the Arv’ae will have me flogged regardless.
     
-    KAELA
-    He just doesn’t want that flogging to turn into a beheading.
+    KAELA: He just doesn’t want that flogging to turn into a beheading.
     
-    EMISSARY
-    I admit, the punishment for losing my captives would be... harsh.
+    EMISSARY: I admit, the punishment for losing my captives would be... harsh.
     
-    KAELA
-    Ooh, and maybe they'll throw in some good ol' fashioned castration. First one head, then the other.
+    KAELA: Ooh, and maybe they'll throw in some good ol' fashioned castration. First one head, then the other.
     
-    EMISSARY
-    (deadpan)
-    Enough.
+    EMISSARY: (deadpan) Enough.
     -> Emissary
 
 *[“Let me take the guy who came willingly.]
-    EMISSARY
-    ...
+    EMISSARY: ...
     {
-        -rep_emissary > 0: 
-        Fine.
+        -rep_emissary >= 0: 
+        EMISSARY: Fine.
         -else:
-        No. Whatever conflicts you get embroiled in, I can't let one of my captives get caught up in it.
+        EMISSARY: No. Whatever conflicts you get embroiled in, I can't let one of my captives get caught up in it.
         
-        CAPTIVE
-        I...
+        CAPTIVE: I...
 
-        EMISSARY
-        Ananth can't protect you. You put yourself in my care. Trust me.
+        EMISSARY: Ananth can't protect you. You put yourself in my care. Trust me.
         
-        CAPTIVE
-        Yes, Sir.
-        
-        KAELA
-        Dude, what?
+        CAPTIVE: Yes, Sir.
     }
+    KAELA: You're not seriously considering this!
     -> Emissary
     
 *[“Whatever it takes to do this peacefully.]
-    KAELA
-    You can’t be serious!
+    KAELA: You can’t be serious!
     
-    EMISSARY
-    Thank you, Arv’mahdant. Go in peace.
+    EMISSARY: Thank you, Arv’mahdant. Go in peace.
     -> surrender
 
 
 *[“Fine, take them. I really don’t care.]
-    KAELA
-    Wha— Oh, you bastard!
+    KAELA: Wha— Oh, you bastard!
     
-    EMISSARY
-    I--okay, very well. Go in peace.
+    EMISSARY: I--okay, very well. Go in peace.
     -> surrender
 
 *[“I can’t let you take them.]
     The EMISSARY sighs, looking rather put out by all this.
     
-    EMISSARY
-    ...Then I will do what I must.
+    EMISSARY: ...Then I will do what I must.
     -> fight
 
 - -> Radio
@@ -713,15 +610,11 @@ Return the captives to me and escape peacefully, or fight.
 
 = surrender
     
-KAELA
-You really think we’ll come quietly?
+KAELA: You really think we’ll come quietly?
 
-EMISSARY
-I have six men stationed just outside this room so, assuming you value your life, yes.
+EMISSARY: I have six men stationed just outside this room so, assuming you value your life, yes.
 
-KAELA
-(looking at Ananth)
-…You’ll regret this.
+KAELA: (looking at Ananth) …You’ll regret this.
 
 -> Radio
 
@@ -734,102 +627,80 @@ KAELA
 = Radio
 Ananth rushes to the radio and switches it on.
 
-ANANTH
-Hello?
+ANANTH: Hello?
 
 {
     -fight: 
     They wait.
     
-    KAELA
-    Give me that. / This is Kaela. If anyone’s out there, I’m an ex-member of the Reavers, and boy do I have some juicy secrets to share. They abandoned me to the Old Del, and you can find me at The Hole. Dock’s free.
+    KAELA: Give me that.
+    KAELA: This is Kaela. If anyone’s out there, I’m an ex-member of the Reavers, and boy do I have some juicy secrets to share. They abandoned me to the Old Del, and you can find me at The Hole. Dock’s free.
     
-    ANANTH
-    What if your old gang comes to shut you up?
+    ANANTH: What if your old gang comes to shut you up?
     
-    KAELA
-    They fled the area when their job went bad.
+    KAELA: They fled the area when their job went bad.
 }
 {
     -surrender: 
     He waits.
     
-    ANANTH
-    This is Ananth. I… I don’t know a whole lot, but I woke up in a prison run by the Delgorens. People keep calling me the Arv’mahdant, and I—I… / Look, I don’t know what’s happening, but if there’s someone – anyone – out there who can help me, please, come find me!
+    ANANTH: This is Ananth. I… I don’t know a whole lot, but I woke up in a prison run by the Delgorens. People keep calling me the Arv’mahdant, and I—I… 
+    ANANTH: Look, I don’t know what’s happening, but if there’s someone – anyone – out there who can help me, please, come find me!
 }
-RITA (O.S.)
-Ananth?
+RITA (O.S.): Ananth?
 
-ANANTH
-Who’s that?
+ANANTH: Who’s that?
 
-RITA (O.S.)
-It can’t be! / Ananth, it’s me, Rita. Where are you?
+RITA (O.S.): It can’t be!
+RITA (O.S.): Ananth, it’s me, Rita. Where are you?
 
-ANANTH
-I’m in some kind of prison. The Delgorens have me captured.
+ANANTH: I’m in some kind of prison. The Delgorens have me captured.
 
-RITA
-The Hole?! Shit! Hang on, I’ll see if there’s anyone nearby…
+RITA: The Hole?! Shit! Hang on, I’ll see if there’s anyone nearby…
 {
     -fight: 
-    KAELA
-    Rita? That’s your sister, isn’t it?
+    KAELA: Rita? That’s your sister, isn’t it?
 }
 {
     -surrender:
-    ANANTH
-    Wait, you didn’t tell me who you were!
+    ANANTH: Wait, you didn’t tell me who you were!
     
-    RITA
-    It’s Rita, dammit! Your sister!
+    RITA: It’s Rita, dammit! Your sister!
 }
 
 {
     -fight:
-    KAELA
-    Can you get us?
+    KAELA: Can you get us?
     
-    RITA
-    Yes, yes, just... get to the dock. The one who's picking you up won't want to stick around. / Ananth, we'll talk more when you're back.
+    RITA: Yes, yes, just... get to the dock. The one who's picking you up won't want to stick around. / Ananth, we'll talk more when you're back.
     
-    KAELA
-    Be there in a jiffy.
+    KAELA: Be there in a jiffy.
     
     She turns off the radio.
     
-    KAELA
-    Your sister’s got the resources to come get us? I suppose I shouldn’t look a gift horse in the mouth, but still, weird.
+    KAELA: Your sister’s got the resources to come get us? I suppose I shouldn’t look a gift horse in the mouth, but still, weird.
     
-    ANANTH
-    What’s weird about it?
+    ANANTH: What’s weird about it?
     
-    KAELA
-    You two are the spawn of Agatha. You were supposed to have died while killing that demon, and now your sister has enough clout to mobilize a ship in Delgoren airspace? Do you know what she’s been doin’ since you’ve been gone?
+    KAELA: You two are the spawn of Agatha. You were supposed to have died while killing that demon, and now your sister has enough clout to mobilize a ship in Delgoren airspace? Do you know what she’s been doin’ since you’ve been gone?
     
-    ANANTH
-    I’m having some trouble remembering things, if that weren’t obvious.
+    ANANTH: I’m having some trouble remembering things, if that weren’t obvious.
     
-    KAELA
-    Well, there’s been rumours that your family was colludin’ – fakin’ this whole ‘holy quest’ thing to consolidate power. Make you out to be the divine saviour while your mom goes into hiding.
+    KAELA: Well, there’s been rumours that your family was colludin’ – fakin’ this whole ‘holy quest’ thing to consolidate power. Make you out to be the divine saviour while your mom goes into hiding.
     
     *[“I’ve been dead this whole time!]
-        KAELA
-        I’m not blaming you! It’s your sister I’m worried about!
+        KAELA: I’m not blaming you! It’s your sister I’m worried about!
     
     *[“Do you really believe that?]
-        KAELA
-        I’m not blaming you! But if your sister has all these resources then… maybe the rumours have some truth to ‘em?
+        KAELA: I’m not blaming you! But if your sister has all these resources then… maybe the rumours have some truth to ‘em?
     
     *["Hell, maybe.]
-        KAELA
-        I guess we’ll just have to see…
-        We should go clear out the dock. I’m sure we haven’t seen the last of these guards.
+        KAELA: I guess we’ll just have to see…
+        KAELA: We should go clear out the dock. I’m sure we haven’t seen the last of these guards.
 }
 {
     -surrender:
-    RITA
-    Just... get to the dock. We'll talk when you're home.
+    RITA: Just... get to the dock. We'll talk when you're home.
     -> Docks
 }
 
@@ -844,48 +715,42 @@ EXT. THE HOLE - DOCKS
 }
 {
     -fight:
-    DELGOREN
-    Get him!
+    DELGOREN: Get him!
     -> docks_02
 }
 
 = delgorens_01
-DELGOREN
-Stand down, men! Let the Arv’mahdant pass.
-You ought to stay. The Arv’ae have a lot to ask you.
+DELGOREN: Stand down, men! Let the Arv’mahdant pass.
+DELGOREN: You ought to stay. The Arv’ae have a lot to ask you.
 
 *[“Sorry, I already called the ship…]
 *[“I have places to be.]
 *[“I don’t care about your leaders.]
-    DELGOREN
-    Hmph.
+    DELGOREN: Hmph.
     
-- DELGOREN
-Very well. Peace be with you, Arv’mahdant.
+- DELGOREN: Very well. Peace be with you, Arv’mahdant.
 -> docks_02
 
 = docks_02
 
 After clearing the dock, an airship lands, bound for Fol’deve.
 
-CAPTAIN
-(frantic)
-Get in!
+CAPTAIN: (frantic) Get in!
 
 
 INT. AIRSHIP
 
-PASSENGER
-What are we doing in Delgoren airspace?!
+PASSENGER: What are we doing in Delgoren airspace?!
 
-CAPTAIN
-Fol’devean business. Go back to your drinks. / Are you okay, son?
+CAPTAIN: Fol’devean business. Go back to your drinks.
+CAPTAIN: Are you okay, son?
 
-ANANTH
-I… think so.
+ANANTH: I… think so.
 
-CAPTAIN
-Well, welcome aboard. Rita sent word that you were to be taken straight to Fol’deve. / She did ask that you keep a low profile. Try to keep that in mind. / Sorry for the rushed greeting, but I have to get back. We’re all anxious to get out of Delgoren airspace. / If you need me, come see me in the cockpit.
+CAPTAIN: Well, welcome aboard. Rita sent word that you were to be taken straight to Fol’deve.
+CAPTAIN: She did ask that you keep a low profile. Try to keep that in mind.
+CAPTAIN: Sorry for the rushed greeting, but I have to get back. We’re all anxious to get out of Delgoren airspace.
+CAPTAIN: If you need me, come see me in the cockpit.
 
 The player can go to sleep to pass the time (cut to Foldeve_Docks). The ship itself is populated with random passengers.
 

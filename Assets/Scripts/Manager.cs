@@ -83,7 +83,6 @@ public class Manager : MonoBehaviour {
 
 	public Entity Ananth = null;
 
-	public Transform choiceAnchor;
 
 	public GameObject particleEffect = null;
 
@@ -99,6 +98,7 @@ public class Manager : MonoBehaviour {
 	float viewWidth = 800 - (30 * 2) - 7;
 	public Scrollbar scrollBar;
 
+	public Transform choiceAnchor;
 	public GameObject textPrefab;
 	public GameObject choicePrefab;
 	public GameObject dividerPrefab;
@@ -389,6 +389,7 @@ public class Manager : MonoBehaviour {
 					linesToWrite = textBroken.ToList();
 					pause = true;
 				}
+
 				lastLine = format;
 			}
 		}
