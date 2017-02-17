@@ -48,11 +48,12 @@
   <ItemGroup>
      <Compile Include="Assets\ChoiceObject.cs" />
      <Compile Include="Assets\ChoiceUI.cs" />
-     <Compile Include="Assets\FlatUI.cs" />
+     <Compile Include="Assets\FadeElement.cs" />
      <Compile Include="Assets\Interactable.cs" />
      <Compile Include="Assets\NovelManager.cs" />
      <Compile Include="Assets\Page.cs" />
      <Compile Include="Assets\PositionMarker.cs" />
+     <Compile Include="Assets\ResizeInterface.cs" />
      <Compile Include="Assets\ResizeablePanel.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\Sidebar.cs" />
      <Compile Include="Assets\TextBlock.cs" />
      <Compile Include="Assets\UIFadeIn.cs" />
+     <Compile Include="Assets\UIManager.cs" />
      <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrAudioPlayer.cs" />
      <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrCacheSurrogate.cs" />
      <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrParams.cs" />

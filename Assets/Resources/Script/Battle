@@ -1,13 +1,28 @@
 VAR environment = "plains"
 
-=== battle(_enemy)
+=== death
+    You died.
+    -> DONE
 
+
+=== battle(_enemy, -> success, -> defeat)
 VAR enemy = ""
 ~enemy = _enemy
-
 VAR enemy_health = 30
 
--> start
+VAR action_points = 0
+
+VAR result = -1
+
+~result = fight(_enemy)
+
+{result==0:-> success|->defeat}
+
+
+=== function fight(_enemy) ===
+    [Fights are handled by the game engine]
+    ~return 0
+
 
 == start
 
@@ -21,6 +36,7 @@ VAR turn = 0
 {
     -initiative > 8:
         The {enemy} takes the initiative.
+        ~ turn = 1
         -> enemy_turn
     -initiative > 5:
         You take the initiative.
@@ -33,14 +49,24 @@ VAR turn = 0
     The {enemy} is unaware of your presence.
 
     -> next
-    
+
 == player_turn
-    ~enemy_health = enemy_health - RANDOM(1,20)
-    VAR action_points = 5
-    
-    It's your turn.
-    
-    -> next
+    ~action_points = action_points + 5
+    {action_points>7: action_points=7}
+
+    It's your turn. <>
+    -> player_actions
+
+== player_actions
+    You have {action_points} seconds left to act.
+    + {action_points>=3} [Attack (3s)]
+        ~action_points = action_points-3
+        ~enemy_health = enemy_health - RANDOM(1,20)
+        -> player_actions
+    + [End turn]
+        You keep your distance and store energy.
+
+    - -> next
 
 == enemy_turn
     ~health = health - RANDOM(1,20)
@@ -49,15 +75,8 @@ VAR turn = 0
     -> next
 
 == next
-    {
-        -enemy_health <= 0: 
-            The {enemy} falls dead.
-            -> DONE
-        -health <= 0: 
-            You fall dead.
-            -> DONE
-    }
-    
+    <- check_damage
+
     ~turn++
     VAR current_turn = 0
     ~current_turn = turn mod 2
@@ -65,5 +84,14 @@ VAR turn = 0
         -current_turn == 0: -> player_turn
         -else: -> enemy_turn
     }
-    
-    -> DONE
+    ->->
+
+== check_damage
+    {
+        -enemy_health <= 0:
+            ~result = 0
+            The {enemy} falls dead.
+        -health <= 0:
+            ~result = 1
+            You fall dead.
+    }

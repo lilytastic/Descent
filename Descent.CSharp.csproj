@@ -83,7 +83,7 @@
   <ItemGroup>
     <Compile Include="Assets\ChoiceObject.cs" />
     <Compile Include="Assets\ChoiceUI.cs" />
-    <Compile Include="Assets\FlatUI.cs" />
+    <Compile Include="Assets\UIManager.cs" />
     <Compile Include="Assets\Interactable.cs" />
     <Compile Include="Assets\NovelManager.cs" />
     <Compile Include="Assets\Page.cs" />

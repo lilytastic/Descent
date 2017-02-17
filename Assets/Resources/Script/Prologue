@@ -12,6 +12,7 @@ VAR prologue_jez_acceptedhelp = false
 VAR prologue_toldrita = true
 VAR prologue_wenttoarvvurdeve = true
 
+
 === Old_MQ00
 
 AGATHA (O.S.)
@@ -22,44 +23,41 @@ Let's see... where to begin?
 = skip_option
 + [Give them a detailed prologue.]
 + [Keep it short.]
-    There are several choices you can make in this prologue that will come up later. If you do the short version, some of these choices will be set to default values.
-    ++ [Yes.]
-        AGATHA (O.S.): I had two children. Rita was the eldest, but the younger one, Ananth, is who this story is really about.
-        AGATHA (O.S.): The native religion where we lived was -- with all the love and respect my secular heart can give -- a _pain in the goddamn ass_. Like most religions, they had a morbid fascination with doomsday prophecies. They in particular clung to this bit of Scripture about the 'Arv'mahdant' -- a holy prophet that would one day kill a false Goddess, and shepherd their people through the end times.
-        Choose a basic archetype for your character.
-        *** [Independent (+Perks)]
-            AGATHA (O.S.): I didn't make many friends among the priesthood. They thought I was that false Goddess that would one day have to be destroyed. Enter Ananth, who wanted nothing more than freedom and adventure. He didn't take to religious teachings, but it was enough to turn him against me. In that, they succeeded.
-            ~study = "sword"
-            ~prologue_assailantskilled = 2
-            ~prologue_lostear = false
-            ~prologue_toldrita = true
-            ~prologue_jez_met = true
-            ~prologue_jez_acceptedhelp = false
-            ~prologue_jez_beaten = true
-            ~prologue_wenttoarvvurdeve = false
-        *** [Sheltered (+Stats)]
-            AGATHA (O.S.): I didn't make many friends among the priesthood. They thought I was that false Goddess that would one day have to be destroyed. Ananth, however, never left my side. I taught him everything I knew, and he never had much interaction with priests. One day they captured him and tried to turn him against me, but to no avail.
-            ~study = "dance"
-            ~prologue_assailantskilled = 1
-            ~prologue_lostear = false
-            ~prologue_toldrita = false
-            ~prologue_jez_met = false
-            ~prologue_jez_beaten = false
-            ~prologue_wenttoarvvurdeve = false
-        *** [Religious (+Lore)]
-            AGATHA (O.S.): I didn't make many friends among the priesthood. They thought I was that false Goddess that would one day have to be destroyed. Ananth, on the other hand, was a quiet soul who just wanted a place to belong. So, he was agreeable to religious teachings... and was easily cowed into working against me.
-            ~study = "art"
-            ~prologue_assailantskilled = 0
-            ~prologue_lostear = true
-            ~prologue_toldrita = true
-            ~prologue_jez_met = false
-            ~prologue_jez_beaten = false
-            ~prologue_wenttoarvvurdeve = true
-        ---
-        AGATHA (O.S.): There was a coup. Riots, fires, assassination plots... all very exciting stuff, but not where we want to begin. All you need to know, for now, is that it was violent. During the chaos, Ananth became lost. He woke up in a place he didn't recognize, and simply started walking the earth. This continued for months. Eventually, he found he had _no_ intention of coming home.
-        -> MQ_01
-    ++ [No.]
-        -> skip_option
+There are several choices you can make in this prologue that will come up later. If you do the short version, some of these choices will be set to default values.
+++ [Yes.]
+    AGATHA (O.S.): I had two children. Rita was the eldest, but the younger one, Ananth, is who this story is really about.
+    AGATHA (O.S.): The native religion where we lived was -- with all the love and respect my secular heart can give -- a _pain in the goddamn ass_. Like most religions, they had a morbid fascination with doomsday prophecies. They in particular clung to this bit of Scripture about the 'Arv'mahdant' -- a holy prophet that would one day kill a false Goddess, and shepherd their people through the end times.
+    Choose a basic archetype for your character.
+    *** [Independent (+Perks)]
+        AGATHA (O.S.): I didn't make many friends among the priesthood. They thought I was that false Goddess that would one day have to be destroyed. Enter Ananth, who wanted nothing more than freedom and adventure. He didn't take to religious teachings, but it was enough to turn him against me. In that, they succeeded.
+        ~study = "sword"
+        ~prologue_assailantskilled = 2
+        ~prologue_lostear = false
+        ~prologue_toldrita = true
+        ~prologue_jez_met = true
+        ~prologue_jez_acceptedhelp = false
+        ~prologue_jez_beaten = true
+        ~prologue_wenttoarvvurdeve = false
+    *** [Sheltered (+Stats)]
+        AGATHA (O.S.): I didn't make many friends among the priesthood. They thought I was that false Goddess that would one day have to be destroyed. Ananth, however, never left my side. I taught him everything I knew, and he never had much interaction with priests. One day they captured him and tried to turn him against me, but to no avail.
+        ~study = "dance"
+        ~prologue_assailantskilled = 1
+        ~prologue_lostear = false
+        ~prologue_toldrita = false
+        ~prologue_jez_met = false
+        ~prologue_jez_beaten = false
+        ~prologue_wenttoarvvurdeve = false
+    *** [Religious (+Lore)]
+        AGATHA (O.S.): I didn't make many friends among the priesthood. They thought I was that false Goddess that would one day have to be destroyed. Ananth, on the other hand, was a quiet soul who just wanted a place to belong. So, he was agreeable to religious teachings... and was easily cowed into working against me.
+        ~study = "art"
+        ~prologue_assailantskilled = 0
+        ~prologue_lostear = true
+        ~prologue_toldrita = true
+        ~prologue_jez_met = false
+        ~prologue_jez_beaten = false
+        ~prologue_wenttoarvvurdeve = true
+    ---
+    -> DONE
 
 -
 

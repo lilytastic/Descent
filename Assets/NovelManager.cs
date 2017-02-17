@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using Ink.Runtime;
 
 public class NovelManager : MonoBehaviour {
@@ -12,12 +13,21 @@ public class NovelManager : MonoBehaviour {
 
 	List<string> linesToWrite = new List<string>();
 
+	private string[] silentOptions = new string[] {"...","say nothing","remain silent"};
+
 	StoryManager.LineFormat lastLine = StoryManager.LineFormat.Action;
 	string lastSpeaker = "";
 	Entity currentSpeaker = null;
 
 	public ChoiceObject lastChoice = null;
+	public GameObject lastTextBlock = null;
 	public List<Transform> choices = new List<Transform>();
+	public List<Choice> pendingChoices = new List<Choice>();
+
+	public bool multiblock = true;
+	public bool indent = false;
+	public bool continueMaximally = false;
+	public float scrollSpeed = 3; // -1 for insta-scroll
 
 	public ScrollRect scroll;
 	public RectTransform scrollTransform;
@@ -32,6 +42,7 @@ public class NovelManager : MonoBehaviour {
 
 	public List<GameObject> pages = new List<GameObject>();
 
+	List<StoryLine> lines = new List<StoryLine>();
 	Rect lastChoicePosition;
 
 	static NovelManager _instance;
@@ -75,16 +86,44 @@ public class NovelManager : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		NewGame();
 		//StartCoroutine(WritePage());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetMouseButtonDown(0)) {
+			StartCoroutine(Next());
+		}
 	}
 
 	public void NewGame() {
-		StartCoroutine(WritePage());
+		ClearText();
+		ClearChoices();
+		
+		StartCoroutine(Next());
+		//StartCoroutine(WritePage());
+	}
+
+	public void ClearText() {
+		for (int i = 0; i < textBlockAnchor.transform.childCount; i++) {
+			Transform t = textBlockAnchor.transform.GetChild(i);
+			if (t != choiceAnchor) {Destroy(t.gameObject);}
+		}
+		for (int i = 0; i < pages.Count; i++) {
+			if (pages[i].gameObject) {Destroy(pages[i].gameObject);}
+		}
+		pages.Clear();
+	}
+	public void ClearChoices() {
+		for (int i = 0; i < choiceAnchor.transform.childCount; i++) {
+			Transform t = choiceAnchor.transform.GetChild(i);
+			Destroy(t.gameObject);
+		}
+		for (int i = 0; i < choices.Count; i++) {
+			if (choices[i]!=null && choices[i].gameObject) {Destroy(choices[i].gameObject);}
+		}
+		choices.Clear();
 	}
 
 	string HandleDialogue(string text) {
@@ -102,103 +141,278 @@ public class NovelManager : MonoBehaviour {
 		return text;
 	}
 
-	IEnumerator WritePage(string prepend = "") {
-		Debug.Log("Pls");
-		GameObject go = GameObject.Instantiate(textBlockPrefab);
-		pages.Add(go);
-		go.transform.SetParent(textBlockAnchor.transform);
-		Text t = go.GetComponentInChildren<Text>();
-
-		string page = "";
-		if (prepend != "") { page = prepend + "\n\n"; }
+	List<StoryLine> GetLines() {
+		List<StoryLine> lines = new List<StoryLine>();
+		//int _lines = 0;
 		while (StoryManager.story.canContinue) {
 			string line = StoryManager.story.Continue().Trim();
-			StoryManager.LineFormat format = StoryManager.GetFormat(line);
-			if (format == StoryManager.LineFormat.Dialogue) { line = HandleDialogue(line); }
-			page += line + "\n\n";
-		}
-		t.text = page.Trim()+"\n";
+			StoryLine _line = new StoryLine();
+			_line.text = HandleLine(line);
+			_line.tags = StoryManager.story.currentTags.ToArray();
+			lines.Add(_line);
+		}	
+		return lines;	
+	}
 
-		choiceAnchor.SetAsLastSibling();
+	List<Choice> GetChoices(int choiceIndex) {
+		List<Choice> _choices = new List<Choice>();
+		_choices.Add(StoryManager.story.currentChoices[choiceIndex]);
+		return _choices;
+	}
 
-		StartCoroutine(LoadChoices());
+	string CleanText(string s) {
+		return s.Trim().ToLower().Replace("!","");
+	}
 
-		
-		/*
-		GameObject go = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/Page"));
-		go.transform.SetParent(scriptView.transform);
-		Text t = go.GetComponentInChildren<Text>();
-
-		choiceAnchor.SetAsLastSibling();
-
-		string page = "";
-		if (prepend != "") { page = prepend + "\n"; }
-		while (StoryManager.story.canContinue) {
-			string line = StoryManager.story.Continue().Trim();
-			StoryManager.LineFormat format = StoryManager.GetFormat(line);
-			if (format == StoryManager.LineFormat.Dialogue) { line = HandleDialogue(line); }
-			page += line + "\n";
-		}
-
-		t.text = page.Trim();
-		ResizeablePanel lastChoicePanel = null;
-		if (lastChoice) {
-			lastChoicePanel = lastChoice.GetComponent<ResizeablePanel>();
-			if (!lastChoicePanel) { lastChoicePanel = lastChoice.gameObject.AddComponent<ResizeablePanel>(); }
-		}
-		UIFadeIn fade = go.GetComponent<UIFadeIn>();
-		fade.delay = 0.3f;
-
-		yield return new WaitForSeconds(0.2f);
-
-		HorizontalLayoutGroup hlg = go.GetComponent<HorizontalLayoutGroup>();
-		float padding = 0; if (hlg) { padding += hlg.padding.top + hlg.padding.bottom; }
-		if (lastChoice) {
-			go.GetComponent<ResizeablePanel>().desiredSize = new Vector2(800, t.preferredHeight + 5 + padding);
-			if (lastChoice) { lastChoice.rect.sizeDelta = new Vector2(lastChoicePanel.GetComponent<RectTransform>().sizeDelta.x, t.preferredHeight + 5 + padding); }
-		}
+	IEnumerator Next() {
+		GameObject duh = EventSystem.current.currentSelectedGameObject;
+		//Debug.Log(duh ? duh.name : "No object");
+		if (duh && duh.GetComponent<Button>()) {yield return null;}
 		else {
-			go.GetComponent<RectTransform>().sizeDelta = new Vector2(800, t.preferredHeight + 5 + padding);
-		}
-		choiceAnchor.GetComponent<ResizeablePanel>().desiredSize = new Vector2(800, StoryManager.story.currentChoices.Count * 51f);
-
-		yield return new WaitForSeconds(0.2f);
-
-		RectTransform rect = go.GetComponent<RectTransform>();
-		//rect.anchoredPosition = new Vector2(scriptView.sizeDelta.x / 2, rect.sizeDelta.y);		
-		choiceAnchor.SetAsLastSibling(); ;
-		
-		StartCoroutine(LoadChoices());
-
-		yield return new WaitForSeconds(0.2f);
-
-		Page p = go.GetComponent<Page>();
-		//p.desiredPosition = new Vector2(p.rect.anchoredPosition.x, (-scriptView.sizeDelta.y)+p.rect.sizeDelta.y);
-		scroll.verticalNormalizedPosition = 0;
-		yield return new WaitForSeconds(6f);
-
-		int maxPages = 5;
-		if (scriptView.transform.childCount > maxPages) {
-			for (int i = 0; i < scriptView.transform.childCount - maxPages; i++) {
-				Destroy(scriptView.transform.GetChild(i).gameObject);
+			if (lines.Count == 0 && StoryManager.story.canContinue) {
+				lines = GetLines();
+				pendingChoices = StoryManager.story.currentChoices;
+			}
+			else if (lines.Count == 0 && !StoryManager.story.canContinue) {
+				//Debug.Log("DOOP");
+				foreach (Choice c in StoryManager.story.currentChoices) {
+					string cleanText = CleanText(c.text);
+					//Debug.Log(cleanText);
+					if (silentOptions.Contains(cleanText)) {
+						Debug.Log(":)");
+						StartCoroutine(SelectChoice(c.index));
+					}
+				}
+			}
+			//Debug.Log(lines.Count);
+			if (lines.Count > 0) {
+				StoryLine line = lines[0];
+				lines.RemoveAt(0);
+				//Debug.Log(line.text);
+				StartCoroutine(WriteLine(line));
+				if (lines.Count == 0) {
+					StartCoroutine(LoadChoices(pendingChoices));
+					pendingChoices.Clear();
+					//LoadChoices();
+				}
 			}
 		}
-		*/
+
 		yield return null;
+	}
+
+	IEnumerator ManageTextBlock() {		
+		GameObject go = null;
+		float height = 0;
+
+		if (multiblock && lastTextBlock != null) {
+			FadeElement _fade = lastTextBlock.GetComponent<FadeElement>();
+			if (_fade && _fade.target > 0.65f) {_fade.target = 0.65f;}
+		}
+	
+		foreach (GameObject page in pages) {
+			if (page != null) {
+				RectTransform _r = page.GetComponent<RectTransform>();
+				height += _r.sizeDelta.y;
+			}
+		}
+		if (multiblock || lastTextBlock==null) {
+			if (!multiblock) {
+				foreach (GameObject page in pages) {FadeElement _fade = page.GetComponent<FadeElement>(); _fade.target = 0;}
+				yield return new WaitForSeconds(1f);				
+				ClearText(); 
+				scroll.verticalNormalizedPosition = 1;
+				yield return new WaitForSeconds(0.5f);
+			}
+			go = GameObject.Instantiate(textBlockPrefab);
+			go.GetComponentInChildren<Text>().text = "";
+			pages.Add(go);
+			go.transform.SetParent(textBlockAnchor.transform);
+			lastTextBlock = go;			
+			lastTextBlock.GetComponent<CanvasGroup>().alpha = 0;
+			lastTextBlock.GetComponent<FadeElement>().target = 1;
+		}
+		else {
+			go = lastTextBlock;
+		}
+		choiceAnchor.SetAsLastSibling();
+
+		Canvas.ForceUpdateCanvases();
+		RectTransform r = lastTextBlock.GetComponent<RectTransform>();
+		float pos = r.anchoredPosition.y+r.sizeDelta.y;
+		float yOffset = 0;
+		float totalHeight = scriptView.sizeDelta.y;
+		float offset = (pos+yOffset)/totalHeight;
+		//Debug.Log(offset);
+		float scrollPoint = offset;
+		scroll.verticalNormalizedPosition = offset;
+		//StartCoroutine(ScrollTo(pos));
+	}
+
+	IEnumerator ScrollTo(float pos) {		
+		for (float i = 0; i < 1; i+=Time.fixedDeltaTime) {
+			float offset = pos/scriptView.sizeDelta.y;
+			if (scroll.verticalNormalizedPosition == offset) {break;}
+			if (scroll.verticalNormalizedPosition > offset) {
+				scroll.verticalNormalizedPosition += Time.fixedDeltaTime;
+				if (scroll.verticalNormalizedPosition < offset) {scroll.verticalNormalizedPosition = offset;}
+			}
+			else if (scroll.verticalNormalizedPosition < offset) {
+				scroll.verticalNormalizedPosition -= Time.fixedDeltaTime;
+				if (scroll.verticalNormalizedPosition > offset) {scroll.verticalNormalizedPosition = offset;}
+			}
+			scroll.verticalNormalizedPosition = offset;
+			yield return new WaitForSeconds(Time.fixedDeltaTime);
+		}
+	}
+
+	IEnumerator WriteLine(StoryLine line) {
+		List<Choice> _choices = StoryManager.story.currentChoices;
+		yield return ManageTextBlock();
+		
+		GameObject go = lastTextBlock;
+		Text t = go.GetComponentInChildren<Text>();
+		RectTransform r = lastTextBlock.GetComponent<RectTransform>();
+		CanvasGroup g = lastTextBlock.GetComponent<CanvasGroup>();
+		lastTextBlock.GetComponent<FadeElement>().target = 1;
+
+		t.text = line.text.Trim()+"\n";
+		if (line.tags.Length > 0) {
+			foreach (string tag in line.tags) {
+				Debug.Log(tag);
+				string[] tokens = tag.Split(':');
+				for (int i = 0; i < tokens.Length; i++) {tokens[i] = tokens[i].Trim();}
+				if (tokens.Length > 1) {
+					if (tokens[0] == "startChoice") {
+						string[] derp = tokens[1].Split(','); for (int i = 0; i < derp.Length; i++) {derp[i] = derp[i].Trim();}
+						if (derp.Length >= 1) {
+							foreach (string s in derp) {
+								CheckStartChoice(s);
+							}
+						}
+						else {
+							CheckStartChoice(tokens[1]);
+						}
+					}
+					else if (tokens[0] == "endChoice") {
+						int choiceIndex = -1;
+						int.TryParse(tokens[1], out choiceIndex);
+						if (choiceIndex != -1) {							
+							for (int ii = 0; ii < choices.Count; ii++) {
+								ChoiceObject _choice = choices[ii].GetComponent<ChoiceObject>();
+								if (_choice.choiceIndex == choiceIndex) {
+									Destroy(_choice.gameObject);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		yield return null;
+	}
+
+	void CheckStartChoice(string token) {
+		token = token.Trim();
+		if (token == "all") {		
+			StartCoroutine(LoadChoices(pendingChoices));
+			pendingChoices.Clear();
+		}
+		else {
+			int choiceIndex = -1;
+			int.TryParse(token, out choiceIndex);
+			if (choiceIndex != -1) {
+				StartCoroutine(LoadChoices(GetChoices(choiceIndex)));
+				for (int i = 0; i < pendingChoices.Count; i++) {
+					if (pendingChoices[i].index == choiceIndex) {pendingChoices.RemoveAt(i); break;}
+				}
+				//pendingChoices.RemoveAt(choiceIndex);
+			}
+		}
+	}
+
+	IEnumerator WritePage() {
+		lines = GetLines();
+		List<Choice> _choices = StoryManager.story.currentChoices;
+		yield return ManageTextBlock();
+
+		GameObject go = lastTextBlock;
+		Text t = go.GetComponentInChildren<Text>();
+		RectTransform r = lastTextBlock.GetComponent<RectTransform>();
+		CanvasGroup g = lastTextBlock.GetComponent<CanvasGroup>();
+		lastTextBlock.GetComponent<FadeElement>().target = 1;
+
+		t.text = "";
+		if (pages.Count > 1) {t.text += "\n";}
+		for (int i = 0; i < lines.Count; i++) {
+			t.text += lines[i].text;
+			if (lines[i].tags.Length > 0) {
+				foreach (string tag in lines[i].tags) {
+					Debug.Log(tag);
+					string[] tokens = tag.Split(':');
+					if (tokens.Length > 1) {
+						if (tokens[0] == "startChoice") {
+							int choiceIndex = -1;
+							int.TryParse(tokens[1], out choiceIndex);
+							if (choiceIndex != -1) {
+								StartCoroutine(LoadChoices(GetChoices(choiceIndex)));
+								_choices.RemoveAt(choiceIndex);
+							}
+						}
+						else if (tokens[0] == "endChoice") {
+							int choiceIndex = -1;
+							int.TryParse(tokens[1], out choiceIndex);
+							if (choiceIndex != -1) {							
+								for (int ii = 0; ii < choices.Count; ii++) {
+									ChoiceObject _choice = choices[ii].GetComponent<ChoiceObject>();
+									if (_choice.choiceIndex == choiceIndex) {
+										Destroy(_choice.gameObject);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			t.text += "\n\n";
+		}
+		t.text = t.text.TrimEnd();
+
+		StartCoroutine(LoadChoices(_choices));
+	}
+
+	string HandleLine(string line) {
+		bool opening = true;
+		line = line.Replace("--","—");
+		line = line.Replace("...","…");
+		line = line.Replace(" \""," “");
+		line = line.Replace("\" ","” ");
+		if (line.StartsWith("\"")) {line = line.Remove(0,1); line ="“"+line;}
+		if (line.EndsWith("\"")) {line = line.Remove(line.Length-1,1); line = line+"”";}
+		for (int i = 0; i < line.Length; i++) {
+			if (line[i] == '_') {
+				if (opening) {opening = false; line = line.Remove(i,1); line = line.Insert(i,"<i>"); i+=3;}
+				else {opening = true; line = line.Remove(i,1); line = line.Insert(i,"</i>"); i+=4;}
+			}
+		}
+		return line;
 	}
 
 	IEnumerator ChangeScene(string _scene) {
 		yield return null;
 	}
 
-	IEnumerator LoadChoices() {
-		Debug.Log("Loading Choices");
-		if (StoryManager.story.currentChoices.Count > 0) {
-			for (int i = 0; i < StoryManager.story.currentChoices.Count; ++i) {
-				Choice choice = StoryManager.story.currentChoices[i];
-				//Debug.Log("Choice " + (i + 1) + ". " + choice.text);
+	IEnumerator LoadChoices(List<Choice> _choices) {
+		if (_choices.Count > 0) {
+			for (int i = 0; i < _choices.Count; ++i) {
+				Choice choice = _choices[i];
 
-				int ind = i;
+				if (silentOptions.Contains(CleanText(choice.text))) {
+					continue;
+				}
+
+				int ind = choice.index;
 				GameObject choiceObj = GameObject.Instantiate(choicePrefab);
 				choices.Add(choiceObj.transform);
 				choiceObj.transform.SetParent(choiceAnchor);
@@ -207,46 +421,76 @@ public class NovelManager : MonoBehaviour {
 				rect.anchoredPosition = new Vector2(10*i,rect.anchoredPosition.y);
 
 				UIFadeIn fade = choiceObj.GetComponent<UIFadeIn>();
-				if (fade) { fade.delay = 0.7f + 0.1f * i; }
+				if (fade) { fade.delay = 0.7f + 0.5f * i; }
 
 				Text _t = choiceObj.GetComponentInChildren<Text>();
-				_t.text = choice.text;
-				if (_t.text.StartsWith("\"") || _t.text.StartsWith("“")) {
-					_t.text = "“" + _t.text.Remove(0,1) + "”";
-				}
-				else {
-					//_t.text = "[" + _t.text + "]";
-				}
+				_t.text = ">  "+HandleLine(choice.text);
 
-				//rect.anchoredPosition = new Vector2(scriptView.sizeDelta.x / 2, -55*i);
-				//_t.text = "> " + _t.text;
-				//_t.rectTransform.sizeDelta = new Vector2(viewWidth, 15);
 				Button b = choiceObj.GetComponent<Button>();
+				if (b == null) {b = choiceObj.AddComponent<Button>();} 
 				b.onClick.AddListener(() => StartCoroutine(SelectChoice(ind)));
+				
+				ChoiceObject _choiceObj = choiceObj.GetComponent<ChoiceObject>();
+				if (_choiceObj == null) {_choiceObj = choiceObj.AddComponent<ChoiceObject>();} 
+				_choiceObj.choiceIndex = ind;
+
+				StartCoroutine(UIManager.instance.LoadChoice(choiceObj));
 			}
 		}
+		Canvas.ForceUpdateCanvases();
 		yield return null;
 	}
 
 	IEnumerator SelectChoice(int opt) {
+		Debug.Log("Selected: " + opt);
+		List<CanvasGroup> _yourChoice = new List<CanvasGroup>();
+		for (int i = 0; i < choices.Count; i++) {
+			if (choices[i]==null) {continue;}
+			Destroy(choices[i].GetComponent<Button>());
+			ChoiceObject cObj = choices[i].GetComponent<ChoiceObject>();
+			if (!cObj || cObj.choiceIndex != opt) {choices[i].GetComponent<FadeElement>().target = 0;}
+		}
+		yield return new WaitForSeconds(0.3f);
+
+		if (!multiblock) {
+			foreach (GameObject page in pages) {
+				if (page) {page.GetComponent<FadeElement>().target = 0;}
+			}
+		}
+		yield return new WaitForSeconds(0.7f);
+
+		Transform choiceTransform = null;
+		foreach (Transform t in choices) {
+			if (t==null) {continue;}
+			ChoiceObject _c = t.GetComponent<ChoiceObject>();
+			if (_c && _c.choiceIndex == opt) {choiceTransform = t; break;}
+		}
+		if (choiceTransform) {
+			choiceTransform.GetComponent<FadeElement>().target = 0;
+			yield return new WaitForSeconds(0.5f);
+		}
+		else {
+			yield return new WaitForSeconds(0.5f);
+		}
 		string fullText = StoryManager.story.currentChoices[opt].text.Trim();
 		StoryManager.story.ChooseChoiceIndex(opt);
-		for (int i = 0; i < choices.Count; i++) {
-			Destroy(choices[i].gameObject);
-		}
-		choices.Clear();
-		
-		string prepend = "";
-		if (fullText.StartsWith("\"") || fullText.StartsWith("“")) {
-			//linesToWrite.Add("ANANTH: " + fullText.Remove(0, 1));
-			//prepend = HandleDialogue("ANANTH: " + fullText.Remove(0, 1));
-		}
 
-		//choiceAnchor.GetComponent<ResizeablePanel>().desiredSize = new Vector2(800, 0);
-		
-		yield return StartCoroutine(WritePage(prepend));
-		//yield return StartCoroutine(ScrollToBottomGradual());
+		ClearChoices();
+		lines.Clear();
+		yield return StartCoroutine(Next());
 		yield break;
+	}
+
+	IEnumerator MoveChoiceUp(Transform obj) {		
+		obj.GetComponent<LayoutElement>().ignoreLayout = true;
+		RectTransform rect = obj.GetComponent<RectTransform>();
+		float speed = 3;
+		float y = -10;
+		if (!indent) {y = -36;}
+		for (float i = 0; i < 1; i+=Time.fixedDeltaTime) { 
+			rect.anchoredPosition = Vector2.Lerp(rect.anchoredPosition,new Vector2(rect.anchoredPosition.x,y),Time.fixedDeltaTime*speed);
+			yield return new WaitForSeconds(Time.fixedDeltaTime);
+		}
 	}
 
 	public static Rect RectTransformToScreenSpace(RectTransform transform) {

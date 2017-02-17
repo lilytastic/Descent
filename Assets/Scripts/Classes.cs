@@ -8,6 +8,12 @@ public class World {
 	public Dictionary<string,Room> rooms = new Dictionary<string,Room>();
 }
 
+public class StoryLine {
+	public string text = "";
+	public string[] tags = new string[0];
+	public StoryLine() {}
+}
+
 public class SaveFile {
 	public string storyState = "";
 	public string lastSaved = "";

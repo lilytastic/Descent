@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d4a1b6b1df85e469ba4150023887838e
+timeCreated: 1487107070
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Enriqueta
+  fontNames:
+  - Enriqueta
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a0cf66dc44283403684fc3a4e2aae503, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

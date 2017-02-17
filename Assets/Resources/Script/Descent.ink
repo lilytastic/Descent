@@ -24,6 +24,8 @@ VAR posZ = 0
 VAR faded = false // Is the screen faded to black or no?
 VAR state = "ADV" // ADV, NVL, GAME
 
+VAR day = 0
+
 VAR health = 100
 VAR max_health = 100
 
@@ -52,7 +54,7 @@ VAR mq04_lostfoldeve = false
 VAR knows_ritakilledagatha = false
 
 
--> MQ_01
+-> DemoIntro
 
 === Hub
 #gameplay
@@ -102,5 +104,86 @@ Bleem.
 -> Hub
 
 
+== DemoIntro 
+
+Welcome to the demo for _Descent_.
+
+-> choices
+
+= choices
+Choose a basic archetype for your character.
+
++ [Independent]Your character left their home often to explore the city, and wound up getting involved in the odd adventure before our story takes place. They gained some extra experience in the process, but also made some mistakes that could come up later. 
+    Does this work for you?
+    ** [Yes.]
+        ~study = "sword"
+        ~skill = 5
+        ~intellect = 2
+        ~grace = 2
+        ~prologue_assailantskilled = 2
+        ~prologue_lostear = false
+        ~prologue_toldrita = true
+        ~prologue_jez_met = true
+        ~prologue_jez_acceptedhelp = false
+        ~prologue_jez_beaten = true
+        ~prologue_wenttoarvvurdeve = false
+    ** [No.]
+        -> choices
++ [Sheltered]Your character stayed at home most of their life. Because of this, they're in perfect health, and their reputation is practically a blank slate. They also learned a lot from their mother over the years, so while their experience is limited, they have plenty of skills to work with. 
+    Does this work for you?
+    ** [Yes.]
+        ~study = "machinery"
+        ~skill = 3
+        ~intellect = 5
+        ~grace = 1
+        ~prologue_assailantskilled = 1
+        ~prologue_lostear = false
+        ~prologue_toldrita = false
+        ~prologue_jez_met = false
+        ~prologue_jez_beaten = false
+        ~prologue_wenttoarvvurdeve = false
+    ** [No.]
+        -> choices
++ [Religious]Your character left their home often to spend time with the local priests. They've thus become seasoned in religious lore, and have earned a sparkling reputation with their spiritual leaders. They do, however, have less in the way of skills and experience.
+    Does this work for you?
+    ** [Yes.]
+        ~skill = 1
+        ~intellect = 3
+        ~grace = 5
+        ~study = "art"
+        ~prologue_assailantskilled = 0
+        ~prologue_lostear = true
+        ~prologue_toldrita = true
+        ~prologue_jez_met = false
+        ~prologue_jez_beaten = false
+        ~prologue_wenttoarvvurdeve = true
+    ** [No.]
+        -> choices
+
+-
+-> MQ_01
+
+=== function changeScene(scene) ===
+    VAR description = ""
+    ~return "[{scene}]"
+
+=== function describeTime(_day) ===
+    ~_day = _day mod 1
+    {
+        -_day<0.1:
+            ~return "night"
+        -_day<0.3:
+            ~return "morning"
+        -_day<0.5:
+            ~return "early afternoon"
+        -_day<0.7:
+            ~return "late afternoon"
+        -_day<0.9:
+            ~return "evening"
+        -else:
+            ~return "night"
+    }
+
+
 === function getReputation(name) ===
-~ return 0
+    ~ return 0

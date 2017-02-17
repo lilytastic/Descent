@@ -7,7 +7,7 @@ public class ChoiceUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Color accentColor = FlatUI.instance.accentColor;
+		Color accentColor = UIManager.instance.accentColor;
 		if (accentColor != null) {
 			Button b = GetComponent<Button>();
 			ColorBlock colorBlock = b.colors;

@@ -10,7 +10,7 @@ public class TextBlock : MonoBehaviour {
 	public CanvasGroup textGroup;
 	public Text text;
 
-	private float changeSizeTime = 1f;
+	private float changeSizeTime = 0.1f;
 	private float changeOpacityTime = 1f;
 	private float timeSinceSizeChanged = 0;
 	private float timeSinceOpacityChanged = 0;

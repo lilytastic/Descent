@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ChoiceObject : MonoBehaviour {
 
+	public int choiceIndex = -1;
+	/*
 	public Vector2 desiredPosition = new Vector2();
 	public RectTransform rect;
 
@@ -43,4 +45,5 @@ public class ChoiceObject : MonoBehaviour {
 
 		yield return null;
 	}
+	*/
 }

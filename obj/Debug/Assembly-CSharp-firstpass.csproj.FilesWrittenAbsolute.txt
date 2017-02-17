@@ -19,3 +19,5 @@
 /Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/UnityEngine.Advertisements.dll
+/Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/UnityEngine.Purchasing.dll

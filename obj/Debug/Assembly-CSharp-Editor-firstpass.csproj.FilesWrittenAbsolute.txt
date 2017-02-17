@@ -35,3 +35,5 @@
 /Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/Mono.Cecil.Mdb.dll
 /Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll
 /Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
+/Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/UnityEngine.Advertisements.dll
+/Users/user/Dropbox/Fractal Saga/1 - Descent/interactive novel/Descent/Temp/bin/Debug/UnityEngine.Purchasing.dll

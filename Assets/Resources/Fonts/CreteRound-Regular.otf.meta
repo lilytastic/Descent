@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8f3f40e99023445d8a3b0176b0d4fd39
+timeCreated: 1487115864
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Crete Round
+  fontNames:
+  - Crete Round
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 64f664a29e5674b899ee7fd0f7d0c81e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
