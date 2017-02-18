@@ -46,30 +46,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ChoiceObject.cs" />
-     <Compile Include="Assets\ChoiceUI.cs" />
-     <Compile Include="Assets\FadeElement.cs" />
-     <Compile Include="Assets\Interactable.cs" />
-     <Compile Include="Assets\NovelManager.cs" />
-     <Compile Include="Assets\Page.cs" />
-     <Compile Include="Assets\PositionMarker.cs" />
-     <Compile Include="Assets\ResizeInterface.cs" />
-     <Compile Include="Assets\ResizeablePanel.cs" />
-     <Compile Include="Assets\Scripts\CameraControl.cs" />
-     <Compile Include="Assets\Scripts\Character.cs" />
-     <Compile Include="Assets\Scripts\Classes.cs" />
-     <Compile Include="Assets\Scripts\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\Manager.cs" />
-     <Compile Include="Assets\Scripts\PlayerInput.cs" />
-     <Compile Include="Assets\Scripts\SaveSlots.cs" />
+     <Compile Include="Assets\SaveSlotLoader.cs" />
+     <Compile Include="Assets\Scripts\ChoiceObject.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\Atmosphere.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\Entity.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\SceneRedirect.cs" />
-     <Compile Include="Assets\Scripts\StoryManager.cs" />
-     <Compile Include="Assets\Sidebar.cs" />
-     <Compile Include="Assets\TextBlock.cs" />
-     <Compile Include="Assets\UIFadeIn.cs" />
-     <Compile Include="Assets\UIManager.cs" />
+     <Compile Include="Assets\Scripts\TextBlock.cs" />
+     <Compile Include="Assets\Scripts\UI\FadeElement.cs" />
+     <Compile Include="Assets\Scripts\UI\GameScreen.cs" />
+     <Compile Include="Assets\Scripts\UI\MultiScreen.cs" />
+     <Compile Include="Assets\Scripts\UI\PulseImage.cs" />
+     <Compile Include="Assets\Scripts\UI\ResizeInterface.cs" />
+     <Compile Include="Assets\Scripts\UI\ResizeablePanel.cs" />
+     <Compile Include="Assets\Scripts\UI\ScreenManager.cs" />
+     <Compile Include="Assets\Scripts\UI\UIFadeIn.cs" />
+     <Compile Include="Assets\Scripts\Utility\Classes.cs" />
+     <Compile Include="Assets\Scripts\Utility\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Utility\MethodExtensionForMonoBehaviourTransform.cs" />
+     <Compile Include="Assets\Scripts\Utility\NovelManager.cs" />
+     <Compile Include="Assets\Scripts\Utility\StoryManager.cs" />
+     <Compile Include="Assets\Scripts\Utility\UIManager.cs" />
      <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrAudioPlayer.cs" />
      <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrCacheSurrogate.cs" />
      <Compile Include="Assets\usfxr\Scripts\usfxr\SfxrParams.cs" />

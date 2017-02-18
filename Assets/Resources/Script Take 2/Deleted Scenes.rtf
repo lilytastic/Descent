@@ -1,0 +1,128 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;\csgray\c100000;}
+\margl1440\margr1440\vieww12240\viewh15840\viewkind1
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+# room: virrea\
+\
+3 BU, VIRREA\
+\
+# move: (ananth; (inside cave, outside cave); 3 )\
+You are wandering through a forest. The leaves are a loud, bright red, dripping off the branches. The bark is white. There is no sound but the wind and the rustling of trees.\
+You have lunch. When you're nearly done, you pause, seeing a red moth fluttering in front of your nose.\
+\
+* [Let it perch on your finger]\
+    You extend a finger, and the moth lands on it, closing its wings.\
+    \
+    "You\'92re a cute little guy," you say. "You have any friends?"\
+    \
+    It stares at him for a moment, and then flutters away.\
+\
+* [Watch it]\
+    It meanders around, and then sharply turns towards the forest, disappearing.\
+\
+* [Shoo it away]\
+    It meanders around, and then sharply turns towards the forest, disappearing.\
+\
+- Ananth looks out over the landscape of Virrea. The forest explodes across the horizon, its canopy red and violet below a verdant sky.\
+\
+\
+-> Virrea\
+\
+= Virrea\
+# gameplay\
+// TODO: Have a scene here to represent gameplay. Should show in a different colour in Unity.\
+There are no animals in the forest. Nothing living, in fact, save for the occasional moth. \{ not Virrea_Grove: You begin to hear the whisper of a hundred voices from a nearby grove.\}\
+\
++ [Check out the voices] -> Virrea_Grove\
++ [Leave] -> Pathway\
+\
+= Virrea_Grove\
+    \{ -not soulweave_01: -> soulweave_01 | -> soulweave_fallback \}\
+\
+= soulweave_fallback\
+    ???: What are you still doing here?!\
+    -> Virrea\
+\
+= soulweave_01\
+\
+ANANTH: Hello?\
+\
+The voices pause.\
+\
+SOULWEAVE (???): \'85What are you doing here?\
+\
+*[\'93Sorry, I didn\'92t know.]\
+    ???: Leave. Now.\
+\
+*[\'93I don\'92t know where I am.]\
+    ???: How did you even get here\'85? The Pathway\'92s been closed for\'97\
+    \
+    ???: What\'92s important is that he gets out of here.\
+\
+*[\'93Who are you?]\
+    ???: Look above you. See the silk in the trees?\
+\
+- ???: This forest is infested with a cursed breed of moths. They steal the souls of their victims to spin their silk.\
+\
+???\
+We\'92ve been trapped here for decades.\
+\
+???\
+Some of us, centuries.\
+\
+???\
+Alone. Unable to die.\
+\
+???\
+We don\'92t know how they track their prey, but if even one crosses your path, the swarm will follow.\
+\
+-> soulweave_02\
+\
+= soulweave_02\
+\
+*[\'93Where did they come from?]\
+    ???\
+    Are you not paying attention? We\'92re trying to save you from a fate worse than death.\
+    -> soulweave_02\
+\
+*[\'93How do I get you out?]\
+    ???\
+    You can\'92t! Leave the way you came.\
+    -> soulweave_02\
+\
+*[\'93I could take you with me.]\
+    The voices pause.\
+    \
+    ???\
+    What do you mean?\
+    \
+    ANANTH\
+    I\'92m a traveller. If I can\'92t save you, I can at least get you out of this forest. / You could see the world. Maybe even find a cure.\
+    \
+    The voices talk amongst themselves. There is a pause, as Ananth looks around the forest.\
+    \
+    ???\
+    If you\'92re serious, hurry.\
+\
+\
+*[\'93Thanks for the warning!]\
+    ???\
+    Don\'92t worry about us. Just save yourself.\
+\
+- # switchTo: virrea.grove\
+-> Virrea\
+\
+\
+= Pathway\
+\
+ANANTH senses a Pathway inside the ocean and dives in. He swims for it, but encounters a Guardian. Before he passes out from lack of oxygen, he manages to open the Pathway.\
+\
+CUT TO:\
+\
+-> waking_up\
+\
+}

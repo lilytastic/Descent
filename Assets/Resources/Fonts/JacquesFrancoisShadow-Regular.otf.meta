@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: cba4d36d9e3254203b344e5256734d79
+timeCreated: 1487354949
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jacques Francois Shadow
+  fontNames:
+  - Jacques Francois Shadow
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

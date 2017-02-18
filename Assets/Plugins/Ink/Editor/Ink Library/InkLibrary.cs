@@ -31,7 +31,6 @@ namespace Ink.UnityIntegration {
 		public const string defaultPath = "Assets/InkLibrary.asset";
 		public const string pathPlayerPrefsKey = "InkLibraryAssetPath";
 
-		public const string defaultTemplateFileLocation = "Assets/Plugins/Ink/Template/Template.txt";
 		public TextAsset templateFile;
 		public string templateFilePath {
 			get {
@@ -46,9 +45,14 @@ namespace Ink.UnityIntegration {
 		public List<InkFile> inkLibrary = new List<InkFile>();
 		public List<InkCompiler.CompilationStackItem> compilationStack = new List<InkCompiler.CompilationStackItem>();
 
-		public string customInklecateName;
-		public bool runInklecateWithMono;
-		public string additionalCompilerOptions;
+		public CustomInklecateOptions customInklecateOptions = new CustomInklecateOptions();
+		[System.Serializable]
+		public class CustomInklecateOptions {
+			public bool runInklecateWithMono;
+			public string additionalCompilerOptions;
+			public DefaultAsset inklecate;
+		}
+
 
 		[MenuItem("Edit/Project Settings/Ink", false, 500)]
 		public static void SelectFromProjectSettings() {
@@ -104,7 +108,7 @@ namespace Ink.UnityIntegration {
 			AssetDatabase.SaveAssets ();
 			AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(asset));
 			EditorPrefs.SetString(pathPlayerPrefsKey, defaultPath);
-			asset.templateFile = AssetDatabase.LoadAssetAtPath<TextAsset>(defaultTemplateFileLocation);
+			asset.templateFile = Resources.Load<TextAsset>("InkDefaultTemplate");
 			return asset;
 		}
 

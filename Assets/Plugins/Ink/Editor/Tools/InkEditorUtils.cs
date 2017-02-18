@@ -141,29 +141,32 @@ namespace Ink.UnityIntegration {
 		}
 
 		public static string GetInklecateFilePath () {
-			#if UNITY_EDITOR
-			#if UNITY_EDITOR_WIN
-			string inklecateName = "inklecate_win.exe";
-			#endif
-			// Unfortunately inklecate's implementation uses newer features of C# that aren't
-			// available in the version of mono that ships with Unity, so we can't make use of
-			// it. This means that we need to compile the mono runtime directly into it, inflating
-			// the size of the executable quite dramatically :-( Hopefully we can improve that
-			// when Unity ships with a newer version.
-			#if UNITY_EDITOR_OSX
-			string inklecateName = "inklecate_mac";
-			#endif
-			#endif
-
-			string customInklecateName = InkLibrary.Instance.customInklecateName;
-			if( !(customInklecateName == null || customInklecateName.Length == 0) ) {
-				inklecateName = customInklecateName;
-			}
-
-			string[] inklecateDirectories = Directory.GetFiles(Application.dataPath, inklecateName, SearchOption.AllDirectories);
-			if(inklecateDirectories.Length == 0) {
-				return null;
+			if(InkLibrary.Instance.customInklecateOptions.inklecate != null) {
+				return Path.GetFullPath(AssetDatabase.GetAssetPath(InkLibrary.Instance.customInklecateOptions.inklecate));
 			} else {
+				#if UNITY_EDITOR
+				#if UNITY_EDITOR_WIN
+				string inklecateName = "inklecate_win.exe";
+				#endif
+				// Unfortunately inklecate's implementation uses newer features of C# that aren't
+				// available in the version of mono that ships with Unity, so we can't make use of
+				// it. This means that we need to compile the mono runtime directly into it, inflating
+				// the size of the executable quite dramatically :-( Hopefully we can improve that
+				// when Unity ships with a newer version.
+				#if UNITY_EDITOR_OSX
+				string inklecateName = "inklecate_mac";
+				#endif
+				// Experimental linux build
+				#if UNITY_EDITOR_LINUX
+				string inklecateName = "inklecate_win.exe";
+				#endif
+				#endif
+				
+				string[] inklecateDirectories = Directory.GetFiles(Application.dataPath, inklecateName, SearchOption.AllDirectories);
+				if(inklecateDirectories.Length == 0)
+					return null;
+				Debug.Log(inklecateDirectories[0]+"   "+Path.GetFullPath(inklecateDirectories[0]));
+
 				return Path.GetFullPath(inklecateDirectories[0]);
 			}
 		}
@@ -188,6 +191,59 @@ namespace Ink.UnityIntegration {
 
 		public static string AbsoluteToUnityRelativePath(string fullPath) {
 			return SanitizePathString(fullPath.Substring(Application.dataPath.Length-6));
+		}
+
+		/// <summary>
+		/// Draws a property field for a story using GUILayout, allowing you to attach stories to the player window for debugging.
+		/// </summary>
+		/// <param name="story">Story.</param>
+		/// <param name="label">Label.</param>
+		public static void DrawStoryPropertyField (Story story, GUIContent label) {
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel(label);
+			InkPlayerWindow window = InkPlayerWindow.GetWindow(false);
+			if(EditorApplication.isPlaying && story != null/* && story.state != null*/) {
+				if(window.attached && window.story == story) {
+					if(GUILayout.Button("Detach")) {
+						InkPlayerWindow.Detach();
+					}
+				} else {
+					if(GUILayout.Button("Attach")) {
+						InkPlayerWindow.Attach(story);
+					}
+				}
+			} else {
+				EditorGUI.BeginDisabledGroup(true);
+				GUILayout.Button("Enter play mode to attach to editor");
+				EditorGUI.EndDisabledGroup();
+			}
+			EditorGUILayout.EndHorizontal();
+		}
+
+		/// <summary>
+		/// Draws a property field for a story using GUI, allowing you to attach stories to the player window for debugging.
+		/// </summary>
+		/// <param name="position">Position.</param>
+		/// <param name="story">Story.</param>
+		/// <param name="label">Label.</param>
+		public static void DrawStoryPropertyField (Rect position, Story story, GUIContent label) {
+			position = EditorGUI.PrefixLabel(position, label);
+			InkPlayerWindow window = InkPlayerWindow.GetWindow(false);
+			if(EditorApplication.isPlaying && story != null/* && story.state != null*/) {
+				if(window.attached && window.story == story) {
+					if(GUI.Button(position, "Detach")) {
+						InkPlayerWindow.Detach();
+					}
+				} else {
+					if(GUI.Button(position, "Attach")) {
+						InkPlayerWindow.Attach(story);
+					}
+				}
+			} else {
+				EditorGUI.BeginDisabledGroup(true);
+				GUI.Button(position, "Enter play mode to attach to editor");
+				EditorGUI.EndDisabledGroup();
+			}
 		}
 	}
 }

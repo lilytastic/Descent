@@ -1,0 +1,1251 @@
+VAR times_pleaded_ignorance = 0
+VAR rep_emissary = 0
+
+=== MQ_01
+-> waking_up
+
+
+= waking_up
+    {changeScene("The Hole - Basin")}
+    
+    LIST ChoiceNumbers = one, two, three, four, five, six
+    
+    VAR c = ()
+    
+    "Wake him."
+    -> choices_1 ->
+    
+    Your consciousness comes back in a rush as water pours down on you.
+    
+    *"Augh!"[]
+        A Delgoren guard stands over you with a bucket. He steps aside, revealing a man in the regal armour of an officer. 
+        The officer watches you carefully. "Sorry. You were asleep for three days, and we've not much time," he says.
+    *[NONE]
+    
+    -A Delgoren guard blocks the lone light in the room. He tosses the bucket he'd just upended on you and steps aside, revealing a man in the regal armour of an officer.
+    -> choices_1 ->
+    
+    The officer looks down at you over a pair of sharp cheekbones, calmly mulling over his options while you thrash around.
+    ~c+=(two,five)
+    -> choices_1 ->
+    
+    "You’re supposed to be dead," he says at last.
+    ~c+=(four)
+    -> choices_1 ->
+    
+    You cough up a mouthful of water, and the shock seizing your chest starts to give a little slack. You level your eyes at your captor.
+    -> choices_1 ->
+    
+    
+    -> waking_up_2
+
+= choices_1
+    + {c?two}"That wasn’t necessary."[]
+        The officer watches you carefully. "You were asleep for three days, so I rather think it was," he says.
+    
+    + {c?five}"Who are you?"[]
+
+    + {c?four}"...What?"[]
+        The officer watches you carefully. "Our scouts found you in the forest… several days’ flight from the tower where you supposedly died," he says.
+        
+    + [NONE] 
+        ->->
+    
+    - -> waking_up_2
+
+
+= waking_up_2
+    ~ c = ()
+    
+    He puts a hand on his chest. "My name is Jadar. I've been charged with questioning you before my superiors arrive."
+    
+    The guard cuts in. "Lord Constance is on his way, sir. Expects to be here within the week." 
+    
+    Jadar nods at that. "Constance is not someone you want to disappoint."
+    
+    The guard leans towards him and whispers something in his ear. The look in their eyes makes you nervous.
+    ~c+=(two,three)
+    -> choices_2 ->
+    
+    "...No," Jadar says. "I'll call on you should we require such methods."
+    -> choices_2 ->
+    
+    - (guardexit) The guard exits, leaving you alone with your interrogator.
+    ~c-=(two)
+    ~c+=(one,four)
+    -> choices_2 ->
+    
+    "He's a little eager," says Jadar.
+    -> choices_2 ->
+    
+    You say nothing.
+    
+    Jadar gets down on one knee. "I'd advise you to speak to me."
+    ** "What do you want?"
+        "Answers. Nothing more," he says.
+    ** "Don't hurt me."
+        He smiles, weakly. "I don't plan on it," he says.
+    ** [Spit at him.] You spit on him.
+        Jadar takes a slow, deep breath, and wipes it off. "Charming," he says.
+    ** [Remain silent]
+        He searches your eyes.
+
+    - -> waking_up_3
+
+        
+= choices_2
+    *{c?one}"What do you want?"[]
+        Jadar gets down on one knee. "Answers. No more, no less," he says.
+    
+    *{c?two}"Are you going to torture me?"[]
+        {-not guardexit: 
+            Jadar shoots the guard a look. The guard exits, leaving you alone with your interrogator.
+        }
+        Jadar gets down on one knee. "I’m not planning on it," he says.
+    
+    *{c?three}[Spit at his feet] You spit at his feet.
+        ~ rep_emissary--
+        {-not guardexit: 
+            Jadar shoots the guard a look. The guard exits, leaving you alone with your interrogator.
+        }
+        Jadar gets down on one knee. "I’m just looking for answers, boy," he says.
+    
+    + [NONE] 
+        ->->
+    
+    - -> waking_up_3
+
+
+= waking_up_3
+    <> "All our reports were clear that you were dead and buried, after you fell from Agatha's tower. Months later, here you are. Help me make sense of this." He pauses for a moment. "Just where have you been all this time?"
+    
+    *"Uh...?"[]
+        He squints. "Maybe I should just get straight to the point," he says. <>
+    *"Exploring."[]
+    *"I'm not telling you anything[."]," you say, bluntly.
+        It doesn't seem to faze him.
+        "All right. Straight to the point, then." He gives you a hard look. <>
+        ~ rep_emissary--
+    *[Remain silent]You say nothing. Jadar hangs his head a bit.
+        "All right. Straight to the point, then." He gives you a hard look. <>
+        ~ rep_emissary--
+    
+    - "Is Agatha dead?"
+    
+    {not MQ_00: -> emissary_00}
+    -> Court_Interruption -> emissary_00
+
+
+= Court_Interruption
+    INT. COURTROOM
+    
+    "Wait, what?!" The judge looked up like he'd just heard his own mother, and was alarmed, like she'd been shitting herself to death.
+    
+    "I said, no interruptions!" Agatha said. "Look, it’s simple. I was an enemy of the Delgorens. Those priests convinced him of this bit of scripture that foretold of the coming of the 'Arv’mahdant', a prophet who would sacrifice themselves to kill a false Goddess. They told him he was that prophet, and _used_ him to assassinate me."
+    
+    
+    INT. THE HOLE, INTERROGATION
+    
+    "Did you do it?" Jadar asks. "Is she... really dead?"
+
+
+= emissary_00
+    *"Who?"[]
+        "...Your mother, the Goddess of Embers."
+    
+        **"You must have the wrong person."[]
+            His brow creases. "We _know_ you’re Ananth. Don’t try and trick us."
+            
+            ***"How do you know?"[]
+                "How do I--?! Your mother's sword was next to your goddamn body, that's how we know! There's only one of its kind."
+            
+            ***"I don’t remember anything."[]
+            ~ times_pleaded_ignorance++
+                "I hope for your sake you’re just being stubborn. Otherwise, this is going to be a long week."
+    
+        **"I don’t remember anything."[]
+            ~ times_pleaded_ignorance++
+            His eyes flash. "You have to remember _something_."
+        
+    *"I don’t remember."[]
+        "Don't remember your mother? The Goddess of Embers? Or do you not remember what happened in that tower?"
+        
+        **"I don’t remember anything."[]
+            ~ times_pleaded_ignorance++
+            He starts wringing his hands. "That's--What?! You have to remember _something_!"
+    
+        **"You must have the wrong person."[]
+            His brow creases. "We _know_ you’re Ananth. Don’t try and trick us."
+            
+            ***"How do you know?"[]
+                "How do I--?! Your mother's sword was next to your goddamn body, that's how we know! There's only one of its kind."
+            
+            ***"I don’t remember anything."[]
+                ~ times_pleaded_ignorance++
+                His eyes flash. "You have to remember _something_."
+    
+    /*
+    *[“She’s alive.]
+        ~ rep_emissary = rep_emissary + 3
+        EMISSARY
+        …Dammit.
+        -> emissary_02
+    */
+    
+    *"Yes, I killed her."[]
+        ~ rep_emissary = rep_emissary + 5
+        "…By Arv."
+        Jadar scrambles to his feet and starts pacing around the room.
+        "This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…"
+        -> emissary_02
+    
+    *[Shrug]
+        ~ rep_emissary--
+        "This is going to be a long week, isn’t it?"
+    
+    - 
+    Jadar takes a deep breath to compose himself.
+    "There were rumors that you were setting out on a holy quest – with our blessing, no less – to kill Agatha and liberate the Old Del. You entered her tower, and supposedly died. Agatha has been silent ever since."
+    
+    *"Slow down. Who’s Agatha?"[]
+        ~ times_pleaded_ignorance++
+        
+        "She's... your mother." <>
+        { 
+            -times_pleaded_ignorance==2:
+            He blinks twice. "Wait, you’re serious, aren’t you? Whatever happened in there, it addled your mind."
+            You feel a blush.
+            "Okay." <>
+        }
+        He rubs his temple. <>
+        "We’ve never been sure of who or what she is. Honestly, I was hoping you’d know. She ruled the Draive – your people – as a false Goddess. History may have exaggerated her somewhat, but the story is that she's the very embodiment of chaos, capable of destroying nations with a thought."
+    *[NONE]
+    
+    - He leans in, like he's beseeching you for something. "If she's gone, we can practice our religion openly again. The Old Del can spread across the world, just like we did before. Just tell me -- is it true?"
+    
+    *"‘Spread across the world’?"[] 
+        ~ times_pleaded_ignorance++
+        
+        "I--yes, rebuild the Delgoren Empire, of course!" he says. <>
+        { 
+            -times_pleaded_ignorance==2:
+            <> "You’re serious, aren’t you? Whatever happened in there, it addled your mind."
+            You feel a blush.
+            "Okay." He takes a deep breath. <>
+        }
+        "Thirty years ago your mother, Agatha, purged our civilization, and forced us to live in the fringes. We’ve been struggling to protect what remains of our culture, and excavate the ruins of our nation from beneath the sand that swallowed it."
+        Recounting all this seems to be getting to him. He looks at you differently. "Then you appeared. Her only son. You came to us seeking repentance, and from what I’ve been told, we did not deny you."
+    *[NONE]
+    
+    -
+    -> emissary_01
+
+
+= emissary_01
+    
+    *"Yes, I killed her."[]
+        ~ rep_emissary = rep_emissary + 5
+        "…By Arv."
+        Jadar scrambles to his feet and starts pacing around the room.
+        "This changes everything. The Arv’ae will need to tread carefully to keep the world from falling into chaos, but…"
+        
+    *"I seriously don’t remember any of this."[]
+        ~ times_pleaded_ignorance++
+        { 
+            -times_pleaded_ignorance==2:
+            He blinks twice. "You’re serious, aren’t you? Whatever happened in there, it addled your mind."
+            You can tell he's not going to be able to let go of this. His hands shake.
+            -times_pleaded_ignorance<2:
+            "Somehow, I fail to believe you."
+            You can tell he's not going to be able to let go of this. His hands shake.
+            -times_pleaded_ignorance>2:
+            "I see..."
+            You can tell he's not going to be able to let go of this. His hands shake.
+        }
+    
+    *[Shrug]You shrug.
+        ~rep_emissary--
+        { 
+            -times_pleaded_ignorance<2:
+            You can tell he's not going to be able to let go of this. His hands shake.
+            "I will have answers, boy. Even if it means I have to beat them out of you."
+            -times_pleaded_ignorance>=2:
+            You can tell he's not going to be able to let go of this. His hands shake.
+            "...You know something," he growls. "You have to."
+        }
+        
+    - -> emissary_02
+
+
+= emissary_02 
+    {
+        -times_pleaded_ignorance+rep_emissary > 1:
+        He walks back towards the door, and cups a hand around his mouth. "Guards! Take the boy back to the basin. And make sure he’s well treated."
+    
+        -else:
+        He walks back towards the door, and cups a hand around his mouth. "Guards! Take the boy back to the basin. Maybe a day’s confinement will soften him up."
+    }
+    
+    {
+        -MQ_00:
+        {changeScene("Courtroom")}
+        
+        Romulus rubs his temples. "How long do you intend to confuse the courtroom like this?"
+        "Oh, calm your tits," says Agatha. "it's not as complicated as it sounds."
+    }
+    
+    -> The_Hole_Intro
+
+
+= The_Hole_Intro
+    {changeScene("The Hole - Basin")}
+    
+    There is the sound of howling and dripping walls, echoing on the walls of a cavern. Cell boredom set in quickly as soon as you were thrown in here. You spend a few minutes rolling around in a heap of straw, well away from the beam of light shining from above. Finally, you give up, and start looking for a means of escape.
+    There are several captives here. A woman dressed like a low-rank pirate leans against the wall.
+    
+    -> The_Hole
+
+
+= The_Hole
+    # gameplay
+    ~day = day+0.2
+    {day==1:-> feeding}
+    {You look up and see the sky.|} {~It is|It's} {~now|} {describeTime(day)}. {The_Hole==1:You pace around the basin and think of ways to get out of this place. Maybe if you just wait, a guard will unlock the door to come in. You have to eat sometime...}
+    + {not kaela_captured} [Talk to {Kaela_01:Kaela|the pirate woman}.] -> Kaela_01
+    + [{not Open_Door:Check out|Go back to} the door.] -> Open_Door
+    + [Wait.] 
+        -> The_Hole
+
+= Kaela_01
+    You {~approach|walk up to|meander towards|step towards} {Kaela_01 > 1: Kaela|the pirate}{Kaela_01 <= 1: .| again.}
+    {
+        -told_kaela: -> kaela_plan
+        -Kaela_01 == 3:
+        "You again?"
+        -Kaela_01 == 2:
+        "'Sup?"
+        -Kaela_01 == 1:
+        "Mornin’, darlin’," she says. "Welcome to the Hole."
+        
+        "…Is it actually called that?" you ask.
+        
+        "The Delgorens have a fancy name for it, if you’d prefer. Only I can’t pronounce it, so ‘the Hole’ will have to do." She yawns. "By the way, I'm Kaela. Pleasure."
+        
+        -else:
+        She doesn't acknowledge you.
+    }
+    
+    -> Kaela_02
+    
+    
+VAR told_kaela = false
+VAR lied_to_kaela_about_arvmahdant = false
+
+= Kaela_02
+    *"I'm Ananth."[]
+        ~told_kaela = true
+        "...Wait, what? The Arv'mahdant?"
+        ** "Yup."[]
+            She laughs.
+        ** "Apparently."[]
+            She seems a little taken aback at that.
+        ** (played_off) "No."[]
+            ~lied_to_kaela_about_arvmahdant = true
+            "So there's two albinos named Ananth, are there?" She raises an eyebrow.
+            
+        --
+        <> "What's the Delgoren prophet doing here?"
+        
+        ** "I'm working with them[."]," you tell her.
+            "I assume you're joking."
+            *** "Maybe."
+                "Get the fuck outta here."
+            *** "Of course."
+                "Get the fuck outta here."
+            *** "Nope."
+                She lunges at you.
+                -> kaela_fight -> guard_enters_fight
+        ** "They said they found me passed out somewhere."
+            "You too, huh?" She smirks. "Well, certainly never expected to see you here. You got anything that could help us escape?"
+            *** "On it."
+                She laughs. "I'll be waiting, then."
+            *** "Not yet."
+                She shrugs. "Well, we've got time..."
+            *** "I'm not helping you."
+                She furrows her brow. "What, too good to help a pirate?"
+                **** "Joking, of course."
+                    "...I knew that."
+                **** "Yup."
+                    "You little prick-- C'm'here!"
+                    She's on you before you have time to react.
+                    -> kaela_fight -> guard_enters_fight
+                **** "I'm with the Delgorens."
+                    Her eyes light up, and she lunges at you.
+                    -> kaela_fight -> guard_enters_fight
+        ** {played_off} "I'm really not[."]," you say.
+            "Hm. Fine."
+            ~told_kaela = false
+            ~lied_to_kaela_about_arvmahdant = true
+        ** "I'm joking[."]," you say.
+            "...I knew that."
+        
+    * {told_kaela} "What's the Arv'mahdant?"
+        -> arvmahdant_explanation_kaela ->
+        
+    *"Tell me about the Hole."[]
+        "It's somethin’ of a holding facility. Old Del bring prisoners from nearby regions here. It keeps us from running, until they can bring one of their slave ships ‘round and send us all back to their capital."
+    
+    *"Tell me about this ‘Arv’ thing."[]
+        "Seriously? It’s the name of the Delgoren’s ‘one true God’. The Delgorens love to name everythin’ for it. ‘Arv’vurdeve’ – New City of God. ‘Arv’ae’ – Council of God. And so on." She picks her teeth. "Personally, I think they jus’ like the ‘ar’ sound."
+    
+    *"Jadar said they’re bringing the Arv’ae here."[]
+        "You sure? They’re bringin’ the High Lords here? Interesting…" She looks up at the roof. "If I can hold one of them hostage, maybe we could come an agreement. Well, it’s something to think about, anyway."
+    
+    *"Tell me about the capital."[]
+        "Arv’vurdeve? Just a big desert. Used to be the seat of the Delgoren Empire, but it was buried during Agatha’s little Cataclysm. I hear they’ve been digging out the old ruins ever since." She digs a finger in her ear. "It’s a week’s flight from here. Shouldn’t be long before the slave ship swings around."
+        
+    *"Who are you?"[]
+        "Just an unlucky Sky Pirate. Sorry, I got nothin’ to do with you bein’ here. Take that up with the Ol’ Del."
+        
+    +"Goodbye"[]
+        {
+            -Kaela_01 < 2:
+            "Sure, I’m not goin’ anywhere."
+            -else:
+            She gives you a funny look.
+        }
+        -> The_Hole
+    
+    - -> Kaela_02
+
+
+= kaela_plan 
+    "Hey, I just got an idea..." Kaela says. She nods to a spot high on the walls. "See that vent up there?"
+    Sure enough, there it is. It's far too small to crawl through, though.
+        * "What are you getting at?"
+        - "I reckon the guards are keeping tabs on us, somehow."
+        "So?"
+        She lunges at you.
+        -> kaela_fight -> guard_enters_fight
+
+
+= kaela_fight
+    You're standing there helplessly when her elbow strikes you in the face, breaking your lip. Your vision swims. Kaela steps back and bounces on her heel, anticipating a counter-attack.
+    * "Wait, stop!"
+        "Make me."
+    * [Hit her back (Skill)]You snap your fist at her, and manage to hit her jaw before she can parry. She doubles back with a growl of frustration.
+    - ->->
+
+
+= guard_enters_fight
+    There's a loud 'buzz' and the door pops open. One guard stands by the door, while another marches in with a spear.
+    This is a test.
+    "Stop this at once!" she hollers, pointing her spear directly at Kaela.
+    {told_kaela: -> hostage_attempt}
+    -> escape_success
+    
+
+= hostage_attempt
+    Kaela rushes up to you and tries to get you in a headlock.
+    * [Resist (Skill)] You resist, <>
+        VAR skill_check = 0
+        ~skill_check = 1 // RANDOM(1,20)-RANDOM(1,20)
+        {
+            -skill_check > 0: managing to break her hold long enough to get free. 
+            -> guard_scolding
+            -else:
+            but she's got you beat.
+        }
+    * [Let her] You feel her arm dig painfully into your throat, while her other hand grips your hair.
+
+    -
+    "Drop it," Kaela says, tightening her arm on you. "I'll break his neck, if I have to."
+    -> guard_approach
+
+
+= feeding 
+    The door opens. Everyone stops whatever they're doing and looks up as one guard enters the basin. Another stands at the door to block anyone who might make a run for it.
+    "Feeding time," says the first. She holds a tray of food in one hand, and a spear in the other.
+    {Kaela_01:Kaela|The pirate woman} gives you a look and jerks her head towards the door. She cracks her knuckles, points to you, then points at the guard serving food.
+    * [Nod]You nod.
+        Kaela immediately makes a run for the door. The first guard stops and watches her.
+        "Stop her!" she shouts, turning her back on you.
+        -> attack_opportunity(-> The_Hole, -> second_guard_beats_kaela)
+    * [Shake your head]You shake your head.
+    * [Do nothing]
+    
+    - The captives approach as soon as the guard puts the tray down. She keeps them at bay with her spear and slowly retreats, just waiting for someone to jump her.
+    Kaela rushes for the door. The first guard stops and watches her.
+    "Stop her!" she shouts, turning her back on you and the other captives.
+    -> attack_opportunity(-> The_Hole, -> second_guard_beats_kaela)
+
+= guard_scolding
+    "What do you think you're doing?" the guard asks.
+    "Just some light horseplay," Kaela says. "What, it's not like you gave us a deck of cards. We're bored out of our minds, here!"
+    The guard looks at you. "What happened?"
+    She's close. If you play your cards right, maybe you can get her to come even closer, and disarm her.
+    * {not kaela_plan} "I provoked her."
+        The guard furrows her brow. "You did?"
+        "You _are_ working with them!" Kaela says.
+        "He's a prisoner, just like the rest of you," the guard says, with a roll of her eyes. "Is this going to be a problem?"
+        
+    * {kaela_plan} "No idea."
+        The guard furrows her brow. "Is this going to be a problem?" she asks, leering at Kaela.
+        
+    * {kaela_plan} "She was trying to get you to come."
+        The guard furrows her brow. "Some kind of escape attempt?"
+        "You're too late!" Kaela says, laughing triumphantly. "Our plan is already coming to fruition! Nothing you can do will--"
+        -> guard_beats_kaela
+    * "She just lunged at me!"
+        Kaela's eyes flash. "You--!"
+        -> guard_beats_kaela
+    * [Feign an injury (Grace)] You cough and splutter, clutching your throat. "I think she crushed my windpipe," you wheeze. Thankfully, you stop before you can embarass yourself even more.
+        VAR grace_check = 1
+        {
+            -grace_check > 0:
+            The guard rushes towards you.
+            -> attack_opportunity(-> The_Hole, -> kaela_run)
+            -else: 
+            The guard looks you up and down. "Adorable," she says, staying out of arm's reach.
+            -> The_Hole
+        }
+        - (kaela_run)
+        You hear footsteps as Kaela sprints for the door. The second guard moves to block her.
+        The guard approaching you hears it too. "Stop her!"
+        -> second_guard_beats_kaela
+        
+    - -> The_Hole
+    
+    
+= guard_beats_kaela
+    The guard takes one step forward and slams the end of her spear into Kaela's chest. The woman falls to the ground and starts heaving.
+    "We'll take the pirate for discipline," the guard says, keeping the spear pointed at Kaela now. "Stay back."
+    -> attack_opportunity(-> The_Hole, -> kaela_captured)
+    
+    
+= second_guard_beats_kaela
+    Kaela is a surprisingly adept fighter, and stands toe-to-toe with the second guard. The first one, however, intervenes and slams the end of her spear into Kaela's back. The woman falls to the ground and starts heaving.
+    "We'll take the pirate for discipline," says the guard. She keeps her spear pointed at Kaela as she writhes about. "Stay back."
+    -> kaela_captured
+    
+    
+= kaela_captured
+    All you can do is watch helplessly as they take Kaela away.
+    -> The_Hole
+        
+
+= attack_opportunity(-> failure, -> refusal)
+    This is your chance.
+    * [Attack] 
+        You lunge at her.
+        -> battle("guard1",-> run, -> run)
+        -- (run) You look over just in time to see Kaela snap the other guard's neck. She sits against the open doorframe, panting. Blood pours from a wound in her skull.
+        -> escape_success
+    * [Do not] 
+        You let the opportunity pass.
+        -> refusal
+    -- -> refusal
+
+
+= guard_approach
+The guard takes a few steps forward, and lifts her spear, just a little. "All right," she says. "Let's all just stay calm--"
+Kaela throws you towards her. Thankfully, the guard doesn't ready her spear, and the two of you tumble over safely.
+You hear footsteps as Kaela sprints for the door. The second guard moves to block her.
+"Stop her!" the guard yells. You both scramble to get up.
+
+-> attack_opportunity(-> The_Hole, -> The_Hole)
+    
+    
+= Open_Door
+{
+    -Open_Door==1:
+    The door's locked, of course. Unlike most prisons, it's just a thick slab of metal -- no hatch, crack, window or bars. Only way something's getting through here is if the door's open.
+    -Open_Door==2:
+    You keep knocking on the door, looking for a weak spot.
+    {
+        -not kaela_captured :"I've already gone over this place top to bottom," {Kaela_01:Kaela|the pirate woman} tells you. "This a'int my first prison, but thing is, this place wasn't designed like a prison. That lock's magnetic."
+        "Magnetic?"
+        "Yeah. There's a generator on the other side keeping the thing charged. Pretty heavy-duty stuff."
+        -else: <> Maybe you and Kaela could have compared notes...
+    }
+    -else:
+    There's not much more you think of trying. The door's solid.
+}
+
+-> door_options
+
+
+= door_options
+    * [Put your hands on the door.] You press your hands against the door.
+        There's a subtle buzz of energy, as though a light current is running through it. Might have something to do with the locking mechanism.
+        -> door_options
+    * [Electrify it]
+        You give the door a heavy jolt, while keeping a distance from it. You hear something 'pop' on the other side -- the generator, most likely -- and the door slowly swings open.
+        -> escape_success
+    + [Step away.]
+        -> The_Hole
+
+
+= escape_success
+    You realize that everyone's eyes are on you.
+    
+    "Holy shit!" {Kaela_01:Kaela|the pirate woman} says. {not told_kaela:"Wait a minute -- {lied_to_kaela_about_arvmahdant:" She looks you up and down. "--You're _sure_ you're not Ananth?"|are you... Ananth?"}|"Way to go, Ananth."}
+    
+    The other captives approach you.
+    
+    "He is…!"
+    "The Arv’mahdant? Here?"
+    *{not arvmahdant_explanation_kaela}"‘Arv’mahdant’?"[]
+        -> arvmahdant_explanation_kaela ->
+        You can hear the captives whispering among themselves.
+    *[NONE]
+    
+    -"Bit of a nancy boy, isn't he?"
+    "Hush!"
+    
+    {
+        -not Kaela_01: -> kaela_introduction ->
+    }
+    
+    -> Captives_01
+
+
+= kaela_introduction 
+    The pirate woman takes your hand and shakes it roughly. "My name's Kaela, pleased to meet you, etcera... What's a prophet doing in a Delgoren prison?"
+    
+    * "Let's just get moving."
+        "Fair enough!" says Kaela. "This a'int my first prison break."
+    * "They said they found me passed out somewhere."
+        "You too, huh?" She smirks. "Well, certainly never expected to be busting out with you."
+        ** "Well, it's a small world."
+        ** "I just need to get home..."
+            "Oh yeah -- your sister's probably been looking all over for you. Last I heard, she was running Fol'deve."
+            *** "How do I get there?"
+                "We'll all be headed that way. It's one of the last free cities around."
+            *** "I don't remember any of that."
+                "Well, we'll be headed that way, regardless. It's one of the last free cities around."
+        ** "I'm not helping you."
+            She furrows her brow. "What, too good to help a pirate?"
+            *** "Joking, of course."
+                "...I knew that."
+            *** "Yup."
+                "Are you serious?"
+            *** "I'm with the Delgorens."
+                "Are you serious?"
+    * "I'm working with them[."]," you tell her.
+        "Then why are you helping us break out?"
+        ** "Needed some fresh air."
+            "Uh-huh."
+        ** "Who says I'm doing it for you?"
+            "Are you serious?"
+    * {played_off} "I'm really not..."[]
+        Kaela narrows her eyes at you. "For real? Damn, you albinos all look alike."
+        The captives continue to whisper among themselves with excitement.
+        "Yeah, good luck telling them that," Kaela tells you. "Half these people are friggin' brainwashed, and they all think you're their saviour. Have fun."
+        ~lied_to_kaela_about_arvmahdant = true
+        
+    - ->->
+
+= arvmahdant_explanation_kaela
+    {Kaela_01:Kaela|The pirate woman} furrows her brow. "You’re Ananth, right? You killed Agatha, and according to legend, you were supposed to come back to life and be our saviour."
+    
+    You realize {escape_success:everyone's|she's} staring at you.
+    
+    *"You've got the wrong guy..."
+    *"Well, I’ll just deal with that as it comes[."]," you mutter.
+    *"Works for me."
+    
+    - ->->
+
+
+= Captives_01
+    
+    * "How do we get out?"[]
+        "If we can get to a radio, we can call in Fol’deve’s airships to come get us," Kaela says. "The radio should be in the head honcho’s office. Let’s go, before the guards catch on that the door’s broken."
+        {
+            -lied_to_kaela_about_arvmahdant: The other captives run on ahead. Kaela stops and gives you a long, hard look.
+            //-> kaela_asks_about_lying ->
+            She starts walking out. "C'mon, let's get moving."
+        }
+        -> Storage
+    
+    
+= kaela_asks_about_lying
+    "Why'd you lie to me, earlier? About being you."
+    * "Just because."
+        She rolls her eyes. "Fine, don't tell me."
+    * "I'm trying to keep it on the down low."
+        She nods. "Yeah, I get it. No hard feelings."
+    * "I don't know."
+        She rolls her eyes. "Fine, don't tell me."
+    - You can tell she's used to being lied to.
+    ->->
+
+
+= Storage
+    {changeScene("The Hole - Storage")}
+    
+    //Choose your starting loadout.
+    
+    "Awww yeah, found my rail gun," Kaela says. She takes one look at you and stops. "…Holy crap, that’s Agatha’s sword!"
+    "Uh--"
+    "And that’s—! What is that? Gods, man, you must have done some serious shit. I don’t recognize half this stuff."
+    
+    *"I know, right?!"[]
+    "You and I, we gotta swap stories when all this is done."
+    
+    *"I may have done some adventuring."[]
+    "No doubt. You and I have gotta swap stories, later."
+    
+    *"Don’t ask."[]
+    "Hey, no worries. I don’t want to talk about how I got half this stuff, either." She gives you a wink and pulls out a battery-operated wand of some sort. It doesn't look very practical for fighting with.
+
+    - -> Head_Office
+
+
+= Head_Office
+    {changeScene("The Hole - Head Office")}
+    
+    Jadar swivels around as soon as you enter. "You!" he barks.
+    
+    *"Sorry about this."[]
+    *"Wasn’t my idea."[]
+    *"Yep."[]
+    *[Attack.]
+        -> emissary_fight
+    
+    - "Nothing personal, buckaroo, but you’re in the way of our radio," Kaela says, pointing her rail gun right at him.
+    "The radio?!" Jadar rolls his eyes like he's just heard a bad joke. "You really think anyone is going to come save you lot?"
+    "They’ll come for the Arv’mahdant," says Kaela.
+    "You don't know a goddamn thing about--!" For a second, Jadar starts to shake with rage. He catches himself on a table and regains his composure. "...The Arv'mahdant is our holiest prophet. Even if you _could_ convince someone out there he's throw in with some _filthy pirates_--"
+    
+    "I'm right here," you say.
+    
+    "_--nobody even knows he's alive!_"
+    
+    *"They'll know it's me if they hear my voice."[]
+        "Not many have heard your voice, child," Jadar says. "But fine. If you want to take that chance, do as you will."
+    
+    *"Would you risk killing me?"[]
+        "...The Arv’ae would have me flogged for this failure," Jadar says. "But no, you’re right. We're not enemies."
+    
+    *"We’ll take that chance."[]
+        Jadar looks at you long and hard. Finally, he shrugs his shoulders.
+        "Fine."
+    
+    *[Attack.]
+        -> emissary_fight
+    
+    - 
+    Kaela blinks and lowers her weapon a little. "Wait, what? You’re just letting us through?"
+    
+    "‘Us’? No – I speak only to the Arv’mahdant." Jadar takes a step towards you. "I do have a condition, Ananth. If you truly wish to avoid bloodshed, do the right thing, and return these apostates to my care."
+    
+    The captives look around in a panic. "What?!"
+    
+    "And just how would that be ‘the right thing’?" you ask.
+    
+    "All right, look – you think this lot was chosen at random? These captives are criminals. Destitutes. I know at least one of them came willingly."
+    
+    "That was before I learned the Arv’mahdant was here," says one of the captives.
+    
+    "You took me because of my debt...?" says another. "But I have family!"
+    
+    Jadar looks at him. "Oh, well, this is awkward... Boy, your family sold you to pay off your gambling debts – and the payments are still outstanding."
+    
+    "That’s impossible!"
+    
+    Jadar holds out a hand as if to console him. Then he turns his eyes on Kaela. "And you…"
+    
+    "Yeah, yeah, okay, so maybe I’m not the most upstanding citizen," Kaela says. She turns to you. "But c’mon, guy, you can’t think that crimes and debts are enough to warrant slavery."
+    
+    Jadar takes on a commanding tone. "Return the captives to me and escape peacefully, or fight. It's up to you, Arv'mahadant."
+    
+    -> emissary_q
+
+= emissary_q
+    *"What, you’d kill the Arv’mahdant over a few captives?"[]
+        "I’d hope not to have to kill you." Jadar smiles weakly. "Try to understand, boy. These are bottom-feeders and murderers. I can’t just let them roam free."
+        
+        "So why would you let _him_ go so easily?" Kaela asks.
+        
+        "The Arv’mahdant was never truly a captive slave, and I feel no shame in releasing him," says Jadar. "...Though I imagine the Arv’ae will have me flogged regardless."
+        
+        Kaela sneers. "He just doesn’t want that flogging to turn into a beheading."
+        
+        "I admit, the punishment for losing my captives would be... harsh."
+        
+        "Ooh, and maybe they'll throw in some good ol' fashioned castration. First one head, then the other."
+        
+        "Enough."
+        -> emissary_q
+    
+    *"Let me take the guy who came willingly[."]," you say.
+        Jadar seems to think about it.
+        {
+            -rep_emissary >= 0: 
+            "Fine."
+            -else:
+            "No," he says at last. "Whatever conflicts you get embroiled in, I can't let one of my captives get caught up in it."
+            
+            The willing captive wrings his hands. "I..."
+    
+            "Ananth can't protect you." Jadar levels his eyes at the boy. "You put yourself in my care. I'm asking you to trust me."
+            
+            "...Yes, Sir."
+        }
+        Kaela gives you an angry look. "You're not seriously considering this."
+        -> emissary_q
+        
+    *"Whatever it takes to do this peacefully."[ (Surrender Captives)]
+        "You can’t be serious!" Kaela wails.
+        
+        Jadar bows. "Thank you, Arv’mahdant. Go in peace."
+        -> surrender
+    
+    *"Fine, take them. I really don’t care."[ (Surrender Captives)]
+        "Wha— Oh, you bastard!" Kaela cries.
+        
+        Jadar is taken aback. "I--okay, very well. Go in peace."
+        -> surrender
+    
+    *"I can’t let you take them."[ (Fight)]
+        Jadar sighs, looking rather put out by all this. "...Then I will do what I must."
+        -> emissary_fight
+    
+    - -> Radio
+
+
+= surrender
+    "You really think we’ll come quietly?" Kaela asks, readying her weapon.
+    Jadar shrugs. "I have six men stationed just outside this room so, assuming you value your life, yes."
+    
+    Her hands tighten around her weapon...
+    ...before she drops it in disgust. She gives you one last look that makes your heart lurch.
+    "You’ll regret this," she says.
+    
+    -> Radio
+
+
+= emissary_fight
+    You hear footsteps. Kaela swivels on her heel and pulls the trigger of her gun. Steam belches out onto her chest. When it clears, you see a nail lodged in the door, pinning it shut.
+    "I got these ones," Kaela says, loading a fresh nail into the chamber. She nods towards Jadar and grins. "You have the honours."
+    The door bursts open. Kaela fires another shot, and hits a guard in the chest as they come out.
+    Jadar advances on you.
+    
+    -> battle("emissary",-> Radio, -> Radio)
+
+
+= Radio
+    You rush to the radio. You can already hear feedback from the other side as you put the headphones on. "Hello?" you call out.
+    You wait for a moment.
+    
+    {
+        -fight: 
+        "Give me that," Kaela says. She takes the headphones off of you and wears them herself. "This is Kaela. If anyone’s out there, I’m an ex-member of the Reavers, and boy do I have some juicy secrets to share. They abandoned me to the Old Del, and you can find me at The Hole. Dock’s free."
+        
+        "What if your old gang comes to shut you up?" you ask.
+        
+        "They fled the area when their job went bad."
+    }
+    {
+        -surrender: 
+        "This is Ananth. I… I don’t know a whole lot, but I woke up in a prison run by the Delgorens. People keep calling me the Arv’mahdant, and I—I…"
+        The panic starts to get to you. You hide your face in your hands and compose yourself. "Look, I don’t know what’s happening, but if there’s someone – anyone – out there who can help me, please, come find me!"
+    }
+    The radio crackles to life. "Ananth?"
+    
+    "...Who’s that?" you ask.
+    
+    "It can’t be!" The voice sounds mystified, even awed. "Ananth, it’s me, Rita. Where are you?"
+    
+    You hesitate for a second. "I’m in some kind of prison. The Delgorens have me captured."
+    
+    "The Hole?! Shit! Hang on, I’ll see if there’s anyone nearby…"
+    {
+        -surrender:
+        "Wait, you didn’t tell me who you were!" you say.
+        
+        "It’s Rita, dammit! Your sister!" The voice sighs. "Just... get to the dock. We'll talk when you're home."
+        
+        The signal goes dead.
+        -> Docks
+    }
+    
+    "Rita? That’s your sister, isn’t it?" Kaela asks.
+    
+    * [Shrug] You shrug.
+    * "You know better than I do."[]
+    * "Yeah, sounds like her."[]
+    * ["This is my first playthrough, sorry."]"No idea."
+    
+    - "Can you get us?" Kaela asks.
+    
+    "Yes, yes, just... get to the dock. The one who's picking you up won't want to stick around." The voice pauses. "Ananth, we'll talk more when you're back."
+    
+    "Be there in a jiffy," says Kaela.
+    
+    The signal goes dead.
+    
+    "Your sister’s got the resources to come get us?" Kaela says. "I suppose I shouldn’t look a gift horse in the mouth, but still, weird."
+    
+    "What’s weird about it?" you ask.
+    
+    "You two are the spawn of Agatha. You were supposed to have died while killing that demon, and now your sister has enough clout to mobilize a ship in Delgoren airspace? Do you know what she’s been doin’ since you’ve been gone?"
+    
+    "I’m having some trouble remembering things, if that weren’t obvious."
+    
+    "Well, there’s been rumours that your family was colludin’ – fakin’ this whole ‘holy quest’ thing to consolidate power. Make you out to be the divine saviour while your mom goes into hiding."
+    
+    *"I’ve been dead this whole time!"[]
+        "I’m not blaming you! It’s your sister I’m worried about!"
+    
+    *"Do you really believe that?"[]
+        "I’m not blaming you! But if your sister has all these resources then… maybe the rumours have some truth to ‘em?"
+    
+    *"Hell, maybe."[]
+        "I guess we’ll just have to see…" She scratches her neck. "We should go clear out the dock. I’m sure we haven’t seen the last of these guards."
+
+    - -> Docks
+
+
+= Docks
+    {changeScene("The Hole - Docks")}
+        
+    Two Delgoren guards turn and look at you.
+    
+    {
+        -surrender:
+        -> delgorens_01
+    }
+    {
+        -fight: <> Their eyes go wide.
+        "Get him!"
+        -> docks_02
+    }
+
+= delgorens_01
+    "Stand down, men! Let the Arv’mahdant pass," one of them says. He approaches you with a professioanl swagger. "You ought to stay. The Arv’ae have a lot to ask you."
+    
+    *"Sorry, I already called the ship…"[]
+    *"I have places to be."[]
+    *"I don’t care about your leaders."[]
+        "Hmph." <>
+        
+    - The guard nods. "Very well -- I understand you have an agreement with Jadar. Peace be with you, Arv’mahdant."
+    -> docks_02
+
+
+= docks_02
+    After clearing the dock, an airship lands, bound for Fol’deve.
+    
+    CAPTAIN: (frantic) Get in!
+    
+    
+    INT. AIRSHIP
+    
+    PASSENGER: What are we doing in Delgoren airspace?!
+    
+    CAPTAIN: Fol’devean business. Go back to your drinks.
+    CAPTAIN: Are you okay, son?
+    
+    ANANTH: I… think so.
+    
+    CAPTAIN: Well, welcome aboard. Rita sent word that you were to be taken straight to Fol’deve.
+    CAPTAIN: She did ask that you keep a low profile. Try to keep that in mind.
+    CAPTAIN: Sorry for the rushed greeting, but I have to get back. We’re all anxious to get out of Delgoren airspace.
+    CAPTAIN: If you need me, come see me in the cockpit.
+    
+    The player can go to sleep to pass the time (cut to Foldeve_Docks). The ship itself is populated with random passengers.
+    
+    -> Foldeve_Docks
+
+
+    // Consider adding backstory here, when Ananth goes to sleep. Prologue right up until after Ananth makes his decision of whether to go to Arv'vurdeve.
+
+
+= Foldeve_Docks
+    
+    INT. FOL’DEVE DOCKS
+    
+    {
+        -fight:
+        RITA
+        …And whatever crimes or debts you had are forgiven. You can take shelter in the chapel, for now.
+        
+        CAPTIVE
+        Bless you, Lady Administrator.
+        
+        RITA
+        You can thank the Matriarch.
+        
+        KAELA starts to walk away.
+        
+        RITA
+        Ah, yes, the pirate. Do you sing, by any chance?
+        
+        KAELA
+        …Poorly, but yes.
+        
+        RITA
+        Great. Sing your heart out, if you know what’s good for you. Boys?
+        
+        RITA’s bodyguards approach KAELA, escorting her off-screen.
+    }
+    
+    ANANTH steps down from the airship.
+    
+    RITA
+    Ananth?
+    
+    ANANTH
+    Um… hey.
+    
+    RITA steps towards him. She pauses.
+    
+    RITA
+    …You’re not dead.
+    
+    ANANTH
+    Ah, no—
+    
+    RITA
+    Why aren’t you dead?!
+    
+    ANANTH
+    Uh?
+    
+    RITA
+    I missed you!
+    Great, I’ve spent all this time trying to clean up your mess, it’s good you showed up.
+    Or bad. Really, really bad, actually.
+    Shit, this is bad. This really complicates things…
+    
+    ANANTH
+    Well, I-
+    
+    RITA
+    Shh! Come on. We shouldn’t let anyone see you.
+    
+    
+    CUT TO:
+    
+    
+    INT. RITA’S LAB
+    
+    RITA: All right, I think we're in the clear.
+        
+    *[“Okay, start from the beginning.]
+        RITA
+        What? Don’t tell me you don’t remember.
+    
+        **[“I remember.]
+            RITA
+            Oh, you just want to be caught up. / After Agatha disappeared, things went downhill pretty quick. The Old Delgorens are starting to rebuild their empire… which, basically means re-conquering the whole world. / For them, religion and Delgoren rule go hand-in-hand. The Arv’mahdant is the hero who would make it all possible.
+        
+            ANANTH
+            So… is Agatha dead?
+            
+            RITA
+            Yup. Super dead.
+    
+        ** ["Nope.]
+            ANANTH: I remember most things, just… the last few months are a blur.
+            
+            Rita gives him a once-over.
+        
+            RITA: Huh. I guess dying would do that to you. That, and falling out of a tower.
+            
+            RITA: Well, good! Maybe you’ll finally start to lighten up!
+    
+            ANANTH: I died?
+            
+            RITA: Oh, yeah. You got all righteous and shit and decided to go be a holy warrior. Ended up causing quite a bit of damage in the process.
+            
+            ANANTH: ...Wait, I fell out of a tower? Did I hit my head--?
+            
+            RITA: You got the idea that God wanted you to take down the Goddess of Embers, our mother, and then... well...
+            
+            ANANTH: Did I win?
+            
+            RITA: Yep! Fulfilled the prophecy like a champ.
+            RITA: Unfortunately, things went downhill pretty quick. The Old Delgorens are starting to rebuild their empire, which… means conquering the known world.
+            RITA: For them, religion and Delgoren rule go hand-in-hand, and the Arv’mahdant is a hero who would make it all possible.
+            
+            ANANTH: So, Agatha _is_ dead?
+            
+            RITA: Yup. Super dead.
+    
+    *[Wait for her to calm down (Skip explanation)]
+        RITA: God, things have been so screwed up since Agatha died...
+    
+    - 
+    AGATHA (O.S.): I wasn't dead.
+    
+    ROMULUS (O.S.): We know.
+    
+    /*
+    - -> Court_Interruption
+    
+    
+    = Court_Interruption
+    
+    INT. COURTROOM
+    
+    JUDGE
+    What, what?!
+    
+    AGATHA
+    I said, no interruptions! / Look, it’s simple. My children, Ananth and Rita, decided one day that I was a tyrant and needed to be destroyed. / Ananth, bless his soul, was taken in by a Delgoren priest. He convinced Ananth of some Scripture that foretold of the coming of the Arv’mahdant, who would sacrifice themselves to kill the Goddess, and claim her powers as their own.
+    Which meant…
+    
+    
+    CUT TO:
+    
+    INT. RITA’S LAB
+    */
+    
+    RITA: Oh, and P.S., you _may_ be a religious icon, now. 
+    
+    ANANTH: Oh, no...
+    
+    RITA: Yeah. You killed the false Goddess, so now you’re supposed to lead the faithful to their rightful place and ‘tear down the Veil’ so that all can meet Judgment on the appointed day. Etc.
+    
+    ANANTH: Just how many people think I'm their Messiah?
+    
+    RITA: A lot. People love a martyr!
+    
+    ANANTH: I'm not _dead_.
+    
+    RITA: Details.
+    RITA: Oh--I think there was something in there about coming back to life with all sorts of divine powers, too. Any of that?
+    
+    ANANTH
+    I can open pathways to other worlds.
+    
+    RITA
+    Aw, is that it?
+    
+    ANANTH
+    I can also make fire with my mind.
+    
+    RITA
+    Oh. Well, that there’s a _real_ problem-solver. 
+    
+    ANANTH
+    Can I go back to sleep, now?
+    
+    RITA
+    You weren’t sleeping.
+    
+    ANANTH
+    Whatever it was, it was a lot less stressful.
+    
+    RITA
+    Ananth, you’re the goddamn Messiah! Act like it!
+    
+    *[“Don't say it like that!]
+    
+    RITA
+    Get used to it.
+    
+    *[“Fine, what’s next?]
+    
+    RITA
+    That’s the spirit!
+    
+    *[“I’m not even religious!]
+    
+    RITA: Whew! That’s a relief. You have no idea how stuffy you were before.
+    RITA: I mean you still have to deal with people thinking you’re the Messiah and all, but we’ll just deal with that as it comes.
+    
+    - Rita claps her hands together.
+    
+    RITA: So, welcome back to Fol’deve, one of the last free cities. The Matriarch hired me as lead administrator, which basically means I’m in charge.
+    RITA: Any questions?
+    
+    -> Rita_01
+
+
+= Rita_01
+    
+    *(get_radio)[“Is there anything I can do to help?]
+        RITA …Well, there’s a couple of things.
+        RITA: Our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
+        
+        ANANTH: Sounds like you’re trying to get rid of me again.
+        
+        RITA: Uh, yeah. You’re a religious icon come back from the dead. Let’s keep this hush-hush, for now.
+        RITA: Look, it does suck to watch you go off again. Take this two-way radio.
+        
+        ANANTH: Do I press this—
+        
+        Feedback blares out over the speakers.
+        
+        RITA: You press that button, yes.
+        
+        Feedback blares out over the speakers.
+        
+        RITA: Not now! Later!
+        
+        ANANTH: Oh!
+        -> Rita_01
+    
+    
+    *[“What do you mean, ‘one of the last free cities’?]
+        RITA: Many of the other cities have already thrown in with the Old Delgorens.
+        RITA: Most of ‘em are just doing it to avoid conflict, but I’m afraid if they’re trying to keep things peaceful, they’re misguided…
+        -> Rita_01
+    
+    * [“What are these robots?]
+        RITA: My babies? They’re remnants of the Progenitors. Avo, they’re called. The Progenitors probably used them for manual labour, maintenance – you know, all the boring stuff. 
+        RITA: But the Progenitors are long gone. Whatever kind of intelligence the Avo had came from a central processing unit, which died long before our time. 
+        RITA: Since you died, I’ve given them a new processor. Probably not as good as the original, but it’s given them some of their old functionality back. They’re just a little slow, sometimes.
+        
+        ANANTH: So like, a big brain? That they all share? How does that even work?
+        
+        RITA: Poorly, thanks for asking.
+        -> Rita_01
+    
+    *[“All right, I’m good.]
+        {
+            -not get_radio:
+            RITA: Great. Now, our biggest problem right now is energy. I need you to go to the Core of Haven and plant this doohickey. It’ll let me siphon power from it.
+            
+            ANANTH: Sounds like you’re trying to get rid of me again.
+            
+            RITA: Uh, yeah. You’re a religion icon come back from the dead. Let’s keep this hush-hush, for now.
+            RITA: Look, it does suck to watch you go off again. Take this two-way radio.
+        }
+    
+        RITA: {get_radio: Great. Fantastic.} I have another meeting in five for some nut claiming leavened bread is ‘frivolous’ and ‘against Scripture’. I don’t even know what leavened bread is. Is it cheaper to unleaven it? Don’t answer that, I have experts that can tell me these things.
+        RITA: Now get out there, and for Arv’s sake, try to keep a low profile.
+        
+    - 
+    [Activate “NEW DATA”]
+    
+    EXT. FOLDEVE
+    
+    The two-way radio crackles to life.
+    
+    RITA: Ananth! Some things I forgot to mention.
+    RITA: Our treasurer, Mav, went missing a while ago. I’m thinking the Old Del nabbed him. Could you ask around at his favourite watering hole? I’d like to know who’s seen him last.
+    RITA: Also, the religious among our people are leaving for the Old Del in droves. As much as I hate having priests breathing down my neck, we could really use your old friend, Dominic. He’s got enough clout to keep ‘em in check.
+    RITA: Last thing, promise. If you’re interested, you can talk to our Matriarch. She might have something for you. Either way, it’d be good to introduce yourself.
+    RITA: Oh, one more thing. If you die again, I’ll kick your ass.
+    
+    [Activate “ETERNAL FUGITIVE”]
+    [Activate “IRON FIST OF FOL’DEVE”]
+    [Activate “SOLE SURVIVOR”]
+    
+    #
+    
+    Wait four seconds. If the player doesn’t move:
+    
+    RITA
+    What are you just standing there for? Get moving.
+    
+    /*If ANANTH lingers in Fol’deve, NPCs have a slight chance of identifying him, and will then attempt to initiate dialogue. If ANANTH confirms that he’s alive, it will cause news to spread much faster (increasing the ‘Recognition’ stat). RITA will chide him the first few times this happens, as it will put ANANTH under a microscope before they can work out a strategy. Recognition causes your actions to affect the colony more, for better or worse.*/
+    
+    
+    -> Hub

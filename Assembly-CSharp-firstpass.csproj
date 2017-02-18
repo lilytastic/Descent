@@ -57,10 +57,13 @@
      <Compile Include="Assets\Plugins\Ink\InkRuntime\Glue.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\INamedContent.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\JsonSerialisation.cs" />
+     <Compile Include="Assets\Plugins\Ink\InkRuntime\ListDefinition.cs" />
+     <Compile Include="Assets\Plugins\Ink\InkRuntime\ListDefinitionsOrigin.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\NativeFunctionCall.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\Object.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\Path.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\PushPop.cs" />
+     <Compile Include="Assets\Plugins\Ink\InkRuntime\RawList.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\SimpleJson.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\Story.cs" />
      <Compile Include="Assets\Plugins\Ink\InkRuntime\StoryException.cs" />
