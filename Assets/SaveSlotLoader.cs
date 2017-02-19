@@ -23,6 +23,10 @@ public class SaveSlotLoader : MonoBehaviour {
 			slot.transform.SetParent(transform);
 			Button b = slot.transform.GetOrAddComponent<Button>();
 			SaveFile _file = StoryManager.saveSlots[i];
+			
+			SaveSlot _slot = slot.transform.GetOrAddComponent<SaveSlot>();
+			_slot.FillData(_file);
+
 			int ind = i;
 			if (slotType == SaveSlotType.Save) {
 				b.onClick.AddListener(() => StoryManager.instance.SaveTo(ind));

@@ -123,6 +123,19 @@ public class StoryManager : MonoBehaviour {
 
 		if (story == null) {
 			story = new Story(mainStory.text);
+			story.ObserveVariable("scene", (string varName, object newValue) => {
+				GameManager.instance.ChangeScene((string)newValue);
+			});
+			story.ObserveVariable("ana_healthMax", (string varName, object newValue) => {
+				GameManager.instance.ChangeMaxHealth((int)newValue);
+			});
+			story.ObserveVariable("ana_health", (string varName, object newValue) => {
+				GameManager.instance.ChangeHealth((int)newValue);
+			});
+			story.BindExternalFunction("Roll", (float req, float mod) => {
+				return GameManager.instance.Roll(req,mod);
+			});
+			/*
 			story.BindExternalFunction("getReputation", (string name) => {
 				Entity entity = GetEntity(name);
 				return GetReputation(entity);
@@ -131,6 +144,7 @@ public class StoryManager : MonoBehaviour {
 				//Entity entity = GetEntity(name);
 				return "["+name+"]"; //NovelManager.ChangeScene(name);
 			});
+			*/
 		}
 	}
 

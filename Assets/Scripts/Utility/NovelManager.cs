@@ -103,11 +103,17 @@ public class NovelManager : MonoBehaviour {
 	
 	float timeHeldMouseButton = 0;
 	void Update () {
-		if (Input.GetMouseButtonUp(0) && timeHeldMouseButton < 0.2f) {
-			StartCoroutine(Next(true));
+		switch (GameManager.instance.gameScreen.state) {
+			case GameManager.ScreenState.Story:
+				if (Input.GetMouseButtonUp(0) && timeHeldMouseButton < 0.2f && !GameManager.instance.stopWriting) {
+					StartCoroutine(Next(true));
+				}
+				if (Input.GetMouseButton(0)) {timeHeldMouseButton+=Time.deltaTime;}
+				else {timeHeldMouseButton=0;}
+				break;
+			default:
+				break;
 		}
-		if (Input.GetMouseButton(0)) {timeHeldMouseButton+=Time.deltaTime;}
-		else {timeHeldMouseButton=0;}
 	}
 
 	public void HandleLoad() {
@@ -203,6 +209,7 @@ public class NovelManager : MonoBehaviour {
 	}
 
 	public IEnumerator Next(bool userPrompted = false) {
+		//if (GameManager.instance.stopWriting) {yield break;}
 		GameObject duh = EventSystem.current.currentSelectedGameObject;
 		//Debug.Log(duh ? duh.name : "No object");
 		if (userPrompted && duh && duh.GetComponent<Button>()) {yield return null;}
@@ -244,6 +251,18 @@ public class NovelManager : MonoBehaviour {
 					StoryLine line = new StoryLine();
 					line.text = HandleLine(StoryManager.story.Continue());
 					line.tags = StoryManager.story.currentTags.ToArray();
+					//Debug.Log("Writing a line now");
+					if (GameManager.instance.latestDiceRoll > -1) {
+						GameManager.instance.stopWriting = true;
+						int roll = GameManager.instance.latestDiceRoll;
+						int required = GameManager.instance.latestDiceRollRequirement;
+						Debug.Log("There was a dice roll of " + roll + " against " + required + ", which is a " + ((roll >= required) ? "success" : "failure"));
+						GameManager.instance.latestDiceRoll = -1;
+						GameManager.instance.latestDiceRollRequirement = -1;
+						GameManager.instance.PlaySound(GameManager.instance.soundDiceRoll,1,Random.Range(0.9f,1.1f));
+						yield return new WaitForSeconds(1.1f);
+						GameManager.instance.stopWriting = false;
+					}
 					StartCoroutine(WriteLine(line));
 					FadeElement _fade = choiceAnchor.GetComponent<FadeElement>();
 					if (!StoryManager.story.canContinue) {
@@ -518,7 +537,7 @@ public class NovelManager : MonoBehaviour {
 	IEnumerator SceneChange(string _scene) {
 		yield return new WaitForSeconds(1f);
 		instance.ClearText();
-		StartCoroutine(Next());
+		//StartCoroutine(Next());
 		yield return null;
 	}
 
@@ -596,6 +615,7 @@ public class NovelManager : MonoBehaviour {
 	}
 
 	IEnumerator SelectChoice(int opt, bool silent = false) {
+		GameManager.instance.stopWriting = true;
 		//Debug.Log("Selected: " + opt);
 		List<CanvasGroup> _yourChoice = new List<CanvasGroup>();
 
@@ -636,6 +656,7 @@ public class NovelManager : MonoBehaviour {
 
 		ClearChoices();
 		lines.Clear();
+		GameManager.instance.stopWriting = false;
 		yield return StartCoroutine(Next());
 		yield break;
 	}

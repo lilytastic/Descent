@@ -1,0 +1,422 @@
+VAR m_1_undidknot = false
+VAR m_1_attackedguards = false
+VAR m_1_tookouteye = false
+
+=== m_1
+# title: Prodigal
+
+~ chapter++
+
+// Jadar, a drunk officer, finds Ananth being abused by some new recruits.
+-> m_1.abuse ->
+
+// He takes Ananth to the chapel.
+-> m_1.jadar ->
+
+Ananth is returned to the basin with the other captives.
+
+They wait for a day.
+
+Someone drops a radio in from the grated roof, as well as a long rope.
+
+Rita begins to talk to Ananth through the radio and guide him through escaping.
+
+Ananth must raise a platform and clear out the Delgoren soldiers to allow the airship to dock.
+
+
+Captives are unsure of Fol'deve. They claim it's impoverished, and many left the poor living conditions there to join the Delgorens.
+
+Jadar offers to hold the guard back if Ananth lets the captives stay with him. The captives will follow Ananth's command.
+
+Jadar can be persuaded to follow Ananth, as well as calling off the guard.
+
+An airship arrives once the docks are cleared.
+
+Ananth is taken to Fol'deve.
+
+->->
+
+
+= abuse
+    # description: Some new recruits give Ananth a thrashing
+    ~ ana_health = 14
+    ~ scene = "hole_dungeon"
+
+    "Hit 'im again!"
+    
+    Pain explodes in your face.
+    ~ ana_health -= 2
+    
+    Their voices started to blur together once the beating started, but you'd counted three guards. They cheer as blood comes spilling from your mouth. "Gonna cry, albino?"
+    
+    You feel your jaw crack under the next blow.
+    ~ ana_health -= 3
+    
+    * "Please, stop!"[] you plead.
+        They break into laughter.
+    * "I'm going to kill you _very_ slowly[."]," you say.
+        "Ooooh!" They break into laughter.
+    * [NONE]
+        "C'mon, you aren't gonna beg?"
+    
+    -The next blow nearly caves your head in. The floor comes up to meet you, and in your delirium, you feel yourself sink into the hard stone.
+    ~ ana_health -= 5
+    
+    "We can't... actually kill him. Right?"
+    
+    "Who's gonna know?"
+    
+    Your wrists spasm in the rope binding them. It actually starts to feel looser. You wonder if it's just your imagination.
+    
+    * [Thrash wildly (Random)] You thrash wildly. <>
+        {
+            -Roll(10,0): 
+                ~ m_1_undidknot = true
+                You feel the knot come undone.
+            -else:
+                You only manage to make it worse.
+        }
+
+    * [Calmly undo the knot (Intellect)] You calmly undo the knot, <>
+        {
+            -Roll(15,ana_intellect): 
+                ~ m_1_undidknot = true
+                and feel it slowly come undone.
+            -else:
+                but your head swims. You think you only made it worse.
+        }
+        
+    * [NONE]
+    
+    - "We can't let him tell the officers. If they find out--"
+    "Who's gonna listen to a prisoner? He doesn't even know our names."
+    You hear the scrape of a footstep. "You want to risk it?" The voice is very, very close.
+    
+    * {m_1_undidknot} [Attack (Skill)]
+        ~m_1_attackedguards = true
+        You throw yourself on the nearest thing you can find and <>
+        {
+            -Roll(10,ana_skill): 
+                gouge your thumbs into what feels like soft tissue.
+                ~m_1_tookouteye = true
+                You feel something hot and wet pour out. The guard's screams sound oddly distant.
+            -else:
+                start thrashing on it, but your limbs are heavy.
+                The guard laughs and throws you off.
+                ~ ana_health -= 2
+        }
+    * [Scream for help] You start to scream your lungs out.
+    * [NONE]
+    
+    - You hear glass break, and everyone stops.
+    "What in God's name are you doing?!" The voice is different.
+    {
+        -m_1_attackedguards:
+        You topple back onto the floor. <>
+    }
+    Your eyes feel wet as you squint through the darkness, sensing a change among the guards. You make out the silhouette of a fourth person walking in, and can tell by the shape of their armour that they're no guard. An officer, maybe.
+    "[DELGOREN]! Do you know who this is?!" the officer asks of them.
+    The guards look among themselves. "Who?"
+    "[DELGOREN]..." The officer rubs his face in frustration. "You know what? I won't even bother. That was a perfectly good bottle you had me break, you know."
+    "Sir--"
+    The officer pulls a blade on the guard's neck with such speed you're amazed you don't see his head come clean off. Instead it presses on his throat, forcing his head to tilt awkwardly.
+    The officer tilts his own head to follow the guard's. "You'll be paying for it out of your allowance," he says, "which I imagine will be docked _severely_, what with the demotion and everything."
+    "You can't!"
+    "I can't? Ah, you're right, I don't have the authority..." The officer pretends to think over it for a second. "Well, I _can_ chop your head off. Would you prefer that?"
+    "...Do you want me to answer that?"
+    "Is that a yes?"
+    "No, Sir. Please don't chop my head off."
+    "Thought not. So, you'll write a nice, long report to Nguong Malthas -- who _does_ have the authority -- explaining just what you and your friends were doing here. [DELGOREN] Do that, and maybe _I_ won't bother killing you while you sleep. Everybody's happy."
+    He sheathes his sword and steps up to your broken, battered body.
+    "[DELGOREN]..." he says, putting a hand on your head.
+    * "Thank you."
+        "[DELGOREN]. We owe you a great debt," the officer whispers. <>
+    * "Don't touch me."
+        "I won't hurt you," the officer whispers. <>
+    * [Whimper] You whimper a little. <>
+    * [NONE]
+    - You see a faint smile as he looks down on you.
+    "You're dismissed," he snaps. The guards scramble for the exit.
+    The officer scoops you up in his arms, and you give into the pain, blacking out.
+    
+    ->->
+    
+    
+= jadar
+    ~ scene = "hole_meditationroom"
+    ~ ana_health = 22
+    
+    You wake up to a trickle of water on your forehead.
+    "Oh, you're awake."
+    You're nestled in a throw pillow, and your limbs hang off you like stone. The officer holds you steady as you come to. He reeks of alcohol.
+    {
+        -m_1_tookouteye:
+            -> jadar_tookeyeout ->
+        -m_1_attackedguards:
+            -> jadar_gotinfight ->
+        -else: 
+            -> jadar_sorry ->
+    }
+    - (j_questions)
+    * "Who are you?"
+        "[DELGOREN] J'ngar, at your service." He does a little flourish.
+        -> j_questions
+    * (askedaboutdamage) "How bad is the damage?"
+        "You'll be fine. They cracked one of your ribs, but it's nothing that can't be fixed with a lot of rest and some [HERB]."
+        Strange, you don't feel like anything's broken...
+        -> j_questions
+    * [NONE]
+    
+    - He brushes a wet sponge along your body, cleaning off the blood and dirt from weeks passed. You can't remember the last time you had a bath.
+    "The ones that did this... they were born after the Cataclysm. All they heard about growing up was how beautiful our empire was, and how Agatha -- the albino demon -- destroyed it all with a thought." He sighs. "Old prejudices die hard."
+    * "I understand."
+    * "Doesn't excuse what they did."
+        "No. It doesn't." He smiles, weakly. <>
+    * [NONE]
+    - "They came to us only after we began to rebuild," he goes on to say. "They got drunk on the rebirth of the Delgoren Empire, but they don't know what it took to get us here. Patience, forgiveness... and faith."
+    
+    He watches you. "You're supposed to be dead."
+    {askedaboutdamage: 
+        "You said all they did was crack a rib."
+        "You know what I mean."
+    }
+    You feel hot around the collar.
+    "You're _Ananth_," he whispers.
+    "I--"
+    "I'm sorry, I can't resist asking," he says. "It's just -- Did you really do it? Is Agatha... really dead?"
+    -> responses_a ->
+    - (hesitated) "Because if she is... If she's gone, we can practice our religion openly again. The Old Del can spread across the world, just like we did before. Is she gone? Really gone?"
+    -> responses_a ->
+    - "W-why aren't you saying anything? She is dead, right?"
+    -> responses_a -> 
+    
+    He looks bewildered. Several seconds pass and you can see the gears turning in his head.
+    
+    - (toldhim_a) "By God, it's true, isn't it?" he whispers. "You're the Arv'mahdant."
+    * "What?"
+        "That's what the old scripture says. A prophet would appear to banish the false Goddess, and they would be the Arv'mahdant who shepherds us through the end times."
+        ** "Who says Agatha was a Goddess?"
+            "Well, she did call herself the Goddess of Embers," he says with a wry grin. <>
+        ** "I guess so."
+        ** "No."
+            "You are! I know it sounds mad, but... if you did it, you must be!"
+    * "I guess so."
+    * "No."
+        "You are! I know it sounds mad, but... if you did it, you must be!"
+    * [NONE]
+    
+    -
+    {not hesitated: "If Agatha's gone, we can practice our religion openly again. The Old Del can spread across the world, just like we did before." <>}
+    
+    He has to struggle to contain his excitement. "So, what happened that day? All our reports said you fell out of Agatha's tower and disappeared."
+    * "I don't remember."
+        "What?" He laughs, expecting a punchline. "How do you not remember?"
+        ** "Dying's pretty traumatic."
+        ** "I'm sorry, it's just a blur."
+        ** [Shrug] You shrug.
+        ** [NONE]
+        -- "Is it like... a blackout?"
+        ** "I guess."
+            He searches your eyes, then continues washing you. <>
+        ** "You know all about that, don't you?"
+            He smirks. "Indeed." He continues washing you. <>
+        ** [NONE]
+            He searches your eyes, then continues washing you. <>
+    
+    - "What do you remember, then?"
+        -> whatdoyouremember
+        
+    - (whatdoyouremember)
+        * ["I armed myself..."] 
+            -> whatdoyouremember
+        * ["I shook hands with the priests..."]
+            -> whatdoyouremember
+        * ["I entered the tower..."]
+            -> whatdoyouremember
+        * "That's it."
+            -> allweknow
+        * [NONE]
+            -> allweknow
+            
+    - 
+    
+    - (allweknow) "All we know is that you entered her tower with our blessing. Then Agatha just... disappeared."
+    
+    * "That's a relief."
+        "I can imagine." He stops. <>
+    * "I did wake up with her sword."
+        "Yeah." He stops. <>
+    * [NONE]
+    
+    - "Where did you go, after that?" he asks. "Everyone assumed you were dead."
+    
+    * "I hid."
+        "You're the most famous person in the world, right now. How did nobody find you?"
+        -> j_explainwhereabouts ->
+    * "I wanted to see the world."
+        "You're the most famous person in the world, right now. How did nobody find you?"
+        -> j_explainwhereabouts ->
+    * [Shrug] You shrug. <>
+        -> j_explainwhereabouts ->
+    * [NONE]
+        "Don't want to talk about it?" He squints. <>
+    
+    - "But... you're the Arv'mahdant. You're supposed to be our prophet."
+    
+    * "I didn't want the responsibility."
+    * "I was too disgusted with everything."
+    * "I was... scared."
+    * [NONE]
+    
+    - "I guess it is a lot to ask..." he says. "But by God, I can't believe this day's really come. It's almost enough to make me stop drinking."
+    
+    * "I'd think it was the opposite."
+        "Well, it did earn me a pretty harsh demotion," he says. <>
+    * "Didn't think you guys were allowed."
+        "Well, it did earn me a harsh demotion," he says. <>
+    * [NONE]
+    
+    - "Had to smuggle that bottle in from Cor'deve. Can't believe I had to smash it, but, I had to get their attention somehow before they... y'know."
+    
+    * "Will you just let me go?"
+        "Would that I could," he says. "Nothing's changed, though."
+        ** "Bullshit."
+        ** "But I'm your prophet."
+        ** "Why are you doing this?"
+    * "Why am I a prisoner?"
+    
+    - "This is where we hold captives to await the next slave ship from Arv'vurdeve. After we found you passed out in the forest, we knew the [DELGOREN] would need to speak to you. They're on their way now."
+    
+    - (after_a)
+    He sighs. "I'm sorry that you were treated like this. Once the [DELGOREN] arrive and speak to you, then... I don't know."
+    
+    * "So what now?"
+    * "I'm not waiting until then."
+        He sighs. "Please reconsider," he says. <>
+    * (thanksforeverything) "Thank you for everything."
+        He beams. "Of course," he says, bowing. <>
+    * [NONE]
+    
+    - "...I have to get you back to the basin, with the other prisoners -- but I'll make sure this never happens again. I promise."
+    
+    * {not thanksforeverything} "Thank you for everything."
+        He beams. "Of course," he says, bowing. <>
+    * [NONE]
+    // Ananth forgot only the day of his death. However, he is told Agatha is most likely dead. He woke up on another Fragment after the fall, discovered a Pathway, and proceeded to run.
+    ->->
+    
+= responses_a 
+    * "Yes."
+        ->-> toldhim_a
+    * "(Lie) You must have the wrong person."
+        "They found your mother's sword next to your body. It's one of a kind."
+        ** "(Lie) Don't know anything about that."
+            -> responses_b
+        ** "...Okay, yes, I killed her."
+            ->-> toldhim_a
+        ** [NONE]
+            -> responses_b
+    + [NONE]
+    - ->->
+
+= responses_b
+    His hands shake. "Y-you're not serious, right? It's you. It has to be you."
+    * "(Lie) I didn't kill her."
+    * "...Okay, yes, I killed her."
+        ->-> toldhim_a
+    * "I don't know what to tell you."
+    
+    - "You're lying. You're supposed to be the Arv'mahdant -- our prophet."
+    * "Maybe I just didn't want the responsibility."
+        He opens his mouth to speak, then closes it. <>
+    * "I'm not your prophet."
+        He opens his mouth to speak, then closes it. <>
+    * "(Lie) I don't know what you're talking about."
+        "Bullshit!"
+        
+    - He stands up. "We know who you are! Your face is on every [DELGOREN] in Arv'vurdeve." He's panicked, and you can't get a word in edgewise, even if you wanted to. "You can't-- Everyone thinks you did it! If you didn't, then we... Then we..."
+    He paces around in front of you. "{not hesitated: If she were gone, we could practice our religion openly again. We could spread across the world, just like we did before. But -- }If she's still alive, she'll strike us again as soon as we start to expand."
+    
+    * "...No, I did do it."
+        -> j_backpedal
+    * "(Lie) I'm really not Ananth."
+        "You look a lot like him," he says bitterly. "So, what, you won't confirm or deny it, then?"
+        ** "I guess not."
+        ** "...No, I did do it."
+            -> j_backpedal
+        ** "Denied."
+            -> j_deny
+        ->-> after_a
+    * "(Lie) I didn't do it."
+        -> j_deny
+    * [NONE]
+    
+    - ->-> after_a
+
+= j_backpedal
+    He stops. "What? Why did you lie?"
+    * "I'm afraid of the responsibility."
+        His face twists in something almost like outrage, but he stops.
+        "...I suppose it is a lot, to ask someone to be your prophet."
+    * "I don't know."
+    * "I'm not sure who I can trust."
+        He chuckles, more to himself. "Can't blame you."
+    * [NONE]
+    
+    - He drops his sponge in the water bucket where it came from.
+    "Well... thank you for telling me," he says. "Eventually." He forces a smile.
+    * "I'm sorry."
+        He rubs the back of his neck. "I... think I understand."
+    * "You were being pathetic."
+        He laughs. "I guess I was."
+    - ->-> after_a
+
+= j_deny
+    He looks heartbroken. He opens his mouth to speak again, like he has so much he wants to say, and so many ways to protest. Eventually, though, he just gives up.
+    - ->-> after_a
+    
+= j_explainwhereabouts
+    "I woke up on a different fragment with Agatha's sword. I was looking for a way back, when I found a... ripple."
+    "A 'ripple'?"
+    "A warp in space," you say. "I hadn't seen anything like it before, but since that day, I see them almost everywhere I go. I can feel them. When I get close, I can open them into pathways that take me to other worlds."
+    His jaw drops. "Agatha was always able to move across the world in the blink of an eye. That must be the same power she had."
+    "I just wandered into a different world and... didn't come back."
+    ->->
+
+= jadar_tookeyeout
+    "You took that boy's eye out, you know," he says.
+    * "Excellent."
+        He laughs. <>
+    * "Am I supposed to apologize?"
+        "God, no. Boy deserved it," he says. <>
+    * "I'm sorry."
+        "Why? Boy deserved it," he says. <>
+    * [NONE] You say nothing. He smiles, and doesn't push the matter. <>
+    - -> jadar_gotinfight ->->
+    
+= jadar_gotinfight
+    "Surprised you had any fight left in you at all."
+    * "It was mostly flailing."
+        He snickers at that.
+    * "Thanks for the compliment."
+        "Think nothing of it."
+    * "I didn't have a choice..."
+        "Nobody blames you."
+    * [NONE]
+    - ->->
+
+= jadar_sorry
+    He doesn't quite look at you. "I'm sorry."
+    * "I've dealt with worse."
+        "[DELGOREN]... Not the point."
+    * "Thanks for saving me."
+        "Someone has to be the good guy," he says. "Guess we're not too different, eh?"
+        ** "What do you mean?"
+            "Everyone thought your family was nothing but bad," he says. "Didn't stop you from standing up."
+        ** [NONE]
+    * [NONE]
+        He searches your eyes like he's looking for forgiveness. He nods, sadly.
+    
+    - ->->
+    
+    
